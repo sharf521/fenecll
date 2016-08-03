@@ -1,0 +1,77 @@
+{include file="header.html"}
+
+<div id="rightTop">{$build_editor}
+     <p>供货管理</p>
+    <ul class="subnav">
+         <li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+        {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data">
+        <table class="infoTable">
+ <tr><td width="116"><h5><font color="#0033FF">添加报损日志</font></h5></td></tr>
+ <tr>
+                <th class="paddingT15">
+                  供货人</th> 
+                <td class="paddingT15 wordSpacing5">
+                
+                   {$row.user_name} 
+                   <input name="gh_name" type="hidden" value="{$row.user_name}" /> 
+                   <input name="gh_id" type="hidden" value="{$row.gh_id}" /> 
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品名称</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$row.goods_name}
+                   <input name="goods_name" type="hidden" value="{$row.goods_name}" />
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  所属仓库</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$row.store_name} 
+                   <input name="cangkuid" type="hidden" value="{$row.cangkuid}" />
+                </td>
+            </tr>
+            <tr>
+             <th class="paddingT15">
+                  类型</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input name="type" value="1" type="radio"/>添加<input name="type" value="2" type="radio" checked="checked"/>减少   
+                </td>
+            </tr>
+			
+            <tr>
+                <th class="paddingT15">
+                  数量</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" type="text" name="num" value="" />   
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                  报损/添加原因</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <textarea name="beizhu" cols="6" rows="4"></textarea>   
+                </td>
+            </tr>			
+        <tr>
+            <th></th>
+            <td class="ptb20">
+                <input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+                <input class="formbtn" type="reset" name="Submit2" value="{$lang.reset}" />
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

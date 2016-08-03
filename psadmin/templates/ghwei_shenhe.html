@@ -1,0 +1,124 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>供货管理</p>
+    <ul class="subnav">
+		<li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+		<li><span>供货未审核</span></li>
+        {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=chakan_baosun">报损日志</a></li>
+        {/if}
+	   <!-- <li><a class="btn3" href="index.php?app=gonghuo&act=add">我要供货</a></li>-->
+		
+    </ul>
+</div>
+
+<div class="mrightTop">
+    <div class="fontl">
+       <form method="get">
+      <div class="left">
+          <input type="hidden" name="app" value="gonghuo" />
+          <input type="hidden" name="act" value="ghwei_shenhe" />
+          供货商:
+        <input name="ghname" value="{$ghname}" type="text"/>
+          状态:
+          <select name="type">
+          <option value="">请选择</option>
+          <option value="8" {if $type==8} selected="selected"{/if}>等待初审</option>
+          <option value="9" {if $type==9} selected="selected"{/if}>等待事实审核</option>
+          <option value="5" {if $type==5} selected="selected"{/if}>等待发货</option>
+          <option value="6" {if $type==6} selected="selected"{/if}>正在盘点库存</option>
+          <option value="4" {if $type==4} selected="selected"{/if}>等待仓库填写物流</option>
+          <option value="7" {if $type==7} selected="selected"{/if}>等待终审</option>
+          </select>
+          时间：
+          <input name="add_time_from" type="text" id="add_time_from" value="{$add_time_from}" size="10" maxlength="10" />
+              &nbsp;至&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="{$add_time_to}" size="10" maxlength="10" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $ghname or $type or $add_time_from or $add_time_to}-->
+            <a class="left formbtn1" href="index.php?app=gonghuo&act=ghwei_shenhe">{$lang.cancel_query}</a>
+     <!--{/if}-->
+    </form>  
+    </div>
+    <div class="fontr">
+
+    </div>
+</div>
+
+<div class="tdare">
+    <table width="100%" cellspacing="0">
+<!--{if $gonghuo}-->
+        <tr class="tatr1">
+         	<td>供货商</td>
+			<td >商品名称</td>
+			<td >商品品牌</td>
+			<td>零售价</td>
+            <td>状态</td>
+			<td>时间</td>
+			<td>所属站</td>
+            <td class="handler">操作</td>
+        </tr>
+
+        <!--{foreach from=$gonghuo item=val key=key}-->
+        <tr class="tatr2">
+          <td>{$val.user_name}</td>
+		  <td ><font color="#FF0000">&nbsp;{$val.goods_name}</font></td>
+		  <td><font color="#FF0000">&nbsp;{$val.goods_brand}</font></td>
+		  <td ><font color="#FF0000">&nbsp;{$val.lingshou_price}</font></td>
+		  <td><font color="#FF0000">&nbsp;
+          {if $val.status==3 && $val.chushen_status!=3}等待事实审核{/if}
+          {if $val.status==3 && $val.chushen_status==3}{$lang.daichushen}{/if}
+          {if $val.status==1}{$lang.shenhetongguo}{/if}
+          {if $val.status==2}{$lang.shenhebutongguo}{/if}
+          {if $val.status==4}等待仓库填写物流{/if}
+          {if $val.status==5}等待发货{/if}
+          {if $val.status==6}正在盘点库存{/if}
+          {if $val.status==7}等待终审{/if}
+          </font></td>
+		  <td>{$val.riqi}</td>
+			<td><font color="#FF0000">&nbsp;
+			  {$val.city_name}
+			</font></td>
+
+            <td class="handler">
+			{if $priv_row.privs=="all"}
+				
+			    <a href="index.php?app=gonghuo&act=gh_shenhe&id={$val.gh_id}&user_id={$val.user_id}">审核</a>
+				
+			{else}
+				{if $val.chushen_status==3}
+				<a href="index.php?app=gonghuo&act=gh_shenhe&id={$val.gh_id}&user_id={$val.user_id}">审核</a>
+				{else}
+			   已初审，等待终审
+				{/if}
+			{/if}		
+			
+			 
+			</td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="8">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $gonghuo}-->
+<div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">
+   
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  <!--{/if}-->
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

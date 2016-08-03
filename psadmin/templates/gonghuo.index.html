@@ -1,0 +1,127 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>供货管理</p>
+    <ul class="subnav">
+        <li><span>管理</span></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+        {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=chakan_baosun">报损日志</a></li>
+        {/if}
+		<!--<li><a class="btn3" href="index.php?app=gonghuo&act=add">我要供货</a></li>-->
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+      <div class="left">
+          <input type="hidden" name="app" value="gonghuo" />
+          <input type="hidden" name="act" value="index" />
+          供货商:
+        <input name="ghname" value="{$ghname}" type="text"/>
+          状态:
+          <select name="type">
+          <option value="">请选择</option>
+          <option value="8" {if $type==8} selected="selected"{/if}>等待初审</option>
+          <option value="9" {if $type==9} selected="selected"{/if}>等待事实审核</option>
+          <option value="1" {if $type==1} selected="selected"{/if}>审核通过</option>
+          <option value="2" {if $type==2} selected="selected"{/if}>审核不通过</option>
+          <option value="5" {if $type==5} selected="selected"{/if}>等待发货</option>
+          <option value="6" {if $type==6} selected="selected"{/if}>正在盘点库存</option>
+          <option value="4" {if $type==4} selected="selected"{/if}>等待仓库填写物流</option>
+          <option value="7" {if $type==7} selected="selected"{/if}>等待终审</option>
+          </select>
+          时间：
+          <input name="add_time_from" type="text" id="add_time_from" value="{$add_time_from}" size="10" maxlength="10" />
+              &nbsp;至&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="{$add_time_to}" size="10" maxlength="10" />
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $ghname or $type or $add_time_from or $add_time_to}-->
+            <a class="left formbtn1" href="index.php?app=gonghuo">{$lang.cancel_query}</a>
+     <!--{/if}-->
+    </form> 
+   
+    </div>
+    <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $gonghuo}-->
+        <tr class="tatr1">
+            <td>&nbsp;</td>
+            <td width="50">供货商</td>
+            <td width="220">商品名称</td>
+            <td width="100">商品品牌</td>
+			<td align="right">图片</td>
+            <td>零售价</td>
+            <td>状态</td>
+            <td>总库存</td>
+            <td>剩余库存</td>
+			<td>时间</td>
+			<td>所属站</td>
+			<!--<td width="150">显示状态</td>-->
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$gonghuo item=val key=key}-->
+        <tr class="tatr2">
+        	<td>&nbsp;</td>
+         	<td width="50">{$val.user_name}</td>
+            <td width="220">
+			{$val.goods_name}
+			</td>
+            <td width="100" align="center"> {$val.goods_brand} </td>
+			<td align="right"><img src="/{$val.chanpin}" width="100"/></td>
+            <td >{$val.lingshou_price}</td>
+            <td>
+          {if $val.status==3 && $val.chushen_status!=3}等待事实审核{/if}
+          {if $val.status==3 && $val.chushen_status==3}{$lang.daichushen}{/if}
+          {if $val.status==1}{$lang.shenhetongguo}{/if}
+          {if $val.status==2}{$lang.shenhebutongguo}{/if}
+          {if $val.status==4}等待仓库填写物流{/if}
+          {if $val.status==5}等待发货{/if}
+          {if $val.status==6}正在盘点库存{/if}
+          {if $val.status==7}等待终审{/if}                                                              
+          </td>
+          <td>{$val.zong_kucun}</td>
+          <td>{$val.yu_kucun}</td>
+		  <td>{$val.riqi}</td>
+			<td>
+			 {$val.city_name}
+			</td>
+			<!--<td>{$val.suoshu_city}</td>-->
+            <td class="handler"><a href="index.php?app=gonghuo&amp;act=gh_xiangqing&id={$val.gh_id}">查看详情</a>
+			{if $priv_row.privs=="all"}
+			|<a href="index.php?app=gonghuo&amp;act=gh_edit&id={$val.gh_id}&page={$page_info.curr_page}">编辑</a> 
+			| <a name="drop" href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=gonghuo&amp;act=gonghuo_delete&amp;id={$val.gh_id}');">{$lang.drop}</a>
+            | <a href="index.php?app=gonghuo&amp;act=baosunlog&amp;id={$val.gh_id}">添加报损日志</a>
+			{/if}
+			 </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="10">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $groupbuys}-->
+    <div id="dataFuncs">
+        <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=groupbuy&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.recommended}" name="id" uri="index.php?app=groupbuy&act=recommended"  presubmit="confirm('{$lang.recommend_notice}')" />
+            &nbsp;&nbsp; </div>
+
+    </div>
+    <!--{/if}-->
+    <div class="pageLinks">{include file=page.bottom.html}  </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

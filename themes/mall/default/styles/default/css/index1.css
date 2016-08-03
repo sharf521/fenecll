@@ -1,0 +1,181 @@
+*{ margin:0; padding:0; list-style:none; }
+img{ border:0}
+body{ background-color:#FFFFFF}
+a{ text-decoration:none}
+
+
+
+/*------------广告位*/
+.ggbox{ width:100%; height:392px; background:#bbedea}
+.gpbox{ width:1002px; height:392px; margin:0 auto; overflow:hidden}
+.gpbox img{ width:803px; height:391px; border:none; float:right}
+.gpbox a{ float:right}
+
+/*------分类菜单-------*/
+.container{ width:1002px;  margin:0 auto}
+.flbox{ width:1002px; float: left}
+.fleft{ width:197px; height:623px; float:left; border:1px solid #fe5400; position:relative; margin-top:-392px;  background:#fff}
+.fleft dt{ width:177px; height:36px; border-bottom:1px solid #ccc; float:left; font-size:16px; color:#333; line-height:36px; background:url(../img/mm.jpg); font-family:"微软雅黑"; padding-left:20px;}
+.fleft dd{ margin-top:10px; float:left; width:178px; height:544px; margin-left:10px; display:inline; font-size:12px; color:#990000; text-align:right; line-height:32px;}
+
+/*------------明星店铺------*/
+.starshop{ width:550px; height:221px; float:left; background:#fff; border:1px solid #ccc; margin-top:10px;}
+.startitle{ width:530px; padding-left:20px; line-height:36px; height:36px; background:url(../img/mm.jpg); border-bottom:1px solid #ccc; color:#333; font-size:16px; font-family:"微软雅黑"; }
+.startitle span{ float:left}
+/*查看更多*/
+.startitle a{ font-family:"宋体";  color:#333; background:url(../img/more.jpg) no-repeat right; float:right; padding-right:20px; margin-right:10px; display:inline; font-size:12px;}
+.ulbox{ width:530px;  float:left; }
+.ulbox li{ width:230px; height:75px; float:left; margin-left:20px; display:inline; margin-top:8px;}
+.ulbox li img{ border:1px solid #ccc; width:75px; height:75px; float:left}
+.ulbox li dl{ width:140px; line-height:20px; float:left; margin-left:10px; display:inline; font-size:12px}
+.ulbox li dt{ float:left; width:130px; font-weight:bold; height:20px; overflow:hidden}
+.ulbox li dd{ float: left; width:130px; height:20px; overflow:hidden}
+.ulbox li dt a{ color:#000}
+
+/*商铺加盟+公告栏*/
+.spbox{ width:235px; height:221px; float:left; margin-left:10px; display:inline; margin-top:10px;}
+/*按钮*/
+.btnbox{ width:235px; float:left}
+.btnbox a{ float:left; width:100px;}
+/*公告栏*/
+.gglbox{ width:235px; height:182px; margin-top:4px; float:left; border:1px solid #ccc}
+.gglbg{ width:235px; height:36px; line-height:36px; background:url(../img/mm.jpg); border-bottom:1px solid #ccc; color:#333; font-size:16px; font-family:"微软雅黑";}
+.gglbg b{ color:#fe5400; font-size:20px;  float:left; padding-left:10px;}
+.gglbg span{ color:#333; float:left; margin-left:10px;}
+.gglbg  a{ float:right; margin-right:10px; color:#990000; font-family:"宋体"; font-size:12px; }
+
+/*间距*/
+.mrleft{ margin-left:25px; display:inline}
+
+.ggcon{ width:200px; float:left; margin-top:10px; margin-left:10px; display:inline}
+.ggcon li{ width:200px; height:20px;  font-size:12px; font-family:"宋体"; color:#666;  float:left; overflow:hidden}
+.ggcon li a{ color:#666;background:url(../img/jt.jpg) no-repeat left  top; padding-left:12px;  width:200px; height:20px; }
+
+
+/*----横幅广告----*/
+.hfbox{ width:1000px; height:134px; float:left; margin-top:10px;}
+
+
+/*---------g一楼-------------*/
+.albox{ width:1000px; float:left}
+/*左边*/
+.alleft{ width:745px; float:left; margin-top:10px;font-family:"微软雅黑";}
+.alleft  dt{ height:36px; line-height:36px;float:left; border-bottom:2px solid #cd1212; width:745px; font-size:30px;  color:#000} 
+.alleft dt span{ float:left}
+.alleft dt h3{ color:#990000; font-size:20px; float:left; padding-left:10px; }
+.alleft dt p{ font-size:12px; float:left; font-family:"宋体"; padding-left:30px; }
+/*查看更多产品*/
+.morebox{font-family:"宋体";  color:#333; background:url(../img/more.jpg) no-repeat right; float:right; padding-right:20px; margin-right:10px; display:inline; font-size:12px;  height:36px; font-size:12px;}
+/*产品图*/
+.alleft dd{ width:745px; float:left; margin-top:10px;}
+.ggwpic{ width:210px; height:330px; float:left}
+/*小产品块*/
+.allpic{ width:520px; height:328px; float:left; font-size:12px; font-family:"宋体"; line-height:15px;}
+.allpic li{ width:108px; float:left; margin-left:20px; display:inline; height:170px;}
+.allpic li img{ width:100px; height:100px; float:left}
+.allpic li h3{ font-size:12px; float:left; height:30px; overflow:hidden; margin-top:4px;width:100px; color:#333; font-weight:normal}
+.allpic li h3 a{ color:#333; margin-top:3px;}
+.allpic li nobr{ color:#ff6600; width:100px; float:left}
+.allpic span{ color:#990000; float:left}
+
+
+/*右边*/
+.alright{ width:237px; float:left; height:369px; margin-left:15px; display:inline; border:1px solid #ccc; margin-top:18px;}
+/*店铺大层*/
+.shopbox{ width:220px; float:left;  font-size:12px;}
+.shopbox li{ width:210px; height:71px; float:left; margin-left:15px; display:inline; margin-top:16px;}
+.shopbox img{ width:70px; height:70px; float:left; border:1px solid #ccc}
+.shopbox dl{ width:120px; float:left; margin-left:10px; display:inline; line-height:17px;}
+.shopbox dt{ font-weight:bold; color:#990000}
+.shopbox dt a{ color:#990000}
+/*我要加盟*/
+.jiabtn{ width:197px; height:30px; float:left; margin-top:20px; margin-left:15px; display:inline}
+
+
+
+/*---------------二楼--------------*/
+.alltwo{ width:1000px; float:left; font-family:"微软雅黑"; margin-top:10px;}
+.alltwo  dt{ height:36px; line-height:36px;float:left; border-bottom:2px solid #cd1212; width:998px; font-size:30px;  color:#000} 
+.alltwo dt span{ float:left}
+.alltwo dt h3{ color:#990000; font-size:20px; float:left; padding-left:10px; }
+.alltwo dt p{ font-size:12px; float:left; font-family:"宋体"; padding-left:30px; }
+.alltwo dd{ width:1000px; float:left; margin-top:10px;}
+.tworight{ width:768px; float:left;}
+.twohf{ width:768px; height:98px; float:left; margin-left:15px; display:inline}
+.twobottom{ width:783px; height:220px; float:left}
+/*灰色块*/
+.evbox{ width:244px; height:220px; float:left; background:#f6f6f6; font-family:"宋体"; border:1px  solid #ccc; margin-left:15px; display:inline; margin-top:10px;}
+.evbox li{ width:226px; height:90px; float:left; margin-top:15px; margin-left:10px; display:inline}
+.evbox li a{ width:90px; height:90px; float:left}
+.evbox li img{ width:90px; height:90px}
+.evbox li p{ width:120px; font-size:12px; line-height:15px; float:left; margin-left:10px; display:inline}
+.evbox li p a{ color:#333; width:120px; height:30px; overflow:hidden}
+.evbox li nobr{ color:#ff6600; width:100px; float:left}
+.evbox span{ color:#990000; float:left}
+
+/*----------三楼---------*/
+.shopbox_1 dt{ height:55px; overflow:hidden}
+.shopbox_1 span{ color:#666; font-weight:normal; }
+.shopbox_1 span a{ color:#666; font-weight:normal;  text-decoration:none}
+.shopbox_1  b{ color:#cd1715;}
+
+.shopbox_1{ width:220px; float:left;  font-size:12px;}
+.shopbox_1 li{ width:210px; height:71px; float:left; margin-left:15px; display:inline; margin-top:10px;}
+.shopbox_1 img{ width:70px; height:70px; float:left; border:1px solid #ccc}
+.shopbox_1 dl{ width:120px; float:left; margin-left:10px; display:inline; line-height:17px;}
+
+
+/*----------四楼----- http://www.imm028.com/data/files/mall/brand/85.jpg---*/
+.brandbox{ width:237px;}
+.brandbox a{  float:left; border:1px solid #ccc; margin-left:20px!important; margin-left:12px;  display:block; margin-top:10px;}
+.brandbox a:hover{ border:1px solid #666;}
+.brandbox  img{ width:86px; height:45px; }
+
+/*查看全部品牌*/
+.chep{ width:230px; float:left; height:30px; margin-top:10px; text-align:center}
+
+
+/*-------底部链接http://www.imm028.com/data/files/mall/partner/155.jpg------*/
+
+.linkbox{ width:1000px;  border:1px solid #ccc; float:left; margin-top:40px;}
+
+.linkbg{ width:1000px; height:36px; line-height:36px; background:url(../img/mm.jpg); border-bottom:1px solid #ccc; color:#333; font-size:16px; font-family:"微软雅黑";}
+.linkbg b{ color:#fe5400; font-size:20px;  float:left; padding-left:10px;}
+.linkbg span{ color:#333; float:left; margin-left:10px;}
+.linkbg  a{ float:right; margin-right:10px; color:#990000; font-family:"宋体"; font-size:12px; }
+
+
+.linkpic{ width:1000px; margin-bottom:10px;float:left;  margin-left:3px; display:inline; margin-top:8px;}
+.linkpic a{  height:31px; float:left; border:1px solid #ccc;  margin-left:16px; display:inline; margin-top:10px;}
+.linkpic a:hover{ height:31px; border:1px solid #666}
+.linkpic img{ height:31px;}
+
+
+
+
+/*商品分类*/
+#package { width: 180px; position: relative; z-index:998; }
+.package_ul { padding: 0 10px 10px; }
+.package_ul .normal { height: 25px; line-height: 25px; border-bottom: 1px solid #ddd; background: url(package_pic.gif) no-repeat 5px center;  color: #666; padding-left: 15px; cursor: pointer; width:150px;}
+.package_ul .active { height: 25px; line-height: 25px; border-bottom: 1px solid #ddd; background: url(package_pic.gif) no-repeat 5px center;  color: #414141; font-weight: bold; padding-left: 15px; cursor: pointer; width:150px; }
+.package_ul .active a { text-decoration: none; color: #656565; }
+.package_ul .normal a { text-decoration: none; color: #656565; }
+.package_ul .normal a:hover { font-weight: bold; }
+
+.float_div { width: 453px; padding-bottom: 3px; position: absolute; left: 170px; z-index: 999; display:none; margin-top:-25px;}
+.float_content {  width: 430px; padding: 8px; background: #fff; border: 2px solid #bcbcbc; position: relative; z-index: 10; }
+.float_bg {  width: 450px; background: #000; position: absolute; bottom: 0; right: 0; z-index: 1; -moz-opacity: 0.1; opacity: .1; filter: alpha(opacity=10); }
+.float_ico { width: 9px; height: 14px; background: url(float_ico.gif) no-repeat; position: absolute; top: 10px; left: -7px; z-index: 11; }
+
+.float_content li { width: 100%; overflow: hidden; line-height: 25px; border-bottom: 1px dotted #ddd; }
+.float_content li h3 { float: left; font-weight: normal; font-size: 12px; background: url(float_content_h3.gif) no-repeat 5px center; padding-left: 15px; color: #404040; }
+
+.float_content li p { float: right; width: 78%; word-spacing: 8px; font-weight: normal; }
+.float_content li a { color: #656565; text-decoration: none; }
+.float_content li a:hover { text-decoration: underline; }
+.float_content .activechild { background: #f3f3f3; }
+
+
+
+
+

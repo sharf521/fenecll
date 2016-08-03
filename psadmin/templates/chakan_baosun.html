@@ -1,0 +1,104 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+<div id="rightTop">
+    <p>供货管理</p>
+    <ul class="subnav">
+        <li><a href="index.php?app=gonghuo" class="btn3">管理</a></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+        {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        <li><span>报损日志</span></li>
+        {/if}
+		<!--<li><a class="btn3" href="index.php?app=gonghuo&act=add">我要供货</a></li>-->
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        
+         <form method="get">
+      <div class="left">
+          <input type="hidden" name="app" value="gonghuo" />
+          <input type="hidden" name="act" value="chakan_baosun" />
+          供货商:
+         <input name="ghname" type="text" value="" />
+          所属仓库:
+          <select class="querySelect" name="cangku">
+            <option value="">{$lang.select_pls}</option>
+            {foreach from=$cang item=val}
+            <option value="{$val.store_id}">{$val.store_name}</option>
+            {/foreach}
+          </select>
+          类型：
+          <select class="querySelect" name="type">
+          <option value="">请选择</option>
+          <option value="1">添加库存</option>
+          <option value="2">减少库存</option>
+          </select>
+          添加时间：
+          <input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>" size="10" maxlength="10" />
+              &nbsp;至&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>" size="10" maxlength="10" />
+          
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+     <!--{if $type or $ghname or $start_time or $end_time or $cangku}-->
+            <a class="left formbtn1" href="index.php?app=gonghuo&act=chakan_baosun">{$lang.cancel_query}</a>
+     <!--{/if}-->
+    </form> 
+   </div>
+            <span> </span>
+   
+    </div>
+    <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $baosun}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"></td>
+            <td width="220">商品名称</td>
+            <td width="100">供货人</td>
+			<td align="right">供货id</td>
+            <td>所属仓库</td>
+            <td>类型</td>
+            <td>数量</td>
+   			<td>时间</td>
+            <td>备注</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$baosun item=val key=key}-->
+        <tr class="tatr2">
+            <td class="firstCell"></td> 
+            <td width="220">
+			{$val.goods_name}
+			</td>
+            <td width="100" align="center"> {$val.gh_name} </td>
+			<td align="right">{$val.gh_id}</td>
+            <td >{$val.store_name}({$val.cangkuid})</td>
+            <td>{if $val.type==1}添加库存{/if}
+            {if $val.type==2}减少库存{/if}
+          </td>
+          <td>{$val.num}</td>
+		  <td>{$val.riqi}</td>
+			<td>
+			 {$val.beizhu}
+			</td>
+			
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="10">没有记录</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+   
+    <div class="pageLinks">{include file=page.bottom.html}  </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

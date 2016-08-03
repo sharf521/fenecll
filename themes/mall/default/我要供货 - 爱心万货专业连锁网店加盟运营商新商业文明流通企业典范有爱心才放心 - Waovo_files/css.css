@@ -1,0 +1,33 @@
+.QQbox {
+	Z-INDEX: 99; POSITION: absolute; WIDTH: 170px; TOP: 145px; LEFT: 3px
+}
+.QQbox .press {
+	BORDER-BOTTOM: medium none; POSITION: absolute; BORDER-LEFT: medium none; WIDTH: 26px; HEIGHT: 136px; BORDER-TOP: medium none; CURSOR: pointer; BORDER-RIGHT: medium none; LEFT: 0px
+}
+.QQbox .Qlist {
+	WIDTH: 157px; OVERFLOW: hidden; LEFT: 0px
+}
+.QQbox .Qlist .b {
+	WIDTH: 170px; FLOAT: left; HEIGHT: 6px; FONT-SIZE: 1px
+}
+.QQbox .Qlist .infobox {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 5px; LINE-HEIGHT: 14px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BACKGROUND: url(siderIM_bg.png); COLOR: #000; FONT-WEIGHT: 700; PADDING-TOP: 5px
+}
+.QQbox .Qlist .t {
+	BACKGROUND: url(siderIM_title.png); HEIGHT: 34px
+}
+.QQbox .Qlist .b {
+	BACKGROUND: url(siderIM_bottom.png); HEIGHT: 8px; OVERFLOW: hidden
+}
+.QQbox .Qlist .con {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; BACKGROUND: url(siderIM_bg.png); PADDING-TOP: 10px
+}
+.QQbox .Qlist .con H2 {
+	BORDER-BOTTOM: #3a708d 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #3a708d 1px solid; BACKGROUND: url(siderIM_bg.gif) repeat-y -163px 0px; HEIGHT: 22px; COLOR: #fff; BORDER-TOP: #3a708d 1px solid; BORDER-RIGHT: #3a708d 1px solid
+}
+.QQbox .Qlist .con IMG {
+	PADDING-RIGHT: 5px; VERTICAL-ALIGN: middle
+}
+.QQbox .Qlist .con UL LI {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 15px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}

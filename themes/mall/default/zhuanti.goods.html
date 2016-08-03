@@ -1,0 +1,183 @@
+{include file=header.html}
+<link href="{res file=css/index.css}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+
+<script type="text/javascript">
+var upimg   = '{res file=images/up.gif}';
+var downimg = '{res file=images/down.gif}';
+imgUping = new Image();
+imgUping.src = upimg;
+</script>
+
+{include file=curlocal.html}
+<div class="content">
+    <!--{if $goods_list}-->
+    <div class="left">
+        <div class="module_sidebar" >
+            <h2><b>{$lang.by_category}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    
+                    	<dl class="fleft">
+							
+							<dd>
+						
+<script type="text/javascript">
+$(function(){
+    $('.package_ul > li').hover(function(){
+        $(this).children('div.float_div').show();
+        $(this).removeClass('normal').addClass('active');
+        var obj = $(this).offset();
+        var child_obj = $(this).children('div.float_div');
+        //child_obj.css({top:obj.top-215});
+    },function(){
+        $(this).removeClass('active').addClass('normal');
+        $(this).children('div.float_div').hide();
+    });
+    $('.float_content li').hover(function(){
+        $(this).addClass('activechild');
+    },function(){
+        $(this).removeClass('activechild');
+    });
+});
+</script>
+<div id="package">
+<div class="module_common" style=" text-align:left; border:0px; margin-left:-8px; width:180px;">
+    
+    <div class="wrap" style="width:180px">
+        <div class="wrap_child" style="width:180px">
+            <ul class="package_ul" style="height:530px; overflow:hidden;">
+                <!--{foreach from=$fenlei item=category}-->
+                <li class="normal"><a href="index.php?app=search&cate_id={$category.cate_id}" style="overflow: hidden; height:25px; display:block;">{$category.cate_name}</a>
+                    <!--{if $category.children}-->
+                    <div class="float_div">
+                        <div class="float_content">
+                            <ul>
+                                <!--{foreach from=$category.children item=second_children}-->
+                                <li>
+                                    <h3><a href="index.php?app=search&cate_id={$second_children.cate_id}" style="overflow: hidden; height:25px; width:70px; display:block;">{$second_children.cate_name}</a></h3>
+                                    <!--{if $second_children.children}-->
+                                    <p>
+                                        <!--{foreach from=$second_children.children item=third_children}-->
+                                        <a href="index.php?app=search&cate_id={$third_children.cate_id}">{$third_children.cate_name}</a> | 
+                                        <!--{/foreach}--> 
+                                    </p>
+                                    <!--{/if}-->
+                                </li>
+                               <!--{/foreach}-->   
+                            </ul>
+                        </div>
+                        <div class="float_bg"></div>
+                        <div class="float_ico"></div>
+                    </div>
+                    <!--{/if}-->
+                </li>
+                <!--{/foreach}--> 
+                      
+            </ul>
+			<div style="float:right; line-height:19px; margin-right:7px"><a href="index.php?app=category" style="text-decoration:none; color:#CC0000">更多>></a>　</div>
+        </div>
+    </div>
+</div>
+</div>
+
+							</dd>
+						</dl>
+					
+					
+					
+					
+                </div>
+            </div>
+
+           
+			
+			
+
+           
+        </div>
+    </div>
+
+    <div class="right">
+       
+        <div class="shop_con_list">
+            <!--<h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title" style="margin-top:3px;">
+                        <p class="title">{$lang.display_mode}:</p>
+                        <p class="list_ico" ectype="display_mode" ecvalue="list" title="{$lang.display_by_list}"></p>
+                        <p class="squares_ico" ectype="display_mode" ecvalue="squares" title="{$lang.display_by_item}"></p>
+                        
+                     
+                    </div>
+                    <div class="top_page" style="margin-top:4px;">
+                        {include file=page.top.html}
+                    </div>
+                </div>
+            </h2>-->
+
+            <div class="{$display_mode}" ectype="current_display_mode">
+                <!-- {if $goods_list} -->
+                <ul class="cpbox" style=" z-index:3">
+                    <!--{foreach from=$goods_list item=goods}-->                  
+                        
+						<li class="cpboxli">
+						
+								<a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+								
+								<div class="cpboxspan">
+									<b>{$goods.goods_name|escape}{if $goods.daishou==1 && $goods.subhead!=''}({$goods.subhead}){/if}</b>
+									<label>积分价：<font style="font-weight:bold; font-size:13px;">{$goods.jifen_price}</font>  &nbsp;&nbsp;&nbsp;&nbsp;
+									VIP积分价：<font style=" color:#FF6600; font-weight:bold; font-size:13px;">{$goods.vip_price}</font></label>
+								</div>
+								<img src="{$goods.default_image}"/>
+								</a>
+								
+							</li>
+												
+               
+                    <!--{/foreach}-->
+					
+					
+
+                    <div class="clear"></div>
+                </ul>
+                <!-- {else} -->
+                <div id="no_results">{$lang.no_records}</div>
+                <!-- {/if} -->
+            </div>
+        </div>
+
+        <div class="shop_list_page"><br />
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{else}-->
+    <div class="module_common">
+        <p class="no_info">{$lang.no_records}</p>
+    </div>
+    <!--{/if}-->
+</div>
+<script>
+$(function()
+	{		
+	$(".cpbox li").mouseover(function(){
+		var parent=$(this).parents('a');
+		//$('.bot',parent).slideDown(100);
+		$('.cpboxspan',$(this)).show();
+		//$('.cpboxspan',$(this)).show();
+		//$('.piao',$(this).parents('.item')).show();
+	})
+	
+	$(".cpbox li").mouseout(function(){		
+		var parent=$(this).parents('a');
+		//$('.bot',parent).slideUp(100);
+		$('.cpboxspan',$(this)).hide();
+		//$('.piao',$(this).parents('.item')).hide();
+	})
+})
+</script>
+{include file=footer.html}

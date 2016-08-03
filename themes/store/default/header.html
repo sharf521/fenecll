@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html;charset={$charset}" />
+
+<title>
+{$page_title}
+{$thiscity.city_title|escape}</title>
+<link href="/themes/mall/default/styles/default/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/themes/mall/default/styles/default/css/ecmall.css" rel="stylesheet" type="text/css" />
+
+
+
+<link href="/themes/mall/default/styles/default/goods/goods.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+
+<script type="text/javascript" src="/themes/mall/default/styles/default/js/nav.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var PRICE_FORMAT = '{$price_format}';
+//]]>
+
+$().ready(function(){
+    $('.quick-menu .menu').hover(function(){
+        $(this).addClass('hover');
+    },function(){
+        $(this).removeClass('hover');
+    });
+});
+</script>
+
+</head>
+<body>
+
+<div class="topbox">
+    <div class="topbg">
+        <div class="pbox pleft"><img src="/themes/mall/default/styles/default/img/sian.jpg" /><a href="{url app=message&act=newpm}">站内消息</a></div>
+        <div class="xianbox"></div>
+        <div class="pbox"><img src="/themes/mall/default/styles/default/img/help.jpg"/><a href="{url app=article&code=$acc_help}">帮助中心</a></div>
+        <div class="xianbox"></div>
+        <div class="pbox"><img style=" margin-top:12px;" src="/themes/mall/default/styles/default/img/shi.jpg" /><a href="index.php?app=article&cate_id=23">视频</a></div>
+
+        <div class="rightbox">
+            <p>您好  <!--{if !$visitor.user_id}-->游客<!--{else}-->{$visitor.user_name}<!--{/if}-->，欢迎来到{$thiscity.city_name}！</p>
+            <!--{if !$visitor.user_id}-->
+            <DIV id="site-nav">
+                <DIV id=site-nav-bd>
+                    <UL class=quick-menu>
+                        <LI class=menu-item>
+                            <DIV class=menu><A style="WIDTH: 36px" class=menu-hd  href="{url app=member&act=login&ret_url=$ret_url}">登录<B></B></A>
+                                <DIV  class=menu-bd >
+                                    <DIV style="PADDING-BOTTOM: 8px; padding-top:7px; height:36px; line-height:20px; PADDING-LEFT: 5px; PADDING-RIGHT: 10px; width:110px;"  class=menu-bd-panel>
+                                        <A href="http://www.imm0371.com/index.php?app=qqq&host={$ur}" rel=nofollow target=_top><img style="margin-right:5px;" src="/themes/mall/default/styles/default/img/qq.jpg" align="absmiddle" />用QQ帐号登录</A>
+                                        <A href="http://www.imm0371.com/index.php?app=sina&host={$ur}" rel=nofollow target=_top><img style="margin-right:5px;" src="/themes/mall/default/styles/default/img/sina.jpg" align="absmiddle" />用新浪微博登录</A>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </LI>
+                    </UL>
+                </DIV>
+            </DIV>
+            <div class="pbox"><a href="{url app=member&act=register&ret_url=$ret_url}">注册</a></div>
+            <!--{else}-->
+            <div class="pbox"><a href="index.php?app=member">用户中心</a></div>
+            <div class="pbox"><a href="{url app=member&act=logout}">{$lang.logout}</a></div>
+            <!--{/if}-->
+
+            <div class="pbox"><img src="/themes/mall/default/styles/default/img/weixin.jpg" style="margin-top:10px;" /><a href="index.php?app=article&cate_id=27">微信公众账号</a></div>
+
+            {if $thiscity.qq_login}
+            <div class="pbox"></div>
+            {/if}
+            <!--<div class="pbox"><img src="/themes/mall/default/styles/default/img/er.jpg" style="margin-top:10px;" /><a href="#">在线客服</a></div>-->
+            <div class="xianbox"></div>
+            <div class="pbox"><img src="/themes/mall/default/styles/default/img/phone.png" /><a href="index.php?app=article&cate_id=24">手机商城</a></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="tbox">
+    <a href="index.php" class="logopic"><img src="/{$thiscity.city_logo}" alt="{$thiscity.city_title}"/></a>
+    <div class="sbox">
+        <div class="typebox">
+            <form method="GET" action="{url app=search}">
+                <ul class="libox">
+                    <li id="libox1" class="hot" onclick="search1(1)" style="cursor:pointer;">宝贝</li>
+                    <li id="libox2" onclick="search1(2)" style="cursor:pointer;">团购</li>
+                    <li id="libox3" onclick="search1(3)" style="cursor:pointer;">店铺</li>
+                </ul>
+                <div class="sbg">
+                    <div class="stext"><!--<input type="text" class="textcss" value="卫衣" />--> <input type="text" name="keyword" class="textcss" />
+                        <input type="hidden" id="hid_act" name="act" value="index" />
+                        <script>
+                            function search1(v)
+                            {
+                                if(v==1)
+                                {
+                                    $('#libox1').addClass("hot");
+                                    $('#libox2').removeClass("hot");
+                                    $('#libox3').removeClass("hot");
+                                    $('#hid_act').val('index');
+                                }
+                                else if(v==2)
+                                {
+                                    $('#libox2').addClass("hot");
+                                    $('#libox1').removeClass("hot");
+                                    $('#libox3').removeClass("hot");
+                                    $('#hid_act').val('groupbuy');
+                                }
+                                else if(v==3)
+                                {
+                                    $('#libox3').addClass("hot");
+                                    $('#libox2').removeClass("hot");
+                                    $('#libox1').removeClass("hot");
+                                    $('#hid_act').val('store');
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="sbtnbox">
+                        <input type="hidden" name="app" value="search" />
+                        <input type="submit" name="Submit" value="{$lang.search}" class="bn" style="cursor:pointer;"/>
+                        <!--<a href="#"><img src="/themes/mall/default/styles/default/img/sbtn.jpg" /></a>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="starbox">
+            <div class="gwbox">
+                <a href="{url app=cart}"><img src="/themes/mall/default/styles/default/img/che.jpg" />购物车[{$cart_goods_kinds}]</a>
+                <a href="{url app=buyer_order}"><img src="/themes/mall/default/styles/default/img/dingdan.png" />我的订单</a>
+                <a href="{url app=my_favorite}"><img src="/themes/mall/default/styles/default/img/shoucang.png" />收藏夹</a>
+            </div>
+        </div>
+
+        <ul class="gjcbox">
+            <li>{$lang.hot_search}:</li>
+            <!--{foreach from=$hot_keywords item=keyword}-->
+            <li><a href="{url app=search&keyword=$keyword}">{$keyword}</a></li>
+            <!--{/foreach}-->
+        </ul>
+    </div>
+</div>
+
+<div class="menubox">
+    <div class="menulist">
+        <div id="nav">
+            <a class="{if $index}link{else}hover{/if}" href="index.php"><span>{$lang.index}</span></a>
+            <!--{foreach from=$navs.middle item=nav}-->
+            <a href="{$nav.link}" class="{if !$index and $nav.link eq $current_url}link{else}hover{/if}" href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}><span>{$nav.title|escape}</span></a>
+            <!--{/foreach}-->
+            {if $thiscity.mall_url!=''}<a href="http://{$thiscity.mall_url}" class="hover"><span>{$lang.gongxiao}</span></a>{else}<a class="hover"><span>{$lang.gongxiao}</span></a>{/if}
+            {if $thiscity.city_id==1}<a class="hover"><span>信用评估</span></a>{else}{if $thiscity.p2p_url!=''}<a href="http://{$thiscity.p2p_url}" class="hover"><span>{$lang.p2p}</span></a>{else}<a class="hover"><span>{$lang.p2p}</span></a>{/if}{/if}
+        </div>
+    </div>
+</div>
+
+

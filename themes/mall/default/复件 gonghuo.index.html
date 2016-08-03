@@ -1,0 +1,157 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    var t = new EditableTable($('#my_goods'));
+});
+</script>
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="active">我要供货</li>
+				<li class="normal"><a href="index.php?app=seller_groupbuy&act=jibenxinxi">基本信息</a></li>
+				
+		
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+                
+ <form enctype="multipart/form-data" action="index.php?app=seller_groupbuy&act=gonghuo" method="post">
+ <table>
+  
+  <tr>
+ <td>姓名：</td>
+ <td><input name="name" id="name" value="" /></td>
+ </tr>
+  <tr>
+ <td>性别：</td>
+ <td><select name="sex">
+ <option id="sex" value="请选择">请选择</option>
+ <option id="sex" value="男">男</option>
+ <option id="sex" value="女">女</option>
+</select> 
+
+ </td>
+ </tr>
+  <tr>
+ <td>年龄：</td>
+ <td><input name="age" id="age" value="" /></td>
+ </tr>
+  <tr>
+ <td>联系方式：</td>
+ <td><input name="lxfs" id="lxfs" value="" /></td>
+ </tr>
+ <tr>
+ <td>网店ID(淘宝地址)：</td>
+ <td><input name="wangdian" id="wangdian" value="" /></td>
+ </tr>
+ <tr>
+ <td> 所属分销中心：</td>
+ <td><select name="fenxiao">
+			  <option name="fenxiao" id="fenxiao" value="服务站">服务站  </option></select></td>
+ </tr>
+ <tr>
+ <td>商品名称：</td>
+ <td><input name="goods_name" id="goods_name" value="" /></td>
+ </tr>
+ <tr>
+ <td>品牌：</td>
+ <td><input name="goods_brand" id="goods_brand" value="" /></td>
+ </tr>
+ <tr>
+ <td>目前销售渠道：</td>
+ <td><input name="tujing" id="tujing" value="" /></td>
+ </tr>
+ <tr>
+ <td>参考价格：</td>
+ <td><input name="cankao_price" id="cankao_price" value="" />元</td>
+ </tr>
+ <tr>
+ <td>零售价格：</td>
+ <td><input name="lingshou_price" id="lingshou_price" value="" />元</td>
+ </tr>
+<tr>
+ <td>批发价格：</td>
+ <td> <input name="pifa_price" id="pifa_price" value="" />元</td>
+ </tr>	
+ <tr>
+ <td> 预计供应价格：</td>
+ <td>  <input name="yuji_price" id="yuji_price" value="" />元</td>
+ </tr>	
+ <tr>
+ <td>厂家（公司）名称：</td>
+ <td> <input name="gongsi_name" id="gongsi_name" value="" /></td>
+ </tr>		
+ <tr>
+ <td> 地址：</td>
+ <td><input name="address" id="address" value="" /></td>
+ </tr>	
+  <tr>
+ <td> 联系人：</td>
+ <td><input name="lianxiren" id="lianxiren" value="" /></td>
+ </tr>	
+  <tr>
+ <td> 联系方式：</td>
+ <td><input name="method" id="method" value="" /></td>
+ </tr>
+  <tr>
+ <td>商品信息来源：</td>
+ <td><input name="source" id="source" value="" /></td>
+ </tr>	
+  <tr>
+ <td>图片资料：</td>
+ <td><input name="ziliao" id="ziliao" value=""  type="file"/></td>
+ </tr>
+   <tr>
+ <td>产品图：</td>
+ <td><input name="chanpin" id="chanpin" value=""  type="file"/></td>
+ </tr>
+   <tr>
+ <td>厂家图：</td>
+ <td><input name="changjia" id="changjia" value=""  type="file"/></td>
+ </tr>	
+    <tr>
+ <td> 营业执照：</td>
+ <td><input name="zhizhao" id="zhizhao" value=""  type="file"/></td>
+ </tr>	
+    <tr>
+ <td>组织机构代码证：</td>
+ <td><input name="jigou" id="jigou" value=""  type="file"/></td>
+ </tr>	
+   <tr>
+ <td>税务登记证：</td>
+ <td><input name="shuiwu" id="shuiwu" value=""  type="file"/></td>
+ </tr>				
+<tr>
+ <td>备注：</td>
+ <td><textarea name="beizhu" id="beizhu" cols="25" rows="15">
+			  </textarea></td>
+ </tr>	
+ <tr>
+ <td></td>
+ <td><input type="submit" value="提交" />&nbsp;&nbsp;<input type="reset" value="重置" /></td>
+	
+			</table>
+			  </form>
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

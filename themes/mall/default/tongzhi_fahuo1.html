@@ -1,0 +1,63 @@
+{include file=member.header.html}
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+         
+        <div class="wrap margin1">
+           
+        </div>
+
+
+		   <span><h1>通知仓库发货:</h1></span><br />
+
+            <div class="public table" id="zaixian" >
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+
+ 			<form action="" method="post" enctype="multipart/form-data">
+           {$lang.shifoubaojia}<input name="baojia" type="radio" value="1" checked="checked"/>{$lang.shi}
+           <input name="baojia" type="radio" value="0"/>{$lang.fou}<br /><br />
+           <input name="orid" value="{$orderid}" type="hidden" />
+           {if $aa.keyongjifen< $aa.fee}
+           <font color="#990000">您的可用积分不足以支付本次运费，建议您先去充值，补足这次运费，然后再进行提交，否则您将受到惩戒。</font>
+           <input name="cj" value="1" type="hidden"/>
+           {/if}
+           <br>
+           <input type="submit" value="提交" />
+           </form>   
+
+                  
+                  <div style="line-height:22px; padding-left:20px; margin-top:30px;">
+<h3>温馨提示：</h3>
+<div style="padding-left:20px">
+1.	单笔充值金额不能低于10元；<br />
+2.	单笔充值金额小于200元（不包含200元），按充值金额的1%作为手续费，由第三方支付平台收取；<br />
+
+<!--3.	钱管家充值：单笔充值金额200元以上（包含200元），收取充值金额的0.9%作为手续费；<br />
+-->
+3.	个人网银充值：<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(1)	使用（中国工商银行、中国农业银行、中国建设银行、招商银行、中国民生银行、华夏银行、中信银行）网银支付，单笔充值金额<br />
+&nbsp;&nbsp;&nbsp;&nbsp;200元以上（包含200元），收取充值金额的0.6%作为手续费；<br />
+&nbsp;&nbsp;&nbsp;&nbsp;(2)使用（中国银行、交通银行、浦东发展银行、兴业银行、深圳发展银行、广发银行、邮储银行、上海农商行、北京银行、中国光大银<br />
+&nbsp;&nbsp;&nbsp;&nbsp;行、北京农村商业银行、南京银行、东亚银行、平安银行、杭州银行、宁波银行、浙商银行、上海银行、渤海银行）网银支付，单笔充<br />
+&nbsp;&nbsp;&nbsp;&nbsp;值金额200元以上（包含200元），收取充值金额的0.8%；<br />
+
+</div>
+                  </div>
+             </div>
+			</div>
+          <!-- </div>	-->	
+		  <!--结束-->	
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

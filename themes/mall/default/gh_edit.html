@@ -1,0 +1,225 @@
+{include file=member.header.html}
+	<!--<script charset="utf-8" src="/includes/keditor/kindeditor.js"></script>
+	<script charset="utf-8" src="/includes/keditor/lang/zh_CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+</script>-->
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>	
+
+<script language="javascript">
+function gong()
+{
+
+if (document.gh.goods_name.value =="")
+  {
+    alert("商品名称不能为空!");
+	document.gh.goods_name.focus();
+	return false;
+	}
+if (document.gh.lingshou_price.value =="")
+  {
+    alert("商品价格不能为空!");
+	document.gh.lingshou_price.focus();
+	return false;
+	}
+if (document.gh.zong_kucun.value =="")
+  {
+    alert("商品库存不能为空!");
+	document.gh.zong_kucun.focus();
+	return false;
+	}
+//if (document.gh.chanpin.value =="")
+//   {
+//		alert("请上传产品图!");
+//		document.gh.chanpin.focus();
+//		return false;
+//	}
+//	
+	var con=FCKeditorAPI.GetInstance("content1").GetXHTML(false);
+	if(con=="")
+	{
+		alert("商品描述不能为空");
+		return false;
+	}
+document.getElementById("FormSubmit").setAttribute('disabled','ture');
+	
+}
+
+function fuzhi(jiage)
+{
+	jifen=jiage*{$canshu.jifenxianjin}*10000/10000;
+	document.getElementById('jifen_price').value=jifen;
+}
+
+</script>
+
+
+
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+              <li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+              <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+	          <li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+			  <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+			  
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+
+                </div>		
+    <form method="post" enctype="multipart/form-data" name="gh" onSubmit="return gong();">
+        <table style="text-align:left">
+
+            <tr><td colspan="2" ><hr color="#FF9900"/></td></tr>
+ <tr><td colspan="2"><h5><font style=" font-size:16px; color:#cc3300">商品信息</font></h5></td></tr>
+			<tr>
+                <th class="paddingT15" >
+                  商品名称</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="goods_name" type="text" name="goods_name" value="{$gonghuo.goods_name|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品品牌</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="goods_brand" type="text" name="goods_brand" value="{$gonghuo.goods_brand|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                 <nobr> 目前销售渠道 &nbsp;</nobr></th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="tujing" type="text" name="tujing" value="{$gonghuo.tujing|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                零售价格
+				</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="lingshou_price" type="text" name="lingshou_price" value="{$gonghuo.lingshou_price}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value"  onblur="fuzhi(this.value)"/>   
+                </td>
+            </tr>
+		<tr>
+ 			<th class="paddingT15">积分价</th>
+ 			<td><input name="jifen_price" id="jifen_price" value="{$gonghuo.jifen_price}" readonly="true" class="infoTableInput2"/>&nbsp;积分</td>
+ 		</tr>
+            <tr>
+                <th class="paddingT15">
+                库存</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="zong_kucun" type="text" name="zong_kucun" value="{$gonghuo.zong_kucun|escape}"
+				   onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/>   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  重量</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="weight" type="text" name="weight" value="{$gonghuo.weight}" onKeyUp="value=value.replace(/[^0-9]/g,'')"/>  kg(每件商品的重量)   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  体积</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="volume" type="text" name="volume" value="{$gonghuo.volume}" onKeyUp="value=value.replace(/[^0-9]/g,'')"/>  m3(每件商品的体积)   
+                </td>
+    		</tr>
+			<tr>
+                <th class="paddingT15">
+            <nobr>商品信息来源&nbsp;</nobr></th> 
+                <td class="paddingT15 wordSpacing5">
+                   <input class="infoTableInput2" id="source" type="text" name="source" value="{$gonghuo.source|escape}" />   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    图片资料:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="ziliao" type="file" name="ziliao" value="{$gonghuo.ziliao}" />
+                </td>
+            </tr> 
+			
+            {if $gonghuo.ziliao}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$gonghuo.ziliao}"  width="400"/>
+                </td>
+            </tr>
+            {/if}
+
+			<tr>
+                <th class="paddingT15">
+                    产品图:</th> 
+                <td class="paddingT15 wordSpacing5">
+                    <input class="infoTableFile" id="chanpin" type="file" name="chanpin" value="{$gonghuo.chanpin}" />
+                </td>
+            </tr> 
+			
+            {if $gonghuo.chanpin}
+            <tr>
+                <th class="paddingT15">
+                </th>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$gonghuo.chanpin}"  width="400"/>
+                </td>
+            </tr>
+            {/if}
+			
+			  <tr>
+ <td>商品描述：</td>
+ <td>
+ <script type="text/plain" id="myEditor" name="content1">
+ <p>{$gonghuo.beizhu}</p>
+ </script>
+ <script type="text/javascript">
+ UE.getEditor('myEditor',{
+ initialFrameHeight:400,  //初始化编辑器高度,
+ autoHeightEnabled:false, //是否自动长高,默认true
+ scaleEnabled:false, //是否可以拉伸长高,默认true
+ minFrameHeight:40, //编辑器拖动时最小高度
+ autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+ toolbarTopOffset:400, //编辑器底部距离工具栏高度
+ initialFrameWidth:680
+ })
+ </script>
+</td>
+ </tr>
+ <tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+        <tr>
+            <th></th>
+            <td class="ptb20"><center>
+                <input class="tdtjcss" type="submit" name="Submit" value="{$lang.submit}" id="FormSubmit"/>
+                &nbsp;&nbsp;&nbsp;<input  class="czbtncss"  type="reset" name="Submit2" value="{$lang.reset}" /></center>
+            </td>
+        </tr>
+        </table>
+    </form>
+
+ </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

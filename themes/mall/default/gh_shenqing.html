@@ -1,0 +1,220 @@
+{include file=member.header.html}
+
+<script type="text/javascript">
+
+function gong()
+{
+
+if (document.gh.name.value =="")
+  {
+    alert("联系人不能为空!");
+	document.gh.name.focus();
+	return false;
+	}
+if (document.gh.lxfs.value =="")
+  {
+    alert("联系方式不能为空!");
+	document.gh.lxfs.focus();
+	return false;
+	}
+if (document.gh.gongsi_name.value =="")
+  {
+    alert("厂家名称不能为空!");
+	document.gh.gongsi_name.focus();
+	return false;
+	}
+	document.getElementById("FormSubmit").setAttribute('disabled','ture');
+
+}
+</script>
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">{$build_editor}
+				<li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+                <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+				<li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+				 <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+          </ul>
+        <div class="wrap">
+           
+            <div class="public_select ">
+               <h3> 供货之前，请先提交申请</h3>
+                <br /><br /> 
+              
+               
+ <form action="index.php?app=my_theme&act=ghsq" method="post" name="gh" enctype="multipart/form-data" onSubmit="return gong();">
+ <table width="425" class="sjxxtable">
+ 
+  <tr><td width="116"><h5><font color="#0033FF">商家信息</font></h5></td></tr>
+  <tr>
+ <td >联系人：</td>
+ <td width="297"><input name="name" id="name" value="{$mem.name}" /><font color="#990000"> *</font>
+ </td>
+ </tr>
+  <tr>
+ <td>性别：</td>
+ <td><select name="sex">
+ <option id="sex" value="请选择">请选择</option>
+ <option id="sex" value="男">男</option>
+ <option id="sex" value="女">女</option>
+</select> 
+
+ </td>
+ </tr>
+  <tr>
+ <td>年龄：</td>
+ <td><input name="age" id="age" value="{$mem.age}" /></td>
+ </tr>
+  <tr>
+ <td>联系方式：</td>
+ <td><input name="lxfs" id="lxfs" value="{$mem.lxfs}"  onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/><font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>网店ID(淘宝地址)：</td>
+ <td><input name="wangdian" id="wangdian" value="{$mem.wangdian}" /></td>
+ </tr>
+ <tr>
+ <td> 所属分销中心：</td>
+ <td><select name="fenxiao">
+	<option name="fenxiao" id="fenxiao" value="服务站">服务站  </option></select></td>
+ </tr>
+ <tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr><td width="116"><h5><font color="#0033FF">厂家信息</font></h5></td></tr>
+ <tr>
+ <td>厂家（公司）名称：</td>
+ <td> <input name="gongsi_name" id="gongsi_name" value="{$mem.gongsi_name}" /><font color="#990000"> *</font></td>
+ </tr>		
+ <tr>
+ <td> 地址：</td>
+ <td><input name="address" id="address" value="{$mem.address}" /></td>
+ </tr>	
+  <tr>
+ <td> 厂家联系人：</td>
+ <td><input name="lianxiren" id="lianxiren" value="{$mem.lianxiren}" /></td>
+ </tr>	
+  <tr>
+ <td> 联系方式：</td>
+ <td><input name="method" id="method" value="{$mem.method}"  onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/></td>
+ </tr>
+  <tr>
+ <td>厂家图：</td>
+ <td><input name="changjia" id="changjia" value=""  type="file"/></td>
+ </tr>
+  {if $mem.changjia}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.changjia}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}
+ 
+ 	
+    <tr>
+ <td> 营业执照：</td>
+ <td><input name="zhizhao" id="zhizhao" value=""  type="file"/><font color="#990000"> *</font></td>
+ </tr>	
+ {if $mem.zhizhao}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.zhizhao}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}
+    <tr>
+ <td>组织机构代码证：</td>
+ <td><input name="jigou" id="jigou" value=""  type="file"/><font color="#990000"> *</font></td>
+ </tr>	
+ {if $mem.jigou}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.jigou}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}
+ 
+			<tr>
+ <td>税务登记证：</td>
+ <td><input name="shuiwu" id="shuiwu" value=""  type="file"/><font color="#990000"> *</font></td>
+ </tr>
+ {if $mem.shuiwu}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.shuiwu}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}	
+			<tr>
+ <td>其他：</td>
+ <td><input name="qita_1" id="qita_1" value=""  type="file"/></td>
+ </tr>
+ {if $mem.qita_1}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.qita_1}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}	
+			<tr>
+ <td></td>
+ <td><input name="qita_2" id="qita_2" value=""  type="file"/></td>
+ </tr>
+ {if $mem.qita_2}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.qita_2}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}	
+			<tr>
+ <td></td>
+ <td><input name="qita_3" id="qita_3" value=""  type="file"/></td>
+ </tr>
+ {if $mem.qita_3}
+            <tr>
+                <td >
+                </td>
+                <td class="paddingT15 wordSpacing5">
+                <img src="{$mem.qita_3}" class="makesmall" width="400" />
+                </td>
+            </tr>
+            {/if}	
+ <tr>
+ <td></td><td> <input type="submit" class="submitbtncss" value="提交" id="FormSubmit"/>&nbsp;&nbsp;&nbsp;<input type="reset" class="squxiaocss" value="重置"/></td>
+ </tr> 
+ </table>
+
+			  </form>
+			
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

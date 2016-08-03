@@ -1,0 +1,285 @@
+{include file=member.header.html}
+<script language=javascript src="js/wpCalendar.js"></script>
+<script language = "JavaScript">
+function chongzhi()
+{
+  if (document.chongzhi_form.cz_money.value=="")
+  {
+    alert("{$lang.tianxieyaochongzhidejine}");
+	document.chongzhi_form.cz_money.focus();
+	return false;
+  }
+
+  return true;  
+}
+
+
+function card()
+{
+  if (document.card_form.user_name1.value =="")
+  {
+    alert("充值帐户不能为空!");
+	document.card_form.user_name1.focus();
+	return false;
+  }
+  if (document.card_form.user_name2.value =="")
+  {
+    alert("确认帐户不能为空!");
+	document.card_form.user_name2.focus();
+	return false;
+  }
+  if (document.card_form.user_name1.value != document.card_form.user_name2.value)
+  {
+    alert("两次输入充值帐户不同!");
+	document.card_form.user_name2.focus();
+	return false;
+  }
+  if (document.card_form.card_sn.value =="")
+  {
+    alert("充值金额不能为空!");
+	document.card_form.card_sn.focus();
+	return false;
+	}
+	//if (/[^\d]/.test(document.card_form.card_sn.value)){
+	//alert("您输入的金额不是数字");
+	//document.card_form.card_sn.focus();
+	//return false;
+	//}
+	
+	if(document.card_form.card_sn.value <50)
+	{
+	alert("充值金额不能小于50元");
+	document.card_form.card_sn.focus();
+	return false;
+	}
+	if(document.card_form.card_sn.value >=9999)
+	{
+	alert("充值金额不能大于9999元");
+	document.card_form.card_sn.focus();
+	return false;
+	}
+
+
+  if (document.card_form.bank_name.value =="")
+  {
+    alert("汇款银行不能为空!");
+	document.card_form.bank_name.focus();
+	return false;
+  }
+  if (document.card_form.bank_username.value =="")
+  {
+    alert("汇款人姓名不能为空!");
+	document.card_form.bank_username.focus();
+	return false;
+  }
+  if (document.card_form.danhao.value =="")
+  {
+    alert("流水单号不能为空!");
+	document.card_form.danhao.focus();
+	return false;
+  }
+  if (/[^\d]/.test(document.card_form.danhao.value)){
+	alert("您输入的单号不是数字");
+	document.card_form.danhao.focus();
+	return false;
+	}
+  
+  if (document.card_form.riqi.value =="")
+  {
+    alert("汇款日期不能为空!");
+	document.card_form.riqi.focus();
+	return false;
+  }
+  return true;  
+}
+
+function qiehuan(flg){
+var $xianxia = $('#xianxia');
+var $zaixian = $('#zaixian');
+var $duihuan = $('#duihuan');
+
+  switch(flg){
+    case 1:
+       
+			$xianxia.show();
+			$zaixian.hide();
+			$duihuan.hide();
+        break;
+	
+    case 2:
+       $zaixian.show();
+	   $xianxia.hide();
+	   $duihuan.hide();
+        break;
+	case 3:
+      $duihuan.show();
+	  $xianxia.hide();
+	  $zaixian.hide();
+       break;
+  }
+}
+
+
+</script>
+
+
+
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+				<li class="active">{$lang.zaixianchongzhi}</li>
+				<li class="normal"><a href="index.php?app=my_money&act=paylog">{$lang.chongzhijilu}</a></li>
+				<li class="normal"><a href="index.php?app=my_money&act=jifenduihuan">{$lang.jifen_duihuan}</a></li>
+          </ul>
+          
+        <div class="wrap margin1">
+            <div class="public table">
+				<div class="information_index" style="overflow:hidden; margin: 0px 0 -15px;">
+                <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.hello}！{$visitor.user_name}，{$lang.huanyingdenglushangfutong}</span>
+                          <!--  <a href="index.php?app=my_money&act=index" target="_blank">{$lang.shenmeshishangfutong}</a>-->
+                        </h3>
+                        <table class="width6">
+                          <tr>
+                            <td><span style="font-size:14px">
+                              <!--{foreach from=$my_money item=val key=key}-->
+                              {$lang.keyongjine}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.money}</span> &nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejine}<span style="color:blue;">{$val.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.xiaofeijifen}<span style="color:blue;">{$val.jifen}</span></span>
+                              <!--{/foreach}--></td>
+                          </tr>
+                          <tr>
+                            <td height="25"><span style="font-size:14px">{$lang.keyongjifen}<span style="font-size:16px;font-weight:bold; color:#FE5400;">{$val.duihuanjifen}</span> &nbsp;{$lang.jifen}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$lang.dongjiejifen}<span style="color:blue;">{$val.dongjiejifen}</span>&nbsp;{$lang.jifen}</span></td>
+                          </tr>
+                          <tr>
+                            <td>{$lang.shangcidengluip}: {$visitor.last_ip}<br />
+                              {$lang.shangcidenglushijian}:{$visitor.last_login|date:complete}<br />
+                              <!-- <A 
+href="index.php?app=my_money&act=mibao"><span style="color:red;">{$lang.bangdingdongtaimima}</span></A>&nbsp;|&nbsp;-->
+                              <a 
+href="index.php?app=my_money&amp;act=paylist">{$lang.lijichongzhi}</a>&nbsp;|&nbsp;<a 
+class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;">{$lang.tixian}</span></a></td>
+                          </tr>
+                        </table>
+                  </div>
+				
+				
+                </div>
+             </div>
+        </div>
+
+<!--开始-->
+        
+		    <div class="wrap margin1">
+            <div class="public table">
+		   <span><h1>充值方式:</h1></span><br /><input type="radio" value="线下充值" checked="checked" name="a" onclick="qiehuan(1)"/><font style="font-size:14px">线下充值</font><input type="radio" value="在线充值" name="a" onclick="qiehuan(2)"/><font style="font-size:14px">在线充值</font><input type="radio" value="兑换积分" name="a" onclick="qiehuan(3)"/><font style="font-size:14px">兑换积分</font>
+            <div class="public table" id="xianxia">
+			
+          <!--  <h3 class="title" style="margin: -10px 0 20px; color:#3E3E3E">线下充值</h3>-->
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="card_form" onSubmit="return card();" action="index.php?app=my_money&act=card_cz" method="post" target="_blank">
+				  充值帐户：&nbsp;&nbsp;&nbsp;&nbsp;{$visitor.user_name}<input name="user_name1" type="hidden" id="user_name1" value="{$visitor.user_name}" size="15" /><input name="user_name2" type="hidden" id="user_name2" size="15"  value="{$visitor.user_name}"/>
+			  <br>
+				  充值金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="card_sn" type="text" id="card_sn" size="15" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8"/>&nbsp;<font  color="red"> <!--{foreach from=$canshu item=val key=key}-->(充值金额不能低于50元并且不能大于10000元，充值费率为{$val.chongzhifeilv})<!--{/foreach}--></font>
+				  <br>
+				 
+				 汇款银行：&nbsp;&nbsp;&nbsp;&nbsp;<input name="bank_name" type="text" id="bank_name" size="15" />
+                <br> 
+				  汇款人姓名：<input name="bank_username" type="text" id="bank_username" size="15" />
+				  <br> <br>
+				 流水单号：&nbsp;&nbsp;&nbsp;&nbsp;<input name="danhao" type="text" id="danhao" size="15" />
+               <br> 
+				 <!-- 汇款日期：&nbsp;&nbsp;&nbsp;&nbsp;<input name="riqi" type="text" id="riqi" size="15"> -->
+
+
+				  <input name="type" id="type" size="30" type="hidden" value="1"/>
+				  <input name="status" id="status" size="30" type="hidden" value="等待审核"/>
+				    <!--{foreach from=$canshu item=val key=key}-->
+				  <input name="czfeilv" id="czfeilv" size="30" type="hidden" value="{$val.chongzhifeilv}"/>
+				  <!--{/foreach}-->
+				  <br> <br>
+				  备注：<textarea cols="23" rows="5" name="beizhu" id="beizhu" ></textarea>
+				  <br /> <br />
+				 <!-- 编号：<input name="user_id" type="text" id="user_id" value="{$visitor.id}" size="15" />
+				  用户名：<input name="user_name" type="text" id="user_name" value="{$visitor.user_name}" size="15" />
+				  充值金额：<input name="money" type="text" id="money"  size="15" /><input name="method" type="text" id="method"  size="15"/>
+				  汇款人姓名：<input name="bank_username" type="text" id="bank_username"  size="15" />
+				  汇款银行：<input name="bank_name" type="text" id="bank_name"  size="15" />
+				  汇款日期：<input name="riqi" type="text" id="riqi"  size="15" />
+				  备注：<input name="beizhu" type="text" id="beizhu"  size="15" />-->
+                 <input type="submit" class="money_btn" value="{$lang.lijichongzhi}" onclick="this.disabled=true;this.form.submit()" />
+                  </form>	
+    
+			</div>
+			</div>
+			
+         
+<!--结束-->		
+<!--开始-->
+          <!-- <div class="wrap">-->
+            <div class="public table" id="zaixian" style= "display:   none ">
+          <!--  <h3 class="title" style="margin: -10px 0 20px; color:#3E3E3E">{$lang.zaixianchongzhi}</h3>-->
+                  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="chongzhi_form" onSubmit="return chongzhi();" action="index.php?app=my_money&act=czfs" method="post" target="_blank">
+				  {$lang.chongzhijine}
+                  <input name="cz_money" type="text" value="100" size="8" />&nbsp;{$lang.yuan}
+                    {$lang.chongzhifangshi}：
+                    <select name="czfs" class="select">
+                    <option value="chinabank">{$lang.wangyinchongzhi}</option>
+                    <option value="alipay">{$lang.zhifubaochongzhi}</option>
+                    <option value="tenpay">{$lang.caifutongchongzhi}</option>
+					<option value="kuaiqian">{$lang.kuaiqianchongzhi}</option>
+					<option value="yeepay">{$lang.yibaochongzhi}</option>
+					<option value="huikuan">{$lang.yinhanghuikuanchongzhi}</option>
+					</select>
+                  <BR><BR><input type="submit" class="money_btn" value="{$lang.lijichongzhi}" onclick="this.disabled=true;this.form.submit()" />
+                  </form>
+             </div>
+			</div>
+          <!-- </div>	-->	
+		  <!--结束-->	
+<!--开始-->		  
+		  
+		   <div class="public table" id="duihuan" style= "display:   none ">
+          <!--  <h3 class="title" style="margin: -10px 0 20px; color:#3E3E3E">{$lang.zaixianchongzhi}</h3>-->
+                  
+				  <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
+<form name="card_form1" onSubmit="return card1();" action="index.php?app=my_money&act=duihuan_jifen" method="post" target="_blank">
+				  兑换帐户：&nbsp;&nbsp;&nbsp;&nbsp;{$visitor.user_name}<input name="user_name1" type="hidden" id="user_name1" value="{$visitor.user_name}" size="15" /> <input name="user_name2" type="hidden" id="user_name2" size="15"  value="{$visitor.user_name}"/>
+			  <br>
+				  兑换金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="duihuanjine" type="text" id="duihuanjine" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8"/>&nbsp;
+				  <br>
+				
+				   <!--{foreach from=$canshu item=val key=key}-->
+				 兑换比例：&nbsp;&nbsp;&nbsp;&nbsp; {$val.duihuanjifenfeilv} &nbsp;&nbsp;&nbsp;&nbsp;
+				 <input name="bili" type="hidden" id="bili" size="15"  value="{$val.duihuanjifenfeilv}"/>
+				 <font color="red">(一元钱兑换{$val.duihuanjifenfeilv}积分)</font>
+				 	  <!--{/foreach}-->
+                <br> 
+				 
+           
+				  <!--兑换日期：&nbsp;&nbsp;&nbsp;&nbsp;<input name="riqi" type="text" id="riqi" size="15"> -->
+				  <input name="status" id="status" size="30" type="hidden" value="等待审核"/>
+				   <input name="type" id="type" size="30" type="hidden" value="4"/>
+				<input name="log_text" id="log_text" size="30" type="hidden" value="{$visitor.user_name}兑换积分"/>
+				  <br> <br>
+				  备注：<textarea cols="23" rows="5" name="beizhu" id="beizhu" ></textarea>
+                  <BR><BR><input type="submit" class="money_btn" value="立即兑换" onclick="this.disabled=true;this.form.submit()" />
+                  </form>
+             </div>
+			</div>
+		  
+<!--结束-->	
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

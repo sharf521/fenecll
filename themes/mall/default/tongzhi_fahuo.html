@@ -1,0 +1,25 @@
+
+<ul class="tab">
+    <li class="active">通知仓库发货</li>
+</ul>
+<div class="content1">
+<form method="post" action="index.php?app=seller_order&act=tongzhifahuo" target="seller_order">
+        <dl>
+        
+ 			
+           是否保价：<input name="baojia" type="radio" value="1" checked="checked"/>是
+           <input name="baojia" type="radio" value="0"/>否<br /><br />
+           <input name="orid" value="{$orderid}" type="hidden" />
+           {if $aa.keyongjifen< $aa.fee}
+           <font color="#990000">您的可用积分不足以支付本次运费，建议您先去充值，补足这次运费，然后再进行提交，否则您将受到惩戒。</font>
+           <input name="cj" value="1" type="hidden"/>
+           {/if}
+           <br>
+         <font color="#990000"> 温馨提示：如果参加保价，此运费将加收31%参加积分奖励计划。</font>
+          <br />
+    </dl>
+    <div class="btn">
+        <input type="submit" id="confirm_button" class="btn1" value="确认" />
+    </div>
+</form>
+</div>

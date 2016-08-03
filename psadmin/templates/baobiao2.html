@@ -1,0 +1,191 @@
+{include file="header.html"}
+<script language="javascript">
+$(function(){
+    $.getJSON('{$spt}&jsoncallback=?',function(){});
+    $.getJSON('http://ecmall.shopex.cn/system/notice2.php?charset={$cur_lang}&jsoncallback=?',function(data){
+        var message='';
+        $.each(data,function(i){
+            message += '<li>' + data[i] + '</li>';
+        });
+        $('#notice').html(message);
+    }
+);
+});
+<!--{if $dangerous_apps}-->
+var dangerous_apps = '';
+<!--{foreach from=$dangerous_apps item=da}-->
+dangerous_apps += "{$da}\r\n";
+<!--{/foreach}-->
+alert(dangerous_apps);
+<!--{/if}-->
+
+function chaxun(flg){
+
+var huiyuan1 = $('#huiyuan');
+var goods1 = $('#goods');
+var stores1= $('#stores');
+var orders1= $('#orders');
+var chongzhi= $('#chongzhi');
+var tixian= $('#tixian');
+
+  switch(flg){
+	case '1':
+	
+       huiyuan1.show();
+	   goods1.hide();
+	   stores1.hide();
+	   orders1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+			
+        break;
+	
+    case '2':
+       goods1.show();
+	   huiyuan1.hide();
+	   stores1.hide();
+	   orders1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+        break;
+		
+	 case '3':
+       stores1.show();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   orders1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+        break;	
+		
+	  case '4':
+       orders1.show();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.hide();
+	   tixian.hide();
+        break;	
+	 case '5':
+       orders1.hide();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.show();
+	   tixian.hide();
+        break;	
+	 case '6':
+       orders1.hide();
+	   huiyuan1.hide();
+	   goods1.hide();
+	   stores1.hide();
+	   chongzhi.hide();
+	   tixian.show();
+        break;	
+	
+  }
+}
+
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+
+
+</script>
+<div id="rightTop">
+<p>
+    {$lang.hello}<b>{$admin.user_name}</b>{$lang.welcome_to_ecmall}
+    <!--[ <a target="_blank" href="{$site_url}/index.php?app=message&amp;act=inbox" class="tidings">{$lang.new_pm}</a>: {$new.total} ]
+-->    {$lang.last_login} {$admin.last_login|date:complete} {$lang.last_ip} {$admin.last_ip}
+</p>
+</div>
+<dl id="rightCon">
+
+<dt></dt>
+<dd>
+    <ul style="color:red; font-weight:bold;">
+        
+        <li></li>
+       
+    </ul>
+</dd>
+
+<dt></dt>
+<dd>
+<b>搜索条件：</b>
+<form method="get" >
+<input type="hidden" name="app" value="default" />
+<input type="hidden" name="act" value="caiwubaobiao" />
+类型：<select name="leixing" onchange="chaxun(this.value);">
+<option value="" >请选择</option>
+<option value="4" {if $leixing==4} selected="selected"{/if}>交易</option>
+<option value="5" {if $leixing==5} selected="selected"{/if}>充值</option>
+<option value="6" {if $leixing==6} selected="selected"{/if}>提现</option>
+</select>&nbsp;&nbsp;&nbsp;
+添加时间:
+<input name="add_time_from" type="text" id="add_time_from" value="<?php echo $_GET["add_time_from"];?>"  class="pick_date" size="10" maxlength="10" />
+ &nbsp;至&nbsp;<input name="add_time_to" type="text" id="add_time_to" value="<?php echo $_GET["add_time_to"];?>"  class="pick_date" size="10" maxlength="10" />
+<div id="orders" style="display:none">
+订单状态：<select name="stat">
+<option value="">请选择</option>
+<option value="11">待付款</option>
+<option value="20">待发货</option>
+<option value="30">已发货</option>
+<option value="40">已完成</option>
+<option value="0">已取消</option>
+</select>
+</div>
+<div id="chongzhi" style="display:none">
+状态：<select name="status">
+<option value="">请选择</option>
+<option value="1">审核通过</option>
+<option value="0">等待审核</option>
+<option value="2">审核不通过</option>
+</select>
+</div>
+<div id="tixian" style="display:none">
+状态：<select name="status">
+<option value="">请选择</option>
+<option value="1">等待审核</option>
+<option value="2">等待打款</option>
+<option value="3">审核不通过</option>
+<option value="4">已打款</option>
+</select>
+</div>
+ <input type="submit" class="formbtn" value="提交" />
+</form>
+   
+</dd>
+<div>
+{if $orderrow}
+<dt>交易:</dt>
+<dd>
+<table>
+{foreach from=$orderrow item=var}
+<tr><td>
+<b>{$var.riqi}：</b></td><td>订单：&nbsp;<font color="#990033">{$var.cou}&nbsp;笔</font>&nbsp;&nbsp;</td><td>总金额：&nbsp;<font color="#990033">{$var.am}&nbsp;元</font>&nbsp;&nbsp;</td><td>总积分：&nbsp;<font color="#990033">{$var.jf}&nbsp;积分</font></td>
+</tr>
+{/foreach}
+</table>
+</dd>
+{/if}
+
+{if $chongzhirow}
+<dt>充值:</dt>
+<dd>
+<table>
+{foreach from=$chongzhirow item=var}
+<tr><td>
+<b>{$var.riqi}：</b></td><td>充值：&nbsp;<font color="#990033">{$var.cou}&nbsp;笔</font>&nbsp;&nbsp;</td><td>总金额：&nbsp;<font color="#990033">{$var.z_money}&nbsp;元</font>&nbsp;&nbsp;</td><td>总费用：&nbsp;<font color="#990033">{$var.fei}&nbsp;元</font></td>
+</tr>
+{/foreach}
+</table>
+</dd>
+{/if}
+
+
+
+</div>
+</dl>
+{include file="footer.html"}

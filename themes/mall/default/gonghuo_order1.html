@@ -1,0 +1,75 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    var t = new EditableTable($('#my_goods'));
+});
+</script>
+<style>
+.member_no_records {border-top: 0px !important;}
+.table td{ padding-left: 5px; }
+.table .ware_text { width: 155px; }
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab">
+				<li class="normal"><a href="index.php?app=seller_groupbuy&act=gonghuo">我要供货</a></li>
+				<li class="normal"><a href="index.php?app=seller_groupbuy&act=jibenxinxi">供货信息</a></li>
+				<li class="normal"><a href="index.php?app=seller_groupbuy&act=caigouxinxi">采购信息</a></li>
+				<li class="normal"><a href="index.php?app=seller_groupbuy&act=my_caigou">我的采购</a></li>
+				<li class="active">供货订单</li>
+				
+		
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select table">
+
+<table>
+                   
+                  
+                    <tr class="line tr_bgcolor">
+                        <th></th>
+                        <th>{$lang.order_sn}</th>
+                        <th>{$lang.buyer_name}</th>
+                        <th width="200">{$lang.consignee}</th>
+                        <th>{$lang.phone_tel}</th>
+                        <th>{$lang.payment_name}</th>
+                        <th>{$lang.order_amount}</th>
+						<!--<th>{$lang.gonghuoshang}</th>-->
+                        <th width="90">{$lang.order_status}</th>
+                    </tr>
+                 
+                    <!-- 循环开始 -->
+                    <!--{foreach from=$gh_order item=order}-->
+                    <tr class="color2">
+                        <td class="align2"><input type="checkbox" value="{$order.order_id}" class="checkitem" <!--{if $order.status eq ORDER_FINISHED || $order.status eq ORDER_CANCELED}--> disabled="disabled" <!--{/if}-->/></td>
+                        <td><span class="color3">{$order.order_sn}{if $order.extension eq 'groupbuy'}<span class="color8">[{$lang.groupbuy}]</span>{/if}</span></td>
+                        <td class="align2">{$order.buyer_name|escape}</td>
+                        <td class="align2">{$order.consignee|escape}</td>
+                        <td class="align2"><!--{ if $order.phone_mob neq ''}-->{$order.phone_mob}<!--{else}-->{$order.phone_tel}<!--{/if}--><br />
+</td>
+                        <td class="align2">{$order.payment_name|escape}</td>
+                        <td class="align2 padding1"><strong>{$order.order_amount|price}</strong></td>
+						
+                        <td class="align2"><span class="color4">{$order.status|modifier:order_status}<!--{if $order.evaluation_status}-->,&nbsp;{$lang.already_evaluate}<!--{/if}--></span></td>
+                    </tr>
+<!--{/foreach}-->
+
+
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

@@ -1,0 +1,199 @@
+{include file=member.header.html}
+<!--<script charset="utf-8" src="/includes/keditor/kindeditor.js"></script>
+	<script charset="utf-8" src="/includes/keditor/lang/zh_CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+</script>-->
+		
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
+<SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>	
+		
+
+<script type="text/javascript">
+
+function gong()
+{
+
+if (document.gh.goods_name.value =="")
+  {
+    alert("商品名称不能为空!");
+	document.gh.goods_name.focus();
+	return false;
+	}
+if (document.gh.lingshou_price.value =="")
+  {
+    alert("商品价格不能为空!");
+	document.gh.lingshou_price.focus();
+	return false;
+	}
+if (document.gh.zong_kucun.value =="")
+  {
+    alert("商品库存不能为空!");
+	document.gh.zong_kucun.focus();
+	return false;
+	}
+if (document.gh.chanpin.value =="")
+   {
+		alert("请上传产品图!");
+		document.gh.chanpin.focus();
+		return false;
+	}
+//if (document.gh.content1.value =="")
+//   {
+//		alert("商品描述不能为空!");
+//		document.gh.content1.focus();
+//		return false;
+//	}
+	
+	
+document.getElementById("FormSubmit").setAttribute('disabled','ture');
+	
+}
+
+function fuzhi(jiage)
+{
+	jifen=jiage*{$canshu.jifenxianjin}*10000/10000;
+	document.getElementById('jifen_price').value=jifen;
+}
+
+
+
+</script>
+
+
+
+<style>
+.member_no_records {border-top: 0px !important;}
+.public_select table tr{ height:40px; color:#666 }
+.public_select table input{ width:150px; height:25px; border:1px solid #ccc}
+</style>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+  {include file=member.menu.html}
+  <div id="right">
+   <ul class="tab"><!--{$build_editor}-->
+				<li class="active">我要供货</li>
+                <li class="normal"><a href="index.php?app=my_theme&act=shangjiaxinxi">商家信息</a></li>
+				<li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+				<li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+          </ul>
+        <div class="wrap">
+            
+            <div class="public_select">  
+			
+          
+ <form action="index.php?app=my_theme&act=gonghuo" method="post" onSubmit="return gong();" name="gh" enctype="multipart/form-data">
+
+ <table style="float: left"  width="780" height="800">
+  
+<a style="color:#CC3300; font-size:14px; width:100px; height:25px; line-height:25px; text-decoration:none; float:left">新添加商品信息</a>
+<a href="index.php?app=my_goods" style="text-decoration:none; text-align:center; line-height:25px; float:left; color:#333; font-size:14px;  width:130px; height:25px; margin-left:10px; display:inline; border:1px solid #ccc">从商品列表里选择</a>
+
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+ <tr><td  width="300">
+ <h5><font style="color:#333; font-size:14px;">商品信息</font></h5></td>
+ <td width="300"></td></tr>
+ <tr>
+ <td >商品名称：</td>
+ <td ><input name="goods_name" id="goods_name" value="{$good.goods_name}" /><font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>品牌：</td>
+ <td><input name="goods_brand" id="goods_brand" value="{$good.brand}" />
+ <input name="goodsid" id="goodsid" value="{$good.goods_id}" type="hidden"/>
+ <input name="status" id="stauts" value="3" type="hidden"/>
+ <input name="chushen_status" id="chushen_status" value="3" type="hidden"/>
+ </td>
+ </tr>
+ <tr>
+ <td>目前销售渠道：</td>
+ <td><input name="tujing" id="tujing" value="" /></td>
+ </tr>
+
+ <tr>
+ <td>统一零售价格：</td>
+ <td><input name="lingshou_price" id="lingshou_price" value="{$good.lingshou_price}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value"  onblur="fuzhi(this.value)"/>&nbsp;元<font color="#990000"> *</font></td>
+ </tr>
+ <tr>
+ <td>积分价：</td>
+ <td><input name="jifen_price" id="jifen_price" value="{$good.jifen_price}" readonly="true"/>&nbsp;积分<font color="#990000"> *</font></td>
+ </tr>
+
+ <tr>
+ <td>库存：</td>
+ <td>  <input name="zong_kucun" id="zong_kucun" value="{$good.stock}" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/><font color="#990000"> *</font></td>
+ </tr>	
+ <tr><td>重量：</td>
+ <td><input name="weight" value="{$good.weight}" onKeyUp="value=value.replace(/[^0-9]/g,'')"/>kg(每件商品的重量)</td>
+ </tr>
+ <tr><td>体积：</td>
+ <td><input name="volume" value="{$good.volume}" onKeyUp="value=value.replace(/[^0-9]/g,'')"/>m3(每件商品的体积)</td>
+ </tr>
+  <tr>
+ <td>商品信息来源：</td>
+ <td><input name="source" id="source" value="" /></td>
+ </tr>	
+  <tr>
+ <td>图片资料：</td>
+ <td><input name="ziliao" id="ziliao" value=""  type="file"/></td>
+ </tr>
+   <tr>
+ <td>产品图：</td>
+ <td><input name="chanpin" id="chanpin" value=""  type="file"/><font color="#990000"></font>
+ </td></tr>
+ <tr>
+ <td></td>
+ <td>
+ {if $good}
+  <img src="{$good.default_image}" class="makesmall" width="300"/>
+ {/if}
+ </td>
+ </tr>
+ <tr>
+ <td>商品描述：</td>
+ <td> 
+ 
+ <script type="text/plain" id="myEditor" name="content1">
+ <p>{$goods.beizhu}</p>
+ </script>
+ <script type="text/javascript">
+ UE.getEditor('myEditor',{
+ initialFrameHeight:400,  //初始化编辑器高度,
+ autoHeightEnabled:false, //是否自动长高,默认true
+ scaleEnabled:false, //是否可以拉伸长高,默认true
+ minFrameHeight:40, //编辑器拖动时最小高度
+ autoFloatEnabled:false,//是否保持toolbar的位置不动,默认true
+ toolbarTopOffset:400, //编辑器底部距离工具栏高度
+ initialFrameWidth:700
+ })
+ </script>
+ </td>
+ </tr>
+
+<tr><td colspan="2"><hr color="#FF9900"/></td></tr>
+		
+ 
+ <tr>
+ <td></td>
+ <td><center><input class="tdtjcss" type="submit" value="提交" id="FormSubmit"/>&nbsp;&nbsp;<input class="czbtncss" type="reset" value="重置" /></center></td>
+ </tr>
+	
+</table>
+			  </form>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html}

@@ -1,0 +1,118 @@
+{include file=member.header.html}
+<script type="text/javascript">
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+  
+       
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+              <ul class="tab">
+              <li class="normal"><a href="index.php?app=seller_order&act=gonghuo_order">供货订单</a></li>
+              <li class="normal"><a href="index.php?app=seller_order&act=cangku_order">仓库订单</a></li>
+              <li class="active"><span>仓库列表</span></li>
+          </ul>
+        <div class="wrap">
+
+			<div class="scarch_order">
+                <form method="get">
+                <div style="float:left;">
+                <span class="title">供货商:</span>
+                <input class="text_normal" type="text" name="ghusername" value="{$query.ghusername}" />
+                <span class="title">时间:</span>
+                <input class="text_normal width2" type="text" name="add_time_from" id="add_time_from" value="{$query.add_time_from}" /> &#8211; <input class="text_normal width2" id="add_time_to" type="text" name="add_time_to" value="{$query.add_time_to}" />
+                <span class="title">总库存:</span>
+                <input  type="text" name="zong_kucunq" value="{$query.zong_kucunq}"/>
+                &#8211; <input  type="text" name="zong_kucunz" value="{$query.zong_kucunz|escape}" />
+                
+                <span class="title">余库存:</span>
+                <input  type="text" name="shengyu_kucunq" value="{$query.shengyu_kucunq}" />
+                &#8211; <input type="text" name="shengyu_kucunz" value="{$query.shengyu_kucunz|escape}" />
+                <input type="hidden" name="app" value="seller_order" />
+                <input type="hidden" name="act" value="cangkulist" />
+                
+                <input type="submit" class="btn" value="{$lang.search}" />
+                </div>
+                <!--{if $ghusername or $add_time_from or $add_time_to or $zong_kucunq or $zong_kucunz or $shengyu_kucunq or $shengyu_kucunz}-->
+                    <a class="detlink" href="{url app=seller_order&act=cangkulist}">{$lang.cancel_query}</a>
+                <!--{/if}-->
+        	    </form>
+        	</div>
+
+
+         <div class="public_index table">
+                <table>
+                    <!--{if $row}-->
+                    <tr class="line tr_bgcolor">
+                        <th>商品名</th>
+                        <th>供货商</th>
+                        <th>时间</th>
+                        <th>总库存</th>
+                        <th>余库存</th>
+                        <th>物流</th>
+                        <th>重量(kg)</th>
+                        <th>体积(m3)</th>
+                        <th>报警数</th>
+                        <th>状态</th>
+						<th>操作</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- 循环开始 -->
+                    <!--{foreach from=$row item=gh}-->
+                    <tr class="color2">
+                     <td width="200">{$gh.goods_name}</td>  
+					 <td >{$gh.user_name}</td> 
+                     <td >{$gh.riqi}</td> 
+                     <td align="center"><font color="#0000FF">{$gh.zong_kucun}</font></td> 
+                     <td align="center"><font color="#990000">{$gh.shengyukucun}</font></td> 
+                     <td>{$gh.shipping_name}</td>
+                     <td>{$gh.weight}</td>
+                     <td>{$gh.volume}</td>
+                     <td>{$gh.baojingshu}</td>
+                     <td align="center">
+                     <font color="#990000">
+                     {if $gh.status==3 && $gh.chushen_status!=3}等待事实审核{/if}
+          			 {if $gh.status==3 && $gh.chushen_status==3}等待初审{/if}
+                     {if $gh.status==1}审核通过{/if}
+                     {if $gh.status==2}审核不通过{/if} 
+                     {if $gh.status==4}等待填写物流{/if} 
+                     {if $gh.status==5}等待发货{/if} 
+                     {if $gh.status==6}正在盘点库存{/if}
+                     {if $gh.status==7}等待终审{/if}  
+                     </font>
+                     </td> 
+                     <td>
+                     {if $gh.status==4}<a href="index.php?app=seller_order&act=cangku_edit&id={$gh.gh_id}">编辑</a>{/if}
+                     {if $gh.shengyukucun< $gh.baojingshu && $gh.status==1}
+                     <font color="#3300FF">请注意，库存不足！</font>
+                     {/if}
+                     </td> 
+                    </tr>
+                    
+                    <!--{foreachelse}-->
+                    <tr><td class="member_no_records" colspan="8">{$lang.no_records}</td></tr>
+                    <!--{/foreach}-->
+                    <!--{if $row}-->
+                    <tr><th class="width1"></th>
+                    <th class="align1" colspan="9">
+                            <p class="position1">
+                                <label for="all2"><span class="all"></span></label>
+                            
+                            </p>
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                    </table>
+                    <iframe name="seller_order" style="display:none;"></iframe>
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

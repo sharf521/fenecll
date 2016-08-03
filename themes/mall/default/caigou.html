@@ -1,0 +1,170 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<script language="javascript">
+function caigou()
+{
+   if (document.goumai.num.value =="")
+  {
+    alert("采购数量不能为空!");
+	document.goumai.num.focus();
+	return false;
+	}
+	 if (document.goumai.zhifufangshi.value =="")
+  {
+    alert("请选择支付方式");
+	document.goumai.zhifufangshi.focus();
+	return false;
+	}
+	
+	document.getElementById("FormSubmit").setAttribute('disabled','ture');
+
+	
+    return true;
+}
+
+</script>
+<div class="content">
+	<div class="gleft">
+    
+    <div class="left">
+
+         <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+
+                    <ul class="fellowship">
+                       {if $guanggaowei}
+                      <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="{$val.lianjie}" target="_blank"><img src="{$val.image}" alt="{$val.content|escape}" width="170" height="65" /></a></div>
+                           
+                        </li>
+                        <!-- {/foreach} -->  
+						{else}
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65" /></a></div>
+                           
+                        </li>
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65"/></a></div>
+                           
+                        </li>
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65"/></a></div>
+                           
+                        </li>
+						{/if}
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近采购的货物</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$last_caigou item=caigou key=key} -->
+                        <li>
+                           <div class="pic"><img src="{$caigou.chanpin}" width="50" height="50"/></div>
+                            <dl>
+                                <dd>{$caigou.goods_name|escape}</dd>
+                                <dd class="distance">{$caigou.goods_brand}</dd>
+                                <dd class="time">{$caigou.riqi}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} --> 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="shop_con_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title">
+                                     
+                    </div>
+                    <div class="top_page">
+                        {include file=page.top.html}
+                    </div>
+                </div>
+            </h2>
+        </div>
+
+        <div class="group_shop">
+		
+		
+		<div class="zfbox">
+		
+				<div class="yhinfo">采购信息</div>
+		 	<form name="goumai" action="index.php?app=my_store&amp;act=caigou" method="post" onSubmit="return caigou();" style="padding-left:100px">
+				
+				<h3>商品名称：{$huo.goods_name}
+					<input name="goods_name" type="hidden" id="goods_name" size="15" value="{$huo.goods_name}" readonly="true"/>
+					<input name="gh_id" type="hidden" id="gh_id" size="15" value="{$huo.gh_id}"/>
+					<input name="gong_id" type="hidden" id="gong_id" size="15" value="{$huo.user_id}"/>
+					<input name="gong_name" type="hidden" id="gong_name" size="15" value="{$huo.user_name}"/>
+					<input name="chanpin" type="hidden" id="chanpin" size="15" value="{$huo.chanpin}"/>
+				</h3>
+				
+				<div class="yhinfo">库存：{$huo.yu_kucun}
+				 	<input name="kucun" type="hidden" id="kucun" size="15" value="{$huo.yu_kucun}"/>
+				</div>
+			
+				<div  class="zffsbox">零售积分：{$huo.jifen_price}
+					 <input name="jifen_price" type="hidden" id="jifen_price" size="15" value="{$huo.jifen_price}"/>
+					 <input name="lingshou_price" type="hidden" id="lingshou_price" size="15" value="{$huo.lingshou_price}"/>
+			 	</div>
+	
+				<div class="zffsbox"><div style="float:left; height:25px; line-height:25px">采购数量：
+					</div><input name="num" type="text" id="num" size="15" class="zffstext" onKeyUp="value=value.replace(/[^0-9]/g,'')"/>
+				</div>
+				
+				<div class="zffsbox">支付方式：&nbsp;&nbsp;<input style="line-height:20px;" type="radio" name="zhifufangshi" checked="checked" value="jifenzhifu" id="zhifufangshi"/>&nbsp;积分支付
+				
+				</div>
+				
+				<div style="width:600px; margin-top:20px; margin-left:10px; display:inline; float:left">
+					<input type="submit" class="zfbtn" value="确认采购" id="FormSubmit"/>
+				</div>
+				
+				</form>
+		</div>
+	   </div>	
+	   
+	   <div style="float:left; padding-left:25px; width:600px; color:#cc0000">温馨提示：
+		<br />
+		1、采购商分为扶持采购商（扶持版店铺）和精英采购商（精英版店铺）。<br />
+2、采购商采购的只是商品信息(信息是不可修改的)，采购商只需要将商品信息收录到自己的店铺中进行展示并售卖并不需要实际库存。<br />
+3、采购来的商品价格是不可修改的，当消费者下单购买时，商品由仓库发货。<br />
+4、扶持采购商：采购时需交纳31%的订金，采购完成后，商城系统开始对扶持采购商进行奖励。<br /> 
+5、精英采购商：采购时无需交纳任何费用，售出商品后（消费者确认收货后），商城系统开始对精英采购商进行奖励。<br />
+6、系统对采购商奖励的积分大于等于商品实际零售价格的10%。
+
+		
+		</div>
+	   	
+	   
+     </div>
+	 
+	 
+	 </div>	
+		
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+		
+    
+
+</div>
+{include file=footer.html}

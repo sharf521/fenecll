@@ -1,0 +1,83 @@
+{include file=header.html}
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+<script type="text/javascript">
+var upimg   = '{res file=images/up.gif}';
+var downimg = '{res file=images/down.gif}';
+imgUping = new Image();
+imgUping.src = upimg;
+</script>
+
+{include file=curlocal.html}
+<div class="content">
+    <!--{if $store_list}-->
+    <div class="left">
+        <div class="module_sidebar">
+
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="module_filter">
+            <div class="module_filter_line">
+                <div class="search_bar">
+            
+                <form id="search" method="GET" action="index.php">
+                    <input type="hidden" name="order" value="{$smarty.get.order|escape}"/>
+                    <input type="hidden" name="app" value="search"/>
+                    <input type="hidden" name="act" value="store"/>
+                    <input type="hidden" name="cate_id" value="{$smarty.get.cate_id|escape}"/>
+                    <span class="display_span">{$lang.store_name}</span><input class="table_text" type="text" name="keyword" value="{$query.keyword|escape}" />
+                   
+                    <span class="display_span">{$lang.user_name}</span><input class="table_text" type="text" name="user_name" value="{$query.user_name|escape}" /></td>
+                   <span class="display_span">{$lang.region_name}</span>
+                    <select id="region_id" name="region_id" class="display_select">
+                        <option value="">{$lang.region_name}</option>
+                        {html_options options=$regions selected=$query.region_id}
+                    </select>
+                    <input class="table_btn" type="submit" name="Submit" value="{$lang.search}" />
+                </form>
+				</div>
+            </div>
+        </div>
+
+        <div class="shop_con_list">
+           
+
+            <div class="{$display_mode}" ectype="current_display_mode">
+                
+                <ul class="list_pic">
+                    <!--{foreach from=$store_list item=store}-->
+                    <li>
+                        <p><a href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" width="65" height="65" /></a></p>
+                        <h3>
+                            <span class="text_link">
+                                <span class="depict">
+                                    <a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
+                                </span>
+                                
+                            </span>
+                           
+                            
+                          <b>
+                           <p>{$store.region_name}</p></b>
+                        </h3>
+					
+                    </li>
+					{/foreach}
+					                    <div class="clear"></div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{else}-->
+    <div class="module_common">
+        <p class="no_info">{$lang.no_records}</p>
+    </div>
+    <!--{/if}-->
+</div>
+
+{include file=footer.html}

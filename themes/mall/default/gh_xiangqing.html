@@ -1,0 +1,104 @@
+{include file=header.html}
+{include file=curlocal.html}
+<script type="text/javascript" src="{lib file=search_groupbuy.js}" charset="utf-8"></script>
+<style type="text/css">
+.beizhu img{ max-width:775px;}
+</style>
+<div class="content">
+   
+    <div class="left">
+ <div class="module_sidebar">
+            <h2><b>广告</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <ul class="fellowship">
+                     {if $guanggaowei}
+                      <!-- {foreach from=$guanggaowei item=val} -->
+                        <li>
+                            <div class="pic"><a href="{$val.lianjie}" target="_blank"><img src="{$val.image}" alt="{$val.content|escape}" width="170" /></a></div>  
+                        </li>
+                        <!-- {/foreach} -->  
+						{else}
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65"/></a></div> 
+                        </li>
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65" /></a></div>  
+                        </li>
+						 <li>
+                            <div class="pic"><a href="#" target="_blank"><img src="/themes/mall/default/styles/default/img/07.png" width="170" height="65"/></a></div>   
+                        </li>
+						{/if}
+                    </ul>
+
+                </div>
+            </div>
+            <h2><b>最近采购的货物</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+
+                    <ul class="fellowship">
+                      <!-- {foreach from=$last_caigou item=caigou key=key} -->
+                        <li>
+                           <div class="pic"><a href="index.php?app=my_store&act=gh_xiangqing&id={$caigou.gh_id}"><img src="{$caigou.chanpin}" width="50" height="50"/></a></div>
+                            <dl>
+                                <dd><a href="index.php?app=my_store&act=gh_xiangqing&id={$caigou.gh_id}" title="{$caigou.goods_name}">{$caigou.goods_name}</a></dd>
+                                <dd class="distance">{$caigou.goods_brand}</dd>
+                                <dd class="time">{$caigou.riqi}</dd>
+                            </dl>
+                        </li>
+                        <!-- {/foreach} --> 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="right">
+
+       
+
+        <div class="group_shop">
+		
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+	<tr><th><h5><font color="#990000">商家信息</font></h5></th></tr>
+            <tr>
+            <table>
+            <tr><td width="100" height="50" align="center">联系人:</td><td colspan="3">{$xinxi.name}</td></tr>
+            <tr><td width="100" height="50" align="center">厂家名称:</td><td>{$xinxi.gongsi_name|escape}</td><td>厂家地址:</td><td>{$xinxi.address|escape}</td></tr>
+             <tr><td align="center" width="100" height="50">物流公司:</td><td>{$gonghuo.shipping_name|escape}</td><td>默认邮费:</td><td>{$gonghuo.one_price}元</td></tr>
+            <tr><td align="center" width="100" height="50">商品名称:</td><td colspan="3">{$gonghuo.goods_name|escape}</td></tr>	
+            <tr><td align="center" width="100" height="50">品牌:</td><td>{$gonghuo.goods_brand|escape}</td><td>零售积分价:</td><td>{$gonghuo.jifen_price}积分</td></tr>
+            <tr><td align="center" width="100" height="50">产品图:</td><td colspan="3">{if $gonghuo.chanpin}
+                <img src="{$gonghuo.chanpin}" width="100"  />
+             {else}
+               没有上传
+            {/if}</td></tr>
+             
+            </table>
+                
+            </tr>
+            <tr><th><h5><font color="#990000"><center>商品详细信息</center></font></h5></th></tr>
+			<tr>
+                <td style="text-align:left;" class="beizhu">
+			 {$gonghuo.beizhu}
+                </td>
+            </tr>
+        
+        </table>
+    </form>
+
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+
+</div>
+{include file=footer.html}

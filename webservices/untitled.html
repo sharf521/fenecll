@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+$(function(){
+    $(window).load(function(){
+        $("div[id=newnotice]").css({"right":"0px","bottom":"1px"});
+        $("div[id=newnotice]").slideDown("slow");
+    }).scroll(function(){
+        $("div[id=newnotice]").css({"bottom":"0px"});
+        $("div[id=newnotice]").css({"right":"0px","bottom":"1px"});
+    }).resize(function(){
+        $("div[id=newnotice]").css({"bottom":""});
+        $("div[id=newnotice]").css({"right":"0px","bottom":"1px"});   
+    });
+   
+    $("label[id=tomin]").click(function(){
+        $("div[id=noticecon]","div[id=newnotice]").slideUp();
+    });
+   
+    $("label[id=tomax]").click(function(){
+        $("div[id=noticecon]","div[id=newnotice]").slideDown();
+    });
+   
+    $("label[id=toclose]").click(function(){
+        $("div[id=newnotice]").hide();
+    });
+    /**
+	$.get("http://www.nowamagic.net/cgi/test.xml", function(data){
+		$(data).find('channel').find('item').each(function(index, ele){
+			var titles = $(ele).find('title').text();
+			var links = $(ele).find('link').text();
+			$("#noticecon").find('ol').append('<li><a href="'+links+'">'+titles+'</a></li>');
+		})
+	});
+    **/
+});
+</script>
+
+<div id="newnotice">
+    <p>
+        <span class="title">最热新闻</span>
+        <span id="bts">
+            <label class="button" id="tomin" title="最小化">_</label>
+            <label class="button" id="tomax" title="最大化">口</label>
+            <label class="button" id="toclose" title="关闭">×</label>
+        </span>
+    </p>
+    <div id="noticecon">
+		<ol>
+		</ol>
+	</div>
+</div>
+
+</body>
+</html>

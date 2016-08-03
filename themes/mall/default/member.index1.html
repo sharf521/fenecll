@@ -1,0 +1,196 @@
+{include file=member.header.html}
+<script language="javascript" src="includes/libraries/javascript/jquery.js"></script>
+    <script language="javascript">
+    	function Get()
+		{
+			$.post("index.php?app=member&act=qiandao&user_id={$user.user_id}",
+
+{suggest:1},function(result){
+alert("已签到,荣誉积分增加1分");
+$('#img_qian').attr('src','themes/mall/default/styles/default/images/yiqiandao.gif');window.location.reload();
+			});
+		}
+    </script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        <div class="wrap_line margin1">
+            <div class="public">
+                <div class="information_index">
+                    <div class="photo">
+                        <p><img src="{$user.portrait}" width="120" height="120" alt="" /></p>
+						<center>{$le}</center>
+                    </div>
+
+                    <div class="info">
+                        <h3 class="margin2">
+                            <span>{$lang.welcome}{$user.user_name|escape}</span>
+                            <a href="{url app=member&act=profile}">{$lang.edit_profile}>></a>
+                        </h3>
+			<div style="position:absolute; top:30px;left:680px; width:102px; height:40px;z-index:1;">
+					<!--{if $riqi==$qiandao.riqi && $qiandao.status==1}-->
+						<img src="themes/mall/default/styles/default/images/yiqiandao.gif" />
+						<br />
+						<font color="#CC0033">今天已签到</font>
+						<!--{else}-->
+						<input type="image" src="themes/mall/default/styles/default/images/qiandao.gif" onclick="Get()" id="img_qian"><br /><br /><font color="#CC0033">每天签到一次，给您荣誉积分奖励，赶快签到吧!</font>
+						<!--{/if}-->
+						</div>
+                        <table width="886" class="width6">
+                          <tr>
+                            <td width="360">{$lang.last_login}: {$user.last_login|date:complete}</td>
+                            <td><!--{if $store}-->
+                              {$lang.credit_value}: <a href="{url app=store&act=credit&id=$store.store_id}" target="_blank"></a>{if $store.credit_value ge 0 } <img src="{$store.credit_image}" /> {/if}
+                              <!--{/if}-->
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>{$lang.last_ip}: {$user.last_ip}</td>
+                            <td><!--{if $store}-->
+                              {$lang.praise_rate}: {$store.praise_rate}%
+                              <!--{/if}-->
+                            </td>
+                          </tr>
+						  <tr>
+						  <td>
+							<!--{if $mfbb.fbb==0}-->
+							<!--<img src="/themes/mall/default/styles/default/images/fbb1.jpg" /> -->
+							<!--{else}-->
+							<!--<img src="/themes/mall/default/styles/default/images/fbb.jpg" /> -->
+							<!--{/if}-->&nbsp;
+							
+							 </td>
+							 <td>
+							
+                            <!--{if $mfbb.daxiaozhuo==0}-->
+							<!--<img src="/themes/mall/default/styles/default/images/dxz1.jpg" /> -->
+							<!--{else}-->
+							<!--<img src="/themes/mall/default/styles/default/images/dxz.jpg"/> -->
+							<!--{/if}-->&nbsp;
+							
+							 </td>
+                          </tr>
+						  <tr>
+						  <td></td>
+						  <td></td></tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="2">&nbsp;</td>
+                          </tr>
+                          <tr>
+						   <!--{foreach from=$my_money item=val key=key}-->
+                            <td><span style="font-size:12px">{$lang.keyongjine}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.money}</span> &nbsp;{$lang.yuan}</span></td>
+                            <td width="319"><span style="font-size:12px">{$lang.dongjiejine}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.money_dj}</span>&nbsp;{$lang.yuan}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       &nbsp;</span></td>
+                            <td width="312"><span style="font-size:12px">{$lang.xiaofeijifen}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.jifen}</span></span></td>
+							
+                          </tr>
+                          <tr>
+                            <td><span style="font-size:12px">{$lang.keyongjifen}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.duihuanjifen}</span> &nbsp;{$lang.fen}&nbsp;</span></td>
+                            <td><span style="font-size:12px">{$lang.dongjiejifen}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.dongjiejifen}</span>&nbsp;{$lang.fen}</span></td>
+							
+							  <td><span style="font-size:12px">荣誉积分:<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$qiandao.times}</span></span></td>
+                          </tr>
+                           <tr>
+							  <td><span style="font-size:12px">{$lang.xinyongedu}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.zengjin}</span> &nbsp;{$lang.yuan}&nbsp;</span></td>
+                              <td colspan="2"><span style="font-size:12px">{$lang.jiekuan}<span style="font-size:14px;font-weight:bold; color:#FE5400;">
+                             {if $fufei==1}
+                              {$val.zengjin}--{$jk}
+                              {else}
+                              0--0
+                              {/if}
+                              </span>&nbsp;{$lang.yuan}</span><span style=" color:#900;font-size:12px"><a href="index.php?app=member&act=my_jiekuan">
+                        
+                            {if $jie.status==1}已提交,等待审核{/if}
+                            {if $jie.status==2}
+                            {if $jie.status1==1}等待还款{/if}
+                            {if $jie.status1==2}我要借款{/if}
+                            {/if}
+                            {if $jie.status==0 || $jie.status==3}&nbsp;我要借款{/if}
+                         
+                            </a></span></td>
+                          </tr>
+                          
+						   <tr>
+                           
+                           {if $val.suoding_money!="0.00000"}
+                            <td><span style="font-size:12px">{$lang.suodingjine}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.suoding_money}</span> &nbsp;{$lang.yuan}&nbsp;</span></td>{/if}
+                            {if $val.suoding_jifen!="0.00000"} <td><span style="font-size:12px">{$lang.suodingjifen}<span style="font-size:14px;font-weight:bold; color:#FE5400;">{$val.suoding_jifen}</span>&nbsp;{$lang.fen}</span></td>{/if}
+							{/foreach}
+                          </tr>
+                        </table>
+                        <p>{sprintf lang=you_have_pm var1=new_message}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="wrap_line margin1">
+            <div class="public_index">
+                <div class="information_index">
+                    <h3 class="title">{$lang.buyer_remind}</h3>
+                    <!--{if $buyer_stat && $buyer_stat.sum}-->
+                    <div class="remind">
+                        <dl>
+                            <dt>{$lang.order_remind}</dt>
+                            <dd>{sprintf lang=order_for_pay_remind var1=buyer_stat.pending}</dd>
+                            <dd>{sprintf lang=order_for_confirm_remind var1=buyer_stat.shipped}</dd>
+                            <dd>{sprintf lang=order_for_evaluate_remind var1=buyer_stat.finished}</dd>
+                        </dl>
+                        <dl>
+                            <dt>{$lang.groupbuy_remind}</dt>
+                            <dd>{sprintf lang=groupbuy_for_finished_remind var1=buyer_stat.groupbuy_finished}</dd>
+                            <dd>{sprintf lang=groupbuy_for_canceled_remind var1=buyer_stat.groupbuy_canceled}</dd>
+                        </dl>
+                        <a href="{url app=buyer_order}" class="btn pos1" title="{$lang.look_order}"><span class="pic1">{$lang.look_order}</span></a>
+                    </div>
+                    <!--{else}-->
+                    <div class="awoke">
+                        {$lang.go_shopping}
+                    </div>
+                    <!--{/if}-->
+                </div>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+<!--{if $store}-->
+        <div class="wrap_line">
+            <div class="public_index">
+                <div class="information_index">
+                    <h3 class="title">{$lang.seller_remind}
+                        <p>
+                        <span>{$lang.store_grade}: {$sgrade.grade_name}</span>
+                        <span>{$lang.expire_time}: <!--{if $sgrade.add_time}-->{sprintf lang=leaving_day var1=sgrade.add_time}<!--{else}-->{$lang.no_limit}<!--{/if}--></span>
+                        <span>{$lang.goods_put}: {$sgrade.goods.used}/<!--{if $sgrade.goods.total}-->{$sgrade.goods.total}<!--{else}-->{$lang.no_limit}<!--{/if}--></span>
+                        <span>{$lang.space_use}: {$sgrade.space.used}M/<!--{if $sgrade.space.total}-->{$sgrade.space.total}M<!--{else}-->{$lang.no_limit}<!--{/if}--></span>
+                        </p>
+                    </h3>
+                    <div class="remind">
+                        <dl>
+                            <dt>{$lang.order_remind}</dt>
+                            <dd>{sprintf lang=order_for_settle_remind var1=seller_stat.submitted}</dd>
+                            <dd>{sprintf lang=order_for_ship_remind var1=seller_stat.accepted}</dd>
+                        </dl>
+                        <dl>
+                            <dt>{$lang.groupbuy_remind}</dt>
+                            <dd>{sprintf lang=groupbuy_for_end_remind var1=seller_stat.groupbuy_end}</dd>
+                        </dl>
+                        <a href="{url app=store&id=$store.store_id}" title="{$lang.look_store}" target="_blank" class="btn1 pos2"><span class="pic2">{$lang.look_store}</span></a>
+                        <a href="{url app=seller_order}" class="btn pos3" title="{$lang.manage_order}"><span class="pic1">{$lang.manage_order}</span></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+<!--{/if}-->
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

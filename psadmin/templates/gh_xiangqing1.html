@@ -1,0 +1,219 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $('#share_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        rules : {
+            title : {
+                required : true,
+                maxlength: 100
+            },
+            link  : {
+                required : true
+            },
+            logo  : {
+                accept : 'png|jpe?g|gif'
+            },
+            sort_order : {
+                number   : true
+            }
+        },
+        messages : {
+            title : {
+                required : '{$lang.title_required}',
+                maxlength: '{$lang.title_maxlength_error}'
+            },
+            link  : {
+                required : '{$lang.link_required}'
+            },
+            logo  : {
+                accept   : '{$lang.logo_accept_error}'
+            },
+            sort_order  : {
+                number   : '{$lang.number_only}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">{$build_editor}
+     <p>供货管理</p>
+    <ul class="subnav">
+         <li><a class="btn3" href="index.php?app=gonghuo">管理</a></li>
+		<li><a a class="btn3" href="index.php?app=gonghuo&act=ghwei_shenhe">供货未审核</a></li>
+         {if $priv_row.privs=="all"}
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=ghsq">供货商申请</a></li>
+        <li><a a class="btn3" href="index.php?app=gonghuo&act=sq_weishenhe">申请人待审核</a></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="share_form">
+        <table class="infoTable">
+		
+ <tr><td width="116"><h5><font color="#0033FF">商品信息</font></h5></td></tr>
+ <tr>
+                <th class="paddingT15">
+                  供货人:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  {$xinxi.user_name}({$xinxi.user_id}) 
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品名称:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  {$gonghuo.goods_name|escape}  
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  商品品牌:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.goods_brand|escape}
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                  目前销售渠道:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.tujing|escape}   
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                零售价格:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.lingshou_price|escape}  
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                总库存:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.zong_kucun}  
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                供货商剩余库存:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.yu_kucun}  
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                仓库剩余库存:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.shengyukucun}  
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                报警数:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {$gonghuo.baojingshu}  
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                重量:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {if $gonghuo.weight}{$gonghuo.weight}{else}0 {/if} kg
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                体积:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {if $gonghuo.volume}{$gonghuo.volume} {else}0{/if} m3
+                </td>
+            </tr>
+			<tr>
+				<th class="paddingT15">
+                初审状态:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {if $gonghuo.chushen_status==1}审核通过{/if}
+				   {if $gonghuo.chushen_status==2}审核不通过{/if}
+				   {if $gonghuo.chushen_status==3}等待审核{/if}
+                </td>
+			</tr>
+			<tr>
+				<th class="paddingT15">
+                初审意见:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <textarea name="chushen_beizhu">{$gonghuo.chushen_beizhu}</textarea>
+                </td>
+			</tr>
+			<tr>
+				<th class="paddingT15">
+                终审状态:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   {if $gonghuo.status==1}审核通过{/if}
+				   {if $gonghuo.status==2}审核不通过{/if}
+				   {if $gonghuo.status==7}等待终审{/if}
+				   {if $gonghuo.status==4}等待仓库填写物流{/if}
+				   {if $gonghuo.status==5}等待发货{/if}
+				   {if $gonghuo.status==6}正在盘点库存{/if}
+                </td>
+			</tr>
+			<tr>
+				<th class="paddingT15">
+                终审意见:</th> 
+                <td class="paddingT15 wordSpacing5">
+                   <textarea name="zhongshen_beizhu">{$gonghuo.zhong_beizhu}</textarea>
+                </td>
+			</tr>
+			<tr>
+                <th class="paddingT15">
+            商品信息来源:</th> 
+                <td class="paddingT15 wordSpacing5">
+                  {$gonghuo.source|escape}  
+                </td>
+            </tr>
+			<tr>
+                <th class="paddingT15">
+                    图片资料:</th>    
+				<td class="paddingT15 wordSpacing5">
+               {if $gonghuo.ziliao}
+                <a href="/{$gonghuo.ziliao}" target="_blank"><img src="/{$gonghuo.ziliao}" class="makesmall" width="300"/></a>
+				{else}
+               没有上传
+                {/if}
+                </td>
+				</tr>
+			<tr>
+                <th class="paddingT15">
+                    产品图:</th> 
+              <td class="paddingT15 wordSpacing5">
+            {if $gonghuo.chanpin}
+               <a href="/{$gonghuo.chanpin}" target="_blank"><img src="/{$gonghuo.chanpin}" class="makesmall" width="300"/></a>
+             {else}
+               没有上传
+            {/if}
+			 </td></tr>
+			
+			<tr>
+                <th class="paddingT15">
+                   商品描述:</th> 
+                <td class="paddingT15 wordSpacing5">
+				
+                <textarea name="beizhu" id="beizhu" style="display:none">{$gonghuo.beizhu}</textarea>
+<input type="hidden" id="content___Config" value="" style="display:none" /><iframe id="content___Frame" src="../../includes/libraries/javascript/fckeditor/editor/fckeditor.html?InstanceName=beizhu&Toolbar=Default" width="700px" height="350px" frameborder="0" scrolling="no"></iframe>
+			  
+                </td>
+            </tr>
+        
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,93 @@
+{include file=member.header.html}
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+          <ul class="tab">
+              <li class="normal"><a href="index.php?app=my_theme&act=gonghuo">我要供货</a></li>
+              <li class="active">商家信息</li>
+              <li class="normal"><a href="index.php?app=my_theme&act=jibenxinxi">供货信息</a></li>
+			  <li class="normal"><a href="index.php?app=my_theme&act=caigouxinxi">采购信息</a></li>
+          </ul>
+        <div class="wrap">
+            <div class="public table">
+			
+                <div class="user_search">
+
+                </div>		
+			  <!-- {if $jiben}-->
+                <table class="table_head_line">
+                 
+                    <tr class="line_bold">
+                        <th class="width1"></th>
+                        <th class="align1" colspan="9">
+                          
+                          
+                        </th>
+                    </tr>
+
+                    <tr class="line tr_color">
+                        <th></th>
+                        <th>用户名</th>
+                        <th>姓名</th>
+                        <th>联系方式</th>
+                        <th>厂家名称</th>
+						<th>申请时间</th>
+						<th>状态</th>
+						<!--{if $val.status!="2"}--><th>操作</th><!--{/if}-->
+                    </tr>
+               <!--{/if}-->
+                 <!--{foreach from=$jiben item=val name=v}-->
+                    <!--{if $smarty.foreach.v.last}--><tr class="line_bold"><!--{else}--><tr class="line"><!--{/if}-->
+                        <td class="align2"></td>
+                        <td class="link1">{$val.user_name}</td>
+						<td align="center">{$val.name}</td>
+                        <td align="center">{$val.lxfs}</td>
+						<td align="center">{$val.gongsi_name}</td>
+						<td>{$val.riqi}</td>
+                        <td align="center">
+                        {if $val.status==1}<font color="#0000FF">{$lang.daishenhe}</font>{/if}
+                        {if $val.status==2}<font color="#990099">{$lang.shenhetongguo}</font>{/if}
+                        {if $val.status==3}<font color="#990000">{$lang.shenhebutongguo}</font>{/if}
+                        </td>
+					  
+                        <td align="center">
+						<!--{if $val.status!="2"}-->
+						 <a href="index.php?app=my_theme&act=ghxx_edit&gh_id={$val.gh_id}">编辑</a>
+                       <a href="javascript:drop_confirm('{$lang.shanchu}', 'index.php?app=my_theme&act=ghxx_delete&gh_id={$val.gh_id}');">{$lang.drop}</a>
+					   <!--{/if}-->
+                        </td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr>
+                        <td colspan="7" class="member_no_records padding6">{$lang.meiyoushenqing}</td>
+                    </tr>
+
+                    <!--{/foreach}-->
+                    <!--{if $my_money}-->
+                    <tr>
+                        <th class="width1"></th>
+                        <th class="align1"><label for="all2"><span class="all">{$lang.checkall}</span></label><a href="#" class="delete" uri="index.php?app=my_money&act=user_log_del" name="id" presubmit="confirm('{$lang.drop_confirm}')" ectype="batchbutton">{$lang.drop}</a></th>
+                        <td colspan="5" class="page word_spacing5">
+                           <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                         </td>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<iframe id='iframe_post' name="iframe_post" frameborder="0" width="0" height="0">
+</iframe>
+{include file=footer.html}

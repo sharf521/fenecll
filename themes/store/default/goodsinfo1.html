@@ -1,0 +1,203 @@
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+/* buy */
+{if $mem.vip==""}
+var vip=0;
+{else}
+var vip={$mem.vip};
+{/if}
+ var bili = {$canshu.jifenxianjin};
+   var lv31 = {$canshu.lv31};
+   var lv21 = {$canshu.lv21};
+function buy()
+{
+    if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+    add_to_cart(spec_id, quantity);
+}
+
+/* add cart */
+function add_to_cart(spec_id, quantity)
+{
+    var url = SITE_URL + '/index.php?app=cart&act=add';
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+            $('.bold_num').text(data.retval.cart.kinds);
+            //$('.bold_mly').html(price_format(data.retval.cart.amount));
+
+	
+			if(vip==1)
+			{
+				c_jiefen=	(data.retval.cart.amount*(bili*10000)*((1+lv21)*100))/1000000;
+			}
+			else
+			{
+				c_jiefen=	(data.retval.cart.amount*(bili*10000)*((1+lv31)*100))/1000000;	
+			}
+			$('.bold_mly').html(c_jiefen+'积分');
+            $('.ware_cen').slideDown('slow');
+            setTimeout(slideUp_fn, 5000);
+			
+			
+			
+			
+        }
+        else
+        {
+            alert(data.msg);
+        }
+    });
+}
+
+var specs = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock},{$spec.jifen_price},{$spec.vip_price}));
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+
+
+<div class="ware_info">
+    <div class="ware_pic">
+        <div class="big_pic">
+            <a href="javascript:;"><span class="jqzoom"><img src="{$goods._images.0.thumbnail|default:$default_image}" width="470" height="550" jqimg="{$goods._images.0.image_url}" /></span></a>
+        </div>
+
+        <div class="bottom_btn">
+            <!--<a class="collect" href="javascript:collect_goods({$goods.goods_id});" title="{$lang.add_to_favorite}"></a>-->
+            <div class="ware_box">
+                <ul>
+                    <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+                    <li {if $smarty.foreach.fe_goods_image.first}class="ware_pic_hover"{/if} bigimg="{$goods_image.image_url}"><img src="{$goods_image.thumbnail}" width="70" height="70" /></li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(function(){
+                var btn_list_li = $("#btn_list > li");
+                btn_list_li.hover(function(){
+                    $(this).find("ul:not(:animated)").slideDown("fast");
+                },function(){
+                    $(this).find("ul").slideUp("fast");
+                });
+            });
+        </script>
+        <!-- {if $share && false} -->
+        <ul id="btn_list">
+            <li id="btn_list1" title="{$lang.collect_goods}">
+                <ul class="drop_down">
+                    <!-- {foreach from=$share item=item} -->
+                    <!-- {if $item.type eq 'collect'} --><li><!-- {if $item.logo} --><img src="{$item.logo}" /><!-- {/if} --><a target="_blank" href="{$item.link}">{$item.title|escape}</a></li><!-- {/if} -->
+                    <!-- {/foreach} -->
+                </ul>
+            </li>
+            <li id="btn_list2" title="{$lang.share_goods}">
+                <ul class="drop_down">
+                    <!-- {foreach from=$share item=item} -->
+                    <!-- {if $item.type eq 'share'} --><li><!-- {if $item.logo} --><img src="{$item.logo}" /><!-- {/if} --><a target="_blank" href="{$item.link}">{$item.title|escape}</a></li><!-- {/if} -->
+                    <!-- {/foreach} -->
+                </ul>
+            </li>
+        </ul>
+        <!-- {/if} -->
+    </div>
+
+    <div class="ware_text">
+        <div class="rate">
+            <h2 class="ware_title">{$goods.goods_name|escape}{if $goods.daishou==1}({$goods.subhead}){/if}</h2>
+            <p class="bac-span">{if $kaiguan.xjzf=="yes"}
+            <span>价&nbsp;&nbsp;&nbsp;&nbsp;格:&nbsp;</span><span class="fontColor3" ectype="goods_price">{$goods._specs.0.price|price}</span> />{/if}
+            
+		    <span>积分价:&nbsp;</span><span class="fontColor12" ectype="goods_jifen_price">{$goods._specs.0.jifen_price}{$lang.jifen}</span>
+            <br />
+            <span>VIP积分价:&nbsp;</span><span class="fontColor12" ectype="goods_vip_price">{$goods._specs.0.vip_price}{$lang.jifen}</span></p>
+            <br />
+            <p>
+            <span class="letter1">{$lang.brand}  :</span>{$goods.brand|escape}<br />
+            {$lang.tags}  :&nbsp;&nbsp;<!--{foreach from=$goods.tags item=tag}-->{$tag}&nbsp;&nbsp;&nbsp;<!--{/foreach}--><br />
+           {if $goods.is_ershou==1}<font color="#CC0000" size="1">二手商品</font><br />{/if}
+            {$lang.sale_situation}  : {$sales_info}{$comments}<br />
+            {$lang.region}  : {$store.region_name|escape}            </p>
+            
+            <p><font color="#990000" style="text-align:left; size:14px">{if $goods.baoyou_type==1}{$lang.tedayouhui}&nbsp;{$lang.mai}{$goods.baoyou_jian}{$lang.jianbaoyou}{/if}{if $goods.baoyou_type==2}{$lang.tedayouhui}{$lang.man}{$goods.baoyou_jifen}{$lang.yuanbaoyou}{/if}</font></p>
+
+</div>
+<div style="position:absolute; top:10px;left:230px;z-index:1;">
+{if $qrcc}
+{$qrcc}
+{/if}
+</div>
+        <div class="handle">
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_1|escape}: </li>
+            </ul>
+            <!--{/if}-->
+            <!--{if $goods.spec_qty gt 1}-->
+            <ul>
+                <li class="handle_title">{$goods.spec_name_2|escape}: </li>
+            </ul>
+            <!--{/if}-->
+            <ul>
+                <li class="handle_title">{$lang.quantity}  : </li>
+                <li style="height:25px">
+                    <input type="text" class="text width1" name="" id="quantity" value="1" />
+                    {$lang.unit}{$lang.left_bracket}{$lang.stock}<span class="stock" ectype="goods_stock">{$goods._specs.0.stock}</span>{$lang.unit}{$lang.right_bracket}
+                </li>
+            </ul>
+            <!--{if $goods.spec_qty gt 0}-->
+            <ul>
+                <li class="handle_title">{$lang.your_select}: </li>
+                <li class="aggregate" style="padding-top:3px" ectype="current_spec"></li>
+            </ul>
+            <!--{/if}-->
+        </div>
+        
+        
+        <ul class="ware_btn"><!--<a href="index.php?app=cart">111</a>-->
+            
+
+            <!--<li class="btn_c1" title="{$lang.buy_now}"><a href="#">立即购买</a></li>-->
+            <li class="btn_c2" title="{$lang.add_to_cart}"><a href="javascript:buy();">加入购物车</a></li>
+            <li class="btn_c3" title="{$lang.add_to_favorite}"><a href="javascript:collect_goods({$goods.goods_id});">加入收藏夹</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<div class="come-store">
+    <ul>
+        <li>
+            <a class="face" href="#"><img /></a>
+            <div class="na-box">
+                <span>华克拉莎华克拉莎华克拉莎华克拉莎</span>
+                <a href="#">关注本店</a>
+            </div>
+        </li>
+        <li><p>信用度：<br />店铺等级： 精英版 </p><p></p><p>商品数量：22 <br />创店时间：2013-11-08 </p></li>
+    </ul>
+    <a class="com-shop" href="#">进入店铺  ＞</a>
+</div>

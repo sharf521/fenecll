@@ -1,0 +1,42 @@
+{include file=header.html}
+{include file=curlocal.html}
+<div class="content">
+    <div class="commodity_assort">
+        <div class="module_sidebar">
+            <div class="wrap">
+                <div class="wrap_child">
+				
+                    <div class="recommend">
+					<div style="background-color:#FF9933; " align="center">
+					<form id="search" method="GET" action="index.php" style="text-align:center">
+                    <input type="hidden" name="app" value="article"/>
+                    <input type="hidden" name="act" value="mxstore"/>
+                    <span class="display_span">{$lang.store_name}</span><input class="table_text" type="text" name="keyword" value="{$query.keyword|escape}" />
+                    <span class="display_span">{$lang.user_name}</span><input class="table_text" type="text" name="user_name" value="{$query.user_name|escape}" />
+                   <span class="display_span">所在地区</span>
+                    <select id="region_id" name="region_id" class="display_select">
+                        <option value="">请选择</option>
+                        {html_options options=$regions selected=$query.region_id}
+                    </select>
+                    <input class="table_btn" type="submit" name="Submit" value="{$lang.search}" />
+                </form>
+				
+					</div>
+					<div style="clear:both"></div>
+					<br />
+					<hr color="#CCCCCC" /><br />
+					<p align="center"><h3 align="center">{$artic.title}</h3></p>
+				<br />
+					<hr color="#CCCCCC"/>
+					<p>{$artic.content}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad_sidebar_list" area="right" widget_type="area">
+        <!--{widgets page=gcategory area=right}-->
+    </div>
+</div>
+{include file=footer.html}

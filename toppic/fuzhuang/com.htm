@@ -1,0 +1,188 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0048)http://blog.php-android.com/demo/taobao_top.html -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>淘宝头部效果-html-div-css-jquery-踏出未来-blog.php-android.com</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<SCRIPT type=text/javascript src="com_files/jquery-1.4.4.min.js"></SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY>
+<style type="text/css">
+
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+}
+ul,ol {
+	list-style:none;
+}
+a {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+
+html {
+	zoom:expression(function(ele) {
+	ele.style.zoom = "1";
+	document.execCommand("BackgroundImageCache",false,true);
+}
+(this));}#site-nav,#site-nav .quick-menu li,#site-nav .search .menu-hd s,#site-nav .quick-menu .cart s,#site-nav .search .menu-bd button {
+	background:transparent url(http://img02.taobaocdn.com/tps/i2/T1CCRNXmRFXXXXXXXX.png) no-repeat 999em 0;
+}
+#site-nav {
+	background-color:#f5f5f5;
+	width:auto;
+	min-width:950px;
+	border-bottom:1px solid #dcdcdc;
+}
+#site-nav-bd {
+	position:relative;
+	width:950px;
+	margin:0 auto;
+	height:21px;
+	line-height:22px;
+	margin:0 auto;
+	padding:3px 0;
+	z-index:10000;
+	color:#000;
+}
+#site-nav a {
+	color:#666;
+}
+#site-nav a:hover {
+	color:#f50;
+}
+
+
+#site-nav .quick-menu {
+	position:absolute;
+	right:0;
+	top:1px;
+	*top:2px;
+}
+#site-nav .quick-menu li {
+	float:left;
+	margin-left:-1px;
+	padding:1px 10px 0 10px;
+	background-position:right 6px;
+}
+#site-nav .quick-menu li.last {
+	background:none;
+}
+#site-nav .quick-menu li.menu-item {
+	position:relative;
+	padding:1px 0 0;
+}
+
+#site-nav .quick-menu .hover #mc-menu-hd s,#site-nav .quick-menu .cart #mc-menu-hd:hover s {
+	background-position:0 -20px;
+}
+#site-nav .quick-menu .cart #mc-menu-hd:hover b {
+	border-color:#666 white white white;
+}
+#site-nav .menu-hd {
+	display:block;
+	position:relative;
+	height:20px;
+	line-height:17px;
+	margin:3px 1px 0;
+	padding:0 22px 0 10px;
+	padding-top:1px\9;
+	*padding-top:0;
+	cursor:pointer;
+	z-index:10002;
+}
+
+#site-nav .menu-hd b {
+	position:absolute;
+	right:10px;
+	top:7px;
+	width:0;
+	height:0;
+	border-width:4px 4px;
+	border-style:solid;
+	border-color:#666 #f5f5f5 #f5f5f5;
+	font-size:0;
+	line-height:0;
+	-webkit-transition:-webkit-transform .2s ease-in;
+	-webkit-backface-visibility:hidden;
+	-moz-transition:-moz-transform .2s ease-in;
+	-o-transition:-o-transform .2s ease-in;
+	transition:transform .2s ease-in;
+}
+
+
+#site-nav .menu-bd {
+	display:none;
+	position:absolute;
+	right:0;
+	top:20px;
+	top:21px\9;
+	*top:20px;
+	background:#fff;
+	border:1px solid #bfbfbf;
+	z-index:10001;
+}
+
+#site-nav .menu {
+	position:relative;
+}
+#site-nav .hover .menu-hd {
+	margin:2px 0 0;
+	border:1px solid #BFBFBF;
+	border-bottom:none;
+	background:white;
+}
+#site-nav .hover .menu-bd {
+	display:block;
+}
+#site-nav .hover .menu-hd b {
+	border-color:#666 #fff #fff #fff;
+	-moz-transform:rotate(180deg);
+	-moz-transform-origin:50% 30%;
+	-webkit-transform:rotate(180deg);
+	-webkit-transform-origin:50% 30%;
+	-o-transform:rotate(180deg);
+	-o-transform-origin:50% 30%;
+	transform:rotate(180deg);
+	transform-origin:50% 30%;
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	top:3px\9;
+}
+
+
+</style>
+
+<DIV id=site-nav>
+<DIV id=site-nav-bd>
+  <UL class=quick-menu>
+    <LI class=menu-item>
+    <DIV class=menu><A aria-haspopup=menu-3 style="WIDTH: 36px" class=menu-hd 
+  >我要买<B></B></A> 
+      <DIV aria-hidden=true style="LINE-HEIGHT: 1.7; WIDTH: 68px; HEIGHT: 94px" 
+  id=menu-3 class=menu-bd role=menu>
+        <DIV 
+  style="PADDING-BOTTOM: 8px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 8px" 
+  class=menu-bd-panel>
+      <DIV><A href="http://love.taobao.com/guang/index.htm?taobao_from=3" 
+  rel=nofollow target=_top>发现宝贝</A> <A 
+  href="http://love.taobao.com/album/index.htm?taobao_from=4" rel=nofollow 
+  target=_top>专辑</A><BR><A 
+  href="http://love.taobao.com/toukui/index.htm?taobao_from=5" rel=nofollow 
+  target=_top>寻找同好</A> <A 
+  href="http://list.taobao.com/browse/cat-0.htm?taobao_from=6" rel=nofollow 
+  target=_top>商品分类</A> </DIV></DIV></DIV></DIV></LI>
+  
+ 
+  
+  </UL></DIV></DIV>
+<SCRIPT type=text/javascript>
+$().ready(function(){
+	$('.quick-menu .menu').hover(function(){
+		$(this).addClass('hover');
+	},function(){
+	$(this).removeClass('hover');
+	});
+});
+</SCRIPT>
+</BODY></HTML>

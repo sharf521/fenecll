@@ -1,0 +1,97 @@
+
+<link href="/includes/wuliu/wuliu.css" rel="stylesheet" />
+<script language="javascript" src="http://zhuzhan.cn/includes/wuliu/wuliu.js"></script>
+<form method="post">
+物流公司：<input type="text" name="shipping_name" value=""><br />
+计价方式：
+  <label><input type="radio" name="valuation" checked="checked" value="0" />按件数</label>
+<label><input type="radio" name="valuation" value="1" />按重量</label>
+<label><input type="radio" name="valuation" value="3"/>按体积</label><br />
+  
+运送方式：除指定地区外，其余地区的运费采用"默认运费"<br />
+<div class="tablebox">
+  <div class="entity">
+			<div class="default">
+				 默认运费：
+				<input class="inputtext " type="text" maxlength="6" value="1"  name="moren"><span name='unit'>件</span>内，
+				<input class="inputtext " type="text" maxlength="6"  name="price" onkeyup="value=value.replace(/[^0-9.]/g,'')">元，每增加
+				<input class="inputtext " type="text" maxlength="6"  value="1"  name="count"><span name='unit'>件</span>，增加运费
+				<input class="inputtext " type="text" maxlength="6"  name="all">元
+			</div>
+			
+			<div class="yfbox">
+				<table width="720" id="yltable" style="display:none">
+                			
+						<tr style="background:#f5f5f5">
+							<td width="300">运送到</td><td>首<span name='unitname'>件</span>(<span name='unit'>件</span>)</td><td>首费(元)</td><td>续<span name='unitname'>件</span>(<span name='unit'>件</span>)</td><td>续费(元)</td><td>操作</td>
+						</tr>				
+						<tr id="tr1">
+							<td width="300">					
+                           <a href="javascript:showArea(1)">编辑</a>
+                            <p>未添加地区</p>		
+                            <input type="hidden" name="v_txt_tr1" id="v_txt_tr1"/>
+                            <input type="hidden" name="v_val_tr1" id="v_val_tr1"/>
+                            </td>
+							<td><input class="textcss " type="text" maxlength="6" value="1"  name="one"></td>
+							<td><input class="textcss " type="text" maxlength="6" value="1"  name="oprice"></td>
+							<td><input class="textcss " type="text" maxlength="6" value="1"  name="next"></td>
+							<td><input class="textcss " type="text" maxlength="6" value="1"  name="nprice"></td>
+							<td><input type="button" value="删除" onclick="deleteRow(this)"></td>
+						</tr>					
+									
+				</table>
+			</div>
+			<div class="zdbox"><a href="javascript:addRow()">为指定地区城市设置运费</a></div>
+		</div>
+        <div class="clear"></div>
+	</div>
+	</form>
+    
+     <div class="aqbox" id="divArea">
+		<div class="aqalbox">
+			<div class="topdq"><div class="title">选择地区</div><a href="javascript:hideArea()">x</a></div>
+		
+				<ul  class="plabox">
+						<input type="hidden" value="1" id="tr_num" />
+						
+                        {foreach from=$area item=result}
+						
+							
+                        <li class="choosbox{$str1}">
+							<div class="ffbox"><label><input type="checkbox" title="{$str2}" value="{$str2}" name='area' onclick="chxclick(this)"/><b>{$str2}</b></label></div>
+							<div class="elsbox"> 
+                            	
+                                {foreach from=$result item=provs}
+								
+									
+                        <div class="fwbox ">                          
+                                <div  class="greas"><label><input type="checkbox" title="{$str3}" name='province' onclick="chxclick(this)" value="{$str4}"/>{$str3}</label><span></span><img src="jt.jpg" onclick="subarea(this)"/></div>
+                       
+                            <div class="citys">
+                            	
+								{foreach from=$citys item=city}
+								
+									
+                                    <label><input type="checkbox" title="{$str5}" value="{$str6}"  onclick="chxclick(this)"/>{$str5}</label>
+                                    
+								{/foreach}
+								                              
+                                <p align="right"><input type="button" value="关闭" onclick="subhide(this)"/></p>
+                            </div>
+                        </div>
+                                    
+								{/foreach}
+								
+							</div>							
+						</li>
+                            {/foreach}
+				</ul>
+				<p><input type="button" value="确定" onclick="saveArea()"/> <input type="button" value="取消" onclick="hideArea()"/></p>
+	
+		</div>
+		<div class="clear"></div>
+	</div>
+
+  
+
+	 

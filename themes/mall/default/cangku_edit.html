@@ -1,0 +1,47 @@
+{include file=member.header.html}
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+              <ul class="tab">
+              <li class="normal"><a href="index.php?app=seller_order&act=gonghuo_order">供货订单</a></li>
+              <li class="normal"><a href="index.php?app=seller_order&act=cangku_order">仓库订单</a></li>
+              <li class="normal"><a href="index.php?app=seller_order&act=cangkulist">仓库列表</a></li>
+          </ul>
+        <div class="wrap">
+
+			<div class="scarch_order">
+               
+        	</div>
+
+
+         <div class="pbindex">
+               <form action="index.php?app=seller_order&act=cangku_edit" enctype="multipart/form-data" method="post">
+               重量：<font style="color:#CC3300; font-size:12px; font-weight:bold">{if $gh.weight}{$gh.weight}{else}0{/if}</font> kg<br />
+			 <div class="sdline">&nbsp;</div>
+               体积：<font style="color:#CC3300; font-size:12px; font-weight:bold">{if $gh.volume}{$gh.volume}{else}0{/if}</font> m3<br />
+			   <div class="sdline">&nbsp;</div>
+               <input name="ghid" value="{$gh.gh_id}" type="hidden" />
+               选择物流：<select name="shipping_id" style="border:1px solid #ccc; height:24px; line-height:24px;">
+               <option value="0">请选择</option>
+               {foreach from=$row item=var}
+              <option value="{$var.shipping_id}" {if $gh.shipping_id==$var.shipping_id} selected="selected"{/if}>{$var.shipping_name}(
+                     {if $var.typeid==1}按件计算{/if}
+                     {if $var.typeid==2}按重量计算{/if}
+                     {if $var.typeid==3}按体积计算{/if}
+                     )
+              </option>
+               {/foreach}
+               </select><br />
+			    <div class="sdline">&nbsp;</div>
+               <input type="submit" name="tj" value="" class="tijiaobtncss"/>
+               </form>
+                   
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

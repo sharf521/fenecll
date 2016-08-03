@@ -1,0 +1,126 @@
+{include file=header.html}
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+<script type="text/javascript">
+var upimg   = '{res file=images/up.gif}';
+var downimg = '{res file=images/down.gif}';
+imgUping = new Image();
+imgUping.src = upimg;
+</script>
+
+{include file=curlocal.html}
+<div class="content">
+    <!--{if $goods_list}-->
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b>{$lang.by_category}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                        <ul ectype="ul_category">
+                            <!--{foreach from=$categories item=category name=fe_category}-->
+                            <!-- {if $smarty.foreach.fe_category.iteration le 10} -->
+                            <li><a href="javascript:void(0);" id="{$category.cate_id}">{$category.cate_name|escape}</a>({$category.count})</li>
+                            <!-- {else} -->
+                            <li style="display:none"><a href="javascript:void(0);" id="{$category.cate_id}">{$category.cate_name|escape}</a></li>
+                            <!-- {/if} -->
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!-- {if $category_count gt 10} -->
+                    <div class="more"><input type="button" class="brands_btn" value="{$lang.view_all_category}" id="show_category" /></div>
+                    <!-- {/if} -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right">
+
+        <div class="shop_con_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title" style="margin-top:4px;">
+                        <p class="title">{$lang.display_mode}:</p>
+                        <p class="list_ico" ectype="display_mode" ecvalue="list" title="{$lang.display_by_list}"></p>
+                        <p class="squares_ico" ectype="display_mode" ecvalue="squares" title="{$lang.display_by_item}"></p>
+                        
+                        <p style="margin-left:30px; display:inline" class="title">{$lang.order_by}:</p>
+                        <p><select ectype="order_by">{html_options options=$orders selected=$smarty.get.order}</select></p>
+                    </div>
+                    <div class="top_page" style="margin-top:4px;">
+                        {include file=page.top.html}
+                    </div>
+                </div>
+            </h2>
+
+            <div class="{$display_mode}" ectype="current_display_mode">
+                <!-- {if $goods_list} -->
+                <ul class="list_pic">
+                    <!--{foreach from=$goods_list item=goods}-->
+                    <li>
+                        <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" /></a></p>
+                        <h3>
+                            <span class="text_link">
+                                <span class="depict">
+                                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                                </span>
+                                <span class="info">
+                                    <span>{$lang.store_name}: {$goods.store_name|escape}</span>
+                                    <span class="fontColor5">{$goods.grade_name|escape}</span>
+                                </span>
+                            </span>
+                            <span style="font-size:12px">{if $kaiguan.xjzf=="yes"}�г���:{$goods.price|price}<br />{/if}
+							<font style="font-size:12px;color:#e62142; font-weight:normal; text-align:center; width:150px; overflow:hidden;">{$lang.jifenprice}:{$goods.jifen_price}{$lang.jifen}<br />
+							<nobr>{$lang.vipprice}:{$goods.vip_price}{$lang.jifen}</nobr></font></span>
+                            <b>{$lang.sales}:{$goods.sales|default:0} {$lang.unit} | <a href="{url app=goods&act=comments&id=$goods.goods_id}" target="_blank">{$goods.comments|default:0} {$lang.comment}</a></b>
+                          <b>
+                            <!--{if $goods.xiaobao>0}
+               <a href="index.php?app=article&act=xbao" target="_blank"><img src="/images/xiaobao.png" title="{$lang.qianshu}"/></a>
+                            {else}
+                            <img src="/images/xiaobao_hs.png" title="{$lang.weiqianshu}"/>
+                            {/if}-->&nbsp;{$goods.region}</b>
+                        </h3>
+                    </li>
+                    <!--{/foreach}-->
+					<!--{foreach from=$good item=goods}-->
+                    <li>
+                        <p><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" /></a></p>
+                        <h3>
+                            <span class="text_link">
+                                <span class="depict">
+                                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+                                </span>
+                                <span class="info">
+                                    <span>{$lang.store_name}: {$goods.store_name|escape}</span>
+                                    <span class="fontColor5">{$goods.grade_name|escape}</span>
+                                </span>
+                            </span>
+                            <span class="price">{$goods.price|price}</span>
+                            <b>{$lang.sales}: {$goods.sales|default:0} {$lang.unit} | <a href="{url app=goods&act=comments&id=$goods.goods_id}" target="_blank">{$goods.comments|default:0} {$lang.comment}</a></b>
+                        </h3>
+                    </li>
+                    <!--{/foreach}-->
+
+                    <div class="clear"></div>
+                </ul>
+                <!-- {else} -->
+                <div id="no_results">{$lang.no_records}</div>
+                <!-- {/if} -->
+            </div>
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{else}-->
+    <div class="module_common">
+        <p class="no_info">{$lang.no_records}</p>
+    </div>
+    <!--{/if}-->
+</div>
+
+{include file=footer.html}

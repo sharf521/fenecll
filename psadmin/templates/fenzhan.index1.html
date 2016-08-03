@@ -1,0 +1,63 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.admin}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=admin">{$lang.manage}</a></li>
+    <li><a class="btn1" href="index.php?app=admin&amp;act=add">{$lang.add}</a></li>
+	 <li><span>分站管理</span></li>
+	 <li><a class="btn1" href="index.php?app=admin&amp;act=addfz">增加分站</a></li>
+  </ul>
+</div>
+
+<div class="mrightTop">
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+  <form method=get>
+  <table width="100%" cellspacing="0" class="dataTable">
+   
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td>{$lang.city_id}</td>
+      <td><span ectype="order_by" fieldname="email">{$lang.city_name}</span></td>
+      <td><span ectype="order_by" fieldname="im">{$lang.city_yuming}</span></td>
+      <td><span ectype="order_by" fieldname="last_login">{$lang.city_title}</span></td>
+      <td><span ectype="order_by" fieldname="logins">{$lang.city_desc}</span></td>
+	  <td><span ectype="order_by" fieldname="logins">{$lang.city_logo}</span></td>
+	  <td><span ectype="order_by" fieldname="logins">{$lang.city_lianxiren}</span></td>
+	  <td><span ectype="order_by" fieldname="logins">{$lang.city_guanliyuan}</span></td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+
+    <!--{foreach from=$index item=index}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$admin.user_id}" /></td>
+      <td>{$index.city_id|escape}</td>
+      <td>{$index.city_name|escape}</td>
+      <td>{$index.city_yuming|escape}</td>
+	  <td>{$index.city_title|escape}</td>
+	  <td>{$index.city_desc|escape}</td>
+	  <td>{$index.city_logo|escape}</td>
+      <td>{$index.lianxiren|escape}</td> 
+	  <td>{$index.guanliyuan|escape}</td>
+     <td class="handler">
+      <span style="width: 120px">
+      <a href="index.php?app=admin&amp;act=edit&amp;id={$admin.user_id}">编辑</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=admin&amp;act=drop&amp;id={$admin.user_id}');">关闭</a>
+      </span>
+      </td>
+   
+    </tr>
+    
+    <!--{/foreach}-->
+  </table>
+  </form>
+
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15"> &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=admin&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div class="clear"></div>
+  </div>
+  </div>
+{include file="footer.html"} 
