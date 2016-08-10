@@ -1,5 +1,5 @@
 <?php
-error_reporting(7);
+error_reporting(7);   
 
 //获取当前一级域名
 $domin=strtolower($_SERVER['HTTP_HOST']);
