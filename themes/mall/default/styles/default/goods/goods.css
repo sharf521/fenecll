@@ -314,7 +314,7 @@ a{ text-decoration:none;}
 
 .ware_info { width: 1000px; margin-top:30px;}
 .ware_pic { float: left; width:450px; height:450px;}
-.ware_pic img{ width:450px; height:450px;}
+.ware_pic img{/* width:450px; height:450px;*/}
 .ware_text { float: right; width:480px; position: relative; z-index: 10;}
 
 .info_particular { width: 100%; border-bottom: 1px solid #f7eeea; overflow: hidden; }
