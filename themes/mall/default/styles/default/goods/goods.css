@@ -322,7 +322,7 @@ a{ text-decoration:none;}
 .info_particular li { width: 100%; overflow: hidden; padding-bottom: 12px; float: left; font-size:14px;}
 .info_particular p { color: #666; float: left; }
 
-.info_particular .title { padding-top: 1-px; }
+.info_particular .title { padding-top: 1px; }
 .info_particular .con a { color: #275bcb; text-decoration: none; }
 .info_particular .con a:hover { color: #ff9b11; }
 
