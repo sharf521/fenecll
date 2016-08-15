@@ -1,10 +1,10 @@
 <?php 
 return array (
-  'site_name' => '绿券共通积分（便利）兑换商城',
-  'site_title' => '绿券共通积分（便利）兑换商城',
-  'site_description' => '绿券共通积分（便利）兑换商城',
-  'site_keywords' => '绿券积分商城 小淘宝',
-  'icp_number' => '冀ICP备12005161号-2',
+  'site_name' => '创客优品汇',
+  'site_title' => '创客优品汇',
+  'site_description' => '创客优品汇',
+  'site_keywords' => '创客优品汇 小淘宝',
+  'icp_number' => '-2',
   'site_status' => '0',
   'closed_reason' => '操作不当',
   'hot_search' => '卫衣,棉衣,皮草,羽绒服,茶,十字绣',
@@ -21,8 +21,7 @@ return array (
   'time_format_simple' => 'Y-m-d',
   'time_format_complete' => 'Y-m-d H:i:s',
   'price_format' => '￥%s',
-  'statistics_code' => '<script language="javascript" type="text/javascript" src="http://js.users.51.la/14998860.js"></script>
-<noscript><a href="http://www.51.la/?14998860" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/14998860.asp" style="border:none" /></a></noscript>',
+  'statistics_code' => '',
   'sitemap_enabled' => true,
   'sitemap_frequency' => 1,
   'rewrite_enabled' => true,
