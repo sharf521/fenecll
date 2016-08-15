@@ -191,7 +191,7 @@ a{ text-decoration:none;}
 .float_bg {  width: 450px; background: #000; position: absolute; bottom: 0; right: 0; z-index: 1; -moz-opacity: 0.1; opacity: .1; filter: alpha(opacity=10); }
 .float_ico { width: 9px; height: 14px; background: url(float_ico.gif) no-repeat; position: absolute; top: 10px; left: -7px; z-index: 11; }
 
-.float_content li { width: 100%; overflow: hidden; line-height: 25px; margin-bottom: 10px; border-bottom: 1px dotted #ddd; }
+.float_content li { width: 100%; overflow: hidden; line-height: 25px; padding-bottom: 10px; border-bottom: 1px dotted #ddd; }
 .float_content li .li-h3 { float: left; font-weight: normal; font-size: 12px; background: url(float_content_h3.gif) no-repeat 5px center; padding-left: 15px; }
 .float_content li .li-h3 a{ color:#636363;}
 .float_content li .li-h3 a:hover{color:#c20323;}
