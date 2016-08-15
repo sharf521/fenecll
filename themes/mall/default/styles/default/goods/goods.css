@@ -462,6 +462,7 @@ a{ text-decoration:none;}
 
 .user_menu { width:1000px; height: 42px; margin-top:40px; border-bottom:#dfdfdf 2px solid;}
 .user_menu li { float: left; }
+.user_menu a{text-decoration: none}
 .user_menu .active { display: block; font-size:14px; color: #3d3f3e; line-height:40px; width:140px; text-align:center; border:#dfdfdf 2px solid; border-bottom-color:#fff;}
 .user_menu .normal { display: block; font-size: 14px; color: #3d3f3e; line-height:40px; width:140px; text-align:center; }
 .user_menu .normal:hover { background-color: #EFEFEF; color:#ff665b;}
