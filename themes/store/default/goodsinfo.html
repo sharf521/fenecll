@@ -149,10 +149,10 @@ var goodsspec = new goodsspec(specs, specQty, defSpec);
             <br />
             <p>
             <span class="letter1">{$lang.brand}  :</span>{$goods.brand|escape}<br />
-            <!--{$lang.tags}  :&nbsp;&nbsp;<!--{foreach from=$goods.tags item=tag}-->{$tag}&nbsp;&nbsp;&nbsp;<!--{/foreach}--><br />-->
+
            {if $goods.is_ershou==1}<font color="#CC0000" size="1">二手商品</font><br />{/if}
             {$lang.sale_situation}  : {$sales_info}{$comments}<br />
-            <!--{$lang.region}  : {$store.region_name|escape}    -->        </p>
+  </p>
             
             <p><font color="#990000" style="text-align:left; size:14px">{if $goods.baoyou_type==1}{$lang.tedayouhui}&nbsp;{$lang.mai}{$goods.baoyou_jian}{$lang.jianbaoyou}{/if}{if $goods.baoyou_type==2}{$lang.tedayouhui}{$lang.man}{$goods.baoyou_jifen}{$lang.yuanbaoyou}{/if}</font></p>
 
@@ -209,7 +209,7 @@ var goodsspec = new goodsspec(specs, specQty, defSpec);
 
             <!--<li class="btn_c1" title="{$lang.buy_now}"><a href="#"></a></li>-->
             <li class="btn_c2" title="{$lang.add_to_cart}"><a href="javascript:buy();">加入购物车</a></li>
-            <li class="btn_c3" title="{$lang.add_to_favorite}"><a href="javascript:collect_goods({$goods.goods_id});">加入收藏夹1</a></li>
+            <li class="btn_c3" title="{$lang.add_to_favorite}"><a href="javascript:collect_goods({$goods.goods_id});">加入收藏夹</a></li>
         </ul>
     </div>
 
