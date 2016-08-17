@@ -848,9 +848,9 @@ $shipping=$this->_uploadedfile_mod->getAll("select * from ".DB_PREFIX."shippings
 		
 	    if($column=='if_show')
 		{
-			$ro=$this->_goods_mod->getRow("select shipping_id,if_show from ".DB_PREFIX."goods where goods_id = '$id' limit 1");
+			$ro=$this->_goods_mod->getRow("select shipping_id,if_show,daishou from ".DB_PREFIX."goods where goods_id = '$id' limit 1");
 			$shipping_id=$ro['shipping_id'];
-			if(empty($shipping_id) && $ro['if_show']!=1)
+			if(empty($shipping_id) && $ro['if_show']!=1 && $ro['daishou']==0)
 			{
 				$this->json_error(bianma('该商品还没有物流，不能上架，请先编辑选择物流'));
            		return ;
@@ -2703,6 +2703,7 @@ $shipping=$this->_uploadedfile_mod->getAll("select * from ".DB_PREFIX."shippings
 				'weight'=> $goo['weight'],
 				'volume'=> $goo['volume'],
 				'chanpin'  => $goo['default_image'],
+                'shipping_id'  => $goo['shipping_id'],
 				'riqi'  => date('Y-m-d H:i:s'),
 				'beizhu'  => addslashes($goo['description'])
 				); 
