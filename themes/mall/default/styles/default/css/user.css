@@ -212,7 +212,7 @@ a{ text-decoration:none;}
 .detail .ware_box { width: 346px; height: 100px; padding: 10px 15px 0; overflow: auto; }
 .detail .ware { width: 330px; overflow: hidden; margin-bottom: 10px; }
 .detail .ware_pic { float: left; width: 50px; height: 50px; margin-right: 10px; overflow: hidden; background: #eee; }
-.detail .ware_con { float: left; width: 270px; overflow: }
+.detail .ware_con { float: left; width: 270px; }
 .detail .ware_text { color: #3e3e3e; }
 .detail .ware_text a { color: #3e3e3e; text-decoration: none; }
 .detail .ware_text a:hover { text-decoration: underline; }
