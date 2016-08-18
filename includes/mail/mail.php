@@ -29,15 +29,15 @@ class Mail {
         # 必填，SMTP服务器是否需要验证，true为需要，false为不需要
         $mail->SMTPAuth   = 1?true:false;
         # 必填，设置SMTP服务器
-        $mail->Host       = 'smtp.qq.com';
+        $mail->Host       = 'smtp.163.com';
         # 必填，开通SMTP服务的邮箱；任意一个163邮箱均可
-        $mail->Username   = '353889718@qq.com';
+        $mail->Username   = 'chuangkeyoupinhui@163.com';
         # 必填， 以上邮箱对应的密码
-        $mail->Password   = "qqww112233";
+        $mail->Password   = "ckyph2016";
         # 必填，发件人Email
-        $mail->From       = '353889718@qq.com';
+        $mail->From       = 'chuangkeyoupinhui@163.com';
         # 必填，发件人昵称或姓名
-        $mail->FromName   = iconv('utf-8','gb2312','绿券积分商城');
+        $mail->FromName   = iconv('utf-8','gb2312','创客优品汇积分商城');
         # 必填，邮件标题（主题）
         $mail->Subject    = $subject;
         # 可选，纯文本形势下用户看到的内容
