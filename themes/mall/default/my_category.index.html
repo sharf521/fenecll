@@ -19,8 +19,6 @@ $(function()
     <div id="right"> {include file=member.submenu.html}
         <div class="wrap">
             <div class="eject_btn_two eject_pos3" title="{$lang.gcategory_add}"><b class="ico3" ectype="dialog" dialog_title="{$lang.gcategory_add}" dialog_id="my_category_add" dialog_width="480" uri="index.php?app=my_category&amp;act=add">{$lang.gcategory_add}</b></div>
-            <div class="eject_btn_three eject_pos1" title="{$lang.import}"><b class="ico3"  ectype="dialog" dialog_title="{$lang.import}" dialog_id="my_category_import" dialog_width="480" uri="index.php?app=my_category&amp;act=import">{$lang.import}</b></div>
-            <div class="eject_btn_three eject_pos4" title="{$lang.export}"><b class="ico4" <!--{if $charset eq 'utf-8'}-->ectype="dialog" dialog_title="{$lang.export}" dialog_id="my_category_export" dialog_width="480" uri="index.php?app=my_category&amp;act=export" <!--{else}-->onclick="window.location.href='index.php?app=my_category&amp;act=export'"<!--{/if}-->>{$lang.export}</b></div>
             <div class="public table">
                 <table id="my_category" server="{$site_url}/index.php?app=my_category&act=ajax_col">
                     <!-- {if $gcategories} -->
