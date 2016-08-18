@@ -5,3 +5,5 @@
 /includes/upload.class.php
 /shop/favicon.ico
 /data/settings.inc.php
+/data/system.info.php
+/data/share.inc.php
