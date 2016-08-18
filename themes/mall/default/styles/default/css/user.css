@@ -435,7 +435,7 @@ a{ text-decoration:none;}
 
 .eject_pos1 { position: absolute; top: 10px; right: 20px; z-index: 3; }
 .eject_pos2 { position: absolute; top: 10px; right: 170px; z-index: 3; }
-.eject_pos3 { position: absolute; top: 10px; right: 240px; z-index: 3; }
+.eject_pos3 { position: absolute; top: 15px; right: 20px; z-index: 3; }
 .eject_pos4 { position: absolute; top: 10px; right: 130px; z-index: 3; }
 
 .eject_btn_two b { display: block; height: 32px; color: #3e3e3c; font-size: 14px; cursor: pointer; }
