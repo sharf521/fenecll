@@ -177,9 +177,9 @@ function drop_image(file_id)
                                         <li ectype="handle_pic" file_name="{$file.file_name|escape}" file_path="{$file.file_path}" file_id="{$file.file_id}">
                                         <input type="hidden" name="file_id[]" value="{$file.file_id}">
                                             <div class="pic">
-                                            <img src="{$site_url}/{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" /></div>
+                                            <img src="{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" /></div>
                                             <div ectype="handler" class="bg">
-                                            <img src="{$site_url}/{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" />
+                                            <img src="{$file.file_path}" width="50" height="50" alt="{$file.file_name|escape}" title="{$file.file_name|escape}" />
                                                 <p class="operation">
                                                     <a href="###" class="cut_in" ectype="insert_editor" ecm_title="{$lang.insert_editor}"></a>
                                                     <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>

@@ -264,7 +264,7 @@ function by(flg)
                                         <li ectype="handle_pic" file_id="{$goods_iamge.file_id}" thumbnail="{$site_url}/{$goods_iamge.thumbnail}">
                                         <input type="hidden" name="goods_file_id[]" value="{$goods_iamge.file_id}">
                                         <div class="pic">
-                                            <img src="{$site_url}/{$goods_iamge.thumbnail}" width="55" height="55" />
+                                            <img src="{$goods_iamge.thumbnail}" width="55" height="55" />
                                             <div ectype="handler" class="bg">
                                                     <p class="operation">
                                                         <span class="cut_in" ectype="set_cover" ecm_title="{$lang.set_cover}"></span>
@@ -555,9 +555,9 @@ this.value=0+this.value;this.o_value=this.value}"/></div>
                                         <li ectype="handle_pic" file_name="{$desc_image.file_name|escape}" file_path="{$desc_image.file_path}" file_id="{$desc_image.file_id}">
                                         <input type="hidden" name="desc_file_id[]" value="{$desc_image.file_id}">
                                             <div class="pic">
-                                            <img src="{$site_url}/{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" /></div>
+                                            <img src="{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" /></div>
                                             <div ectype="handler" class="bg">
-                                            <img src="{$site_url}/{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" />
+                                            <img src="{$desc_image.file_path}" width="50" height="50" alt="{$desc_image.file_name|escape}" title="{$desc_image.file_name|escape}" />
                                                 <p class="operation">{if $goods.daishou!=1}  
                                                     <a class="cut_in" ectype="insert_editor" href="###" ecm_title="{$lang.insert_editor}"></a>{/if}
                                                     <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
