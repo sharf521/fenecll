@@ -1,5 +1,5 @@
 <?php
-$db_config['host']     = 'localhost';      //数据库主机	
+$db_config['host']     = '127.0.0.1';      //数据库主机
 $db_config['user']     = 'root';      //数据库用户名	
 $db_config['pwd']      = 'root';  //数据库用户密码	
 $db_config['name']     = 'fenecll';      //数据库名
