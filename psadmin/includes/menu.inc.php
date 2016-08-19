@@ -10,15 +10,15 @@ return array(
                 'text'  => Lang::get('welcome_page'),
                 'url'   => 'index.php?act=welcome',
             ),
-            'aboutus'   => array(
-                'text'  => Lang::get('aboutus_page'),
-                'url'   => 'index.php?act=aboutus',
-            ),
-            /*'base_setting'  => array(
-                'parent'=> 'setting',
-                'text'  => Lang::get('base_setting'),
-                'url'   => 'index.php?app=setting&act=base_setting',
-            ),*/
+            /*'aboutus'   => array(
+               'text'  => Lang::get('aboutus_page'),
+               'url'   => 'index.php?act=aboutus',
+           ),
+           'e_setting'  => array(
+               'parent'=> 'setting',
+               'text'  => Lang::get('base_setting'),
+               'url'   => 'index.php?app=setting&act=base_setting',
+           ),*/
             'user_manage' => array(
                 'text'  => Lang::get('user_manage'),
                 'parent'=> 'user',
