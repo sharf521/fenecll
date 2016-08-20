@@ -49,7 +49,7 @@
                   投诉商品</th> 
                 <td class="paddingT15 wordSpacing5" align="left">
                 <table>
-				<tr><th></th><th align="center">商品信息</th><th align="left">数量</th><th align="left">价格</th>
+				<tr><th colspan="2" align="center">商品信息</th><th align="left">数量</th><th align="left">价格</th>
 				</tr>
 				<!--{foreach from=$or item=val}-->
 				<tr>
@@ -63,9 +63,7 @@
                 <th class="paddingT15">
                   投诉内容</th> 
                 <td class="paddingT15 wordSpacing5" align="left">
-				<textarea id="beizhu" readonly="readonly" cols="30" rows="8">
-				{$com.content}
-				</textarea>
+				<textarea id="beizhu" readonly="readonly" cols="60" rows="8">	{$com.content}</textarea>
                 </td>
             </tr>
 			<tr>
@@ -90,9 +88,7 @@
                 <th class="paddingT15">
                   商家备注</th> 
                 <td class="paddingT15 wordSpacing5" align="left">
-				<textarea id="beizhu" readonly="readonly" cols="30" rows="8">
-				{$com.beizhu}
-				</textarea>
+				<textarea id="beizhu" readonly="readonly" cols="60" rows="8">	{$com.beizhu}</textarea>
                 </td>
             </tr>
 			
@@ -101,9 +97,7 @@
                 <th class="paddingT15">
                   平台处理意见</th> 
                 <td class="paddingT15 wordSpacing5" align="left">
-				<textarea id="yijian" readonly="readonly" cols="30" rows="8" name="yijian">
-				{$com.yijian}
-				</textarea>
+				<textarea id="yijian" readonly="readonly" cols="60" rows="8" name="yijian">{$com.yijian}</textarea>
                 </td>
             </tr>
          {/if}
