@@ -168,7 +168,7 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
 <form name="card_form" onSubmit="return card();" action="index.php?app=my_money&act=card_cz" method="post">
 				  充值帐户：&nbsp;&nbsp;&nbsp;&nbsp;{$visitor.user_name}<input name="user_name1" type="hidden" id="user_name1" value="{$visitor.user_name}" size="15" /><input name="user_name2" type="hidden" id="user_name2" size="15"  value="{$visitor.user_name}"/>
 			  <br>
-				  充值金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="card_sn" type="text" id="card_sn" size="15" onkeyup="value=value.replace(/[^0-9.]/g,'')" maxlength="8"/>&nbsp;<font  color="red">*</font>
+				  充值金额：&nbsp;&nbsp;&nbsp;&nbsp;<input name="card_sn" type="text" id="card_sn" size="15" onkeyup="value=value.replace(/[^0-9.]/g,'')" maxlength="10"/>&nbsp;<font  color="red">*</font>
 				  <div style="color:#F00; line-height:20px; padding:5px"> 
                  线下充值如遇到问题，请立即与客服联系</br>
                   (1)&nbsp;单笔线下充值金额不低于1000元；</br>
@@ -224,7 +224,7 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
 				  <input name="czkg" id="czkg" size="30" type="hidden" value="{$kaiguan.czkg}"/>
 				
 				  <br>
-				 线下充值备注：<textarea cols="30" rows="6" name="beizhu" id="beizhu" ></textarea>
+				 线下充值备注：<textarea cols="45" rows="6" name="beizhu" id="beizhu" ></textarea>
                   <br />
                   <font color="#FF0000">（请注明您的用户名，转账银行卡号和转账流水号，以及转账时间，谢谢配合）</font>
 				  <br /> <br />
@@ -300,7 +300,7 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
 </div>
 
 				{$lang.chongzhijine}
-                  <input name="cz_money" type="text" value="" size="8" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}"/>&nbsp;{$lang.yuan}
+                  <input name="cz_money" type="text" value="" size="10" onkeyup="value=value.replace(/[^0-9.]/g,'')" />&nbsp;{$lang.yuan}
                    <input type="hidden" name="user_id" value="{$visitor.user_id}" />
                    <div style="color:#F00; line-height:20px; padding:5px">
                   不要通过第三方渠道进入网银，这样可以有效避开钓鱼网站。<br />
