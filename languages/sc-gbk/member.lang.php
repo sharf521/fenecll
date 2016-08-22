@@ -42,7 +42,7 @@ return array(
     'register_now'   => '立即注册',
     'password_confirm'   => '确认密码',
 	'tuijianren'   => '邀请人',
-	'tuijianrendeidhao'   => '填写邀请人的用户名，如果没有邀请人，可不填',
+	'tuijianrendeidhao'   => '填写邀请人的用户名',
     'user_name_desc'   => '用于登录的名字',
     'password_desc'   => '您的密码',
     'i_have_read'   => '我已阅读并同意',
