@@ -162,6 +162,7 @@ return array(
     'jiangligei' => '奖励给',
 	'ninbushibenzhanhuiyuan' => '您不是本站会员',
 	'gaiyonghubucunzai'  => '您填写的邀请人不存在',
+	'yaoqingrenbunengweikong'  => '邀请人不能为空',
 	'zhifuchenggong'   => '支付成功',
 	'goumai'   => '购买',
 	'youhuiquan'   => '的优惠券',
