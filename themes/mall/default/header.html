@@ -175,11 +175,13 @@
             <a href="{$nav.link}" class="{if !$index and $nav.link eq $current_url}link{else}hover{/if}"
                href="{$nav.link}" {if $nav.open_new} target="_blank" {/if}><span>{$nav.title|escape}</span></a>
             <!--{/foreach}-->
-            {if $thiscity.mall_url!=''}<a href="http://{$thiscity.mall_url}" class="hover"><span>{$lang.gongxiao}</span></a>{else}<a
-                class="hover"><span>{$lang.gongxiao}</span></a>{/if}
-            {if $thiscity.city_id==100000}<a class="hover"><span>信用评估</span></a>{else}{if $thiscity.p2p_url!=''}<a
-                href="http://{$thiscity.p2p_url}" class="hover"><span>{$lang.p2p}</span></a>{else}<a
-                class="hover"><span>{$lang.p2p}</span></a>{/if}{/if}
         </div>
     </div>
+</div>
+<div style="display: none">
+    {if $thiscity.mall_url!=''}<a href="http://{$thiscity.mall_url}" class="hover"><span>{$lang.gongxiao}</span></a>{else}<a
+        class="hover"><span>{$lang.gongxiao}</span></a>{/if}
+    {if $thiscity.city_id==100000}<a class="hover"><span>信用评估</span></a>{else}{if $thiscity.p2p_url!=''}<a
+        href="http://{$thiscity.p2p_url}" class="hover"><span>{$lang.p2p}</span></a>{else}<a
+        class="hover"><span>{$lang.p2p}</span></a>{/if}{/if}
 </div>
