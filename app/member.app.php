@@ -316,21 +316,20 @@ $qiandao=$this->my_money_mod->getRow("select riqi,times,status from ".DB_PREFIX.
 				     $this->show_warning('gaiyonghubucunzai');				 
 					 return;
 				}
-			}			
+			}
 
-			if (empty($owner_card))
-            {
+            /*
+            if (empty($owner_card)) {
                 $this->show_warning('shenfenzhengbunengweikong');
 
                 return;
             }
-			include_once(ROOT_PATH. '/includes/idcheck.class.php');
-			$chk=new IDCheck($owner_card);
-			if(($chk->Part())==False)
-			{
-				$this->show_warning('shurushenfenzheng');
-				return;
-			}
+            include_once(ROOT_PATH . '/includes/idcheck.class.php');
+            $chk = new IDCheck($owner_card);
+            if (($chk->Part()) == False) {
+                $this->show_warning('shurushenfenzheng');
+                return;
+            }*/
 			
             $ms =& ms(); //连接用户中心
             $user_id = $ms->user->register($user_name, $password, $email,$owner_card,$city,$yaoqing_id,array(),$web_id,$weiboid,$openid);
