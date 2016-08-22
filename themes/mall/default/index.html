@@ -389,60 +389,17 @@ $(function(){
 						<div class="alright">
 							<div class="gglbg"><b>SALES</b><span>最新成交</span><!--<a href="#">更多>></a>--></div>
 							<ul class="shopbox_1">
-							{if $cityid==1}
-							
-							<li>
-									<a href="goods/48596" target="_blank"><img src="data/files/store_4059/goods_130/small_201303301555308898.jpg" width="78" height="78" /></a>
-										<dl>
-											<dt><span><a href="goods/48596" target="_blank" title="意莱尔卫生巾日用">意莱尔卫生巾日用</a></span></dt>
-											<dd><b>48.78720积分</b></dd>					
-									
-										</dl>							
-								
-								</li>
-																<li>
-									<a href="goods/52283" target="_blank"><img src="data/files/store_4059/goods_196/small_201304081453167382.jpg" width="78" height="78" /></a>
-										<dl>
-											<dt><span><a href="goods/52283" target="_blank" title="单包护垫">单包护垫</a></span></dt>
-											<dd><b>57.93480积分</b></dd>					
-									
-										</dl>							
-								
-								</li>
-																<li>
-									<a href="goods/47360" target="_blank"><img src="data/files/store_2074/goods_131/small_201303201712116368.png" width="78" height="78" /></a>
-										<dl>
-											<dt><span><a href="goods/47360" target="_blank" title="眼贴膜胶原蛋白去眼袋去黑眼圈保湿补水去细纹眼纹">眼贴膜胶原蛋白去眼袋去黑眼圈保湿补水去细纹眼纹</a></span></dt>
-											<dd><b>4.57380积分</b></dd>					
-									
-										</dl>							
-								
-								</li>
-																<li>
-									<a href="goods/48538" target="_blank"><img src="data/files/store_2899/goods_154/small_201303300929144568.jpg" width="78" height="78" /></a>
-										<dl>
-											<dt><span><a href="goods/48538" target="_blank" title="中国联通">中国联通</a></span></dt>
-											<dd><b>91.47600积分</b></dd>					
-									
-										</dl>							
-								
-								</li>
-
-							
-							{else}
-							
 								{foreach from=$latestgood item=goods}
 								<li>
 									<a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.goods_image}" width="78" height="78" /></a>
-										<dl>
-											<dt><span><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a></span></dt>
-											<dd><b>{$goods.jifen}积分</b></dd>					
-									
-										</dl>							
-								
+									<dl>
+										<dt><span><a href="{url app=goods&id=$goods.goods_id}" target="_blank" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a></span></dt>
+										<dd><b>{$goods.jifen}积分</b></dd>
+
+									</dl>
+
 								</li>
 								{/foreach}
-								{/if}
 								
 							
 							</ul>
