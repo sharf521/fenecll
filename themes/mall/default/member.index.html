@@ -44,7 +44,7 @@
 
         $.ajax({ url: "/index.php?app=user&act=get_rebateMoney", context: '', success: function(data){
             var arr=data.split('[#]');
-            $('#span_rebateMoney').html(arr[0]);
+            $('#span_rebateMoney').html(parseFloat(arr[0]));
         }});
     });
 </script>
