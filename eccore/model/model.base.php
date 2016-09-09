@@ -1331,12 +1331,6 @@ class BaseModel extends Object
 	{
 		global $_S;
 		$url=$_SERVER['HTTP_HOST'];
-		$u=explode('.',$url);
-		if(count($u)>2)
-		{
-			$url=$u[1].'.'.$u[2];
-		}
-		//print_r($url);
 		if(empty($_S['row_city']))
 		{
 			$row_city=$this->db->getRow("select * from ".DB_PREFIX."city where city_yuming like '%$url%' limit 1");
