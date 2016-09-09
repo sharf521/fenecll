@@ -101,7 +101,6 @@ a{ text-decoration:none;}
 #topbtn { width: 240px; height:38px; position: absolute; top:52px; right: 0; line-height:38px; text-align: center; word-spacing: 2px; z-index: 10; background-color:#fe5d0f; border-radius:3px; font-size:14px; color:#fff;}
 #topbtn .link { color: #fff; text-decoration: none; }
 #topbtn span { color: #fff; margin:0 3px; }
-#topbtn .user { padding-right: 14px; background: url(../images/member/ico-xia.png) no-repeat 96% 50%; }
 
 #float_layer { position: absolute; top:30px; right: 140px; width: 85px; line-height:26px; background-color:#fef3ec; border-radius:3px; display: none; }
 #float_layer a { text-decoration: none; color: #333; }
