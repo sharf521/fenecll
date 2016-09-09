@@ -332,9 +332,10 @@ money：操作金额
         }else{
             $url="http://".WEBSERV_IP1."/money.asp?web_id={$row['web_id']}";
             $html=getHTML($url);
-            $arr=str_split($html,'[#]');
+            $arr=explode($html,'[#]');
             echo floatval($arr[0]).'[#]'.floatval($arr[1]);
         }
+        exit;
     }
 
     function login()
