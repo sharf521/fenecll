@@ -14,6 +14,7 @@ class UserApp extends MallbaseApp
     {
         $this->_city_mod =& m('city');
         $cityrow = $this->_city_mod->get_cityrow();
+        print_r($cityrow);
         $this->p2p_url = $cityrow['p2p_url'];
         $this->mall_url = $cityrow['mall_url'];
         parent::__construct();
