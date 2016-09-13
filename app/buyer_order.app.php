@@ -1434,7 +1434,7 @@ class Buyer_orderApp extends MemberbaseApp
 
         foreach ($or as $i=>$v){
             if(strtolower(substr($v['goods_image'],0,4))!='http'){
-                $or[$i]['goods_image']='/'.$v;
+                $or[$i]['goods_image']='/'.$v['goods_image'];
             }
         }
 

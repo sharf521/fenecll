@@ -173,7 +173,7 @@ class TousuApp extends BackendApp
 
             foreach ($or as $i=>$v){
                 if(strtolower(substr($v['goods_image'],0,4))!='http'){
-                    $or[$i]['goods_image']='/'.$v;
+                    $or[$i]['goods_image']='/'.$v['goods_image'];
                 }
             }
             
@@ -275,7 +275,7 @@ class TousuApp extends BackendApp
 
         foreach ($or as $i=>$v){
             if(strtolower(substr($v['goods_image'],0,4))!='http'){
-                $or[$i]['goods_image']='/'.$v;
+                $or[$i]['goods_image']='/'.$v['goods_image'];
             }
         }
 
