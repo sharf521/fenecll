@@ -32,7 +32,7 @@ if(!empty($_REQUEST["func"]))
 			else
 			{
 				del_file($filedir);
-				mk_dir($filedir);
+				mk_dir($filedir,0777,true);
 				$_SESSION['dbbackup']['table'] = $table;
 				$_SESSION['dbbackup']['size'] = $size;
 				
