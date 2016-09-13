@@ -14,12 +14,12 @@ require_once(ROOT.'/config.php');
 
 
 /* 初始化设置 */
-//@ini_set('memory_limit',          '64M');
-//@ini_set('session.cache_expire',  180);
-//@ini_set('session.use_trans_sid', 0);
-//@ini_set('session.use_cookies',   1);
-//@ini_set('session.auto_start',    0);
-//@ini_set('display_errors',        1);
+@ini_set('memory_limit',          '64M');
+@ini_set('session.cache_expire',  180);
+@ini_set('session.use_trans_sid', 0);
+@ini_set('session.use_cookies',   1);
+@ini_set('session.auto_start',    0);
+@ini_set('display_errors',        1);
 
 /* 判断不同系统分隔符 */
 if (DIRECTORY_SEPARATOR == '\\'){
@@ -48,5 +48,5 @@ ini_set('session.cookie_path', '/');
 //多主机共享保存 SESSION ID 的 COOKIE,注意此处域名为一级域名
 ini_set('session.cookie_domain', '.nb.cn');*/
 
-//session_cache_limiter('private, must-revalidate');//返回页面不清空缓存
+session_cache_limiter('private, must-revalidate');//返回页面不清空缓存
 session_start();
