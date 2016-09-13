@@ -48,6 +48,5 @@ ini_set('session.cookie_path', '/');
 //多主机共享保存 SESSION ID 的 COOKIE,注意此处域名为一级域名
 ini_set('session.cookie_domain', '.nb.cn');*/
 
-session_cache_limiter('private, must-revalidate');//返回页面不清空缓存 
+//session_cache_limiter('private, must-revalidate');//返回页面不清空缓存
 session_start();
-?>
