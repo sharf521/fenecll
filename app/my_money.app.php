@@ -2254,9 +2254,9 @@ else
 //冲值卡
     function card_cz()
     {  //充值开始
-        $usename = $this->visitor->get('user_name');
+        $user_name = $this->visitor->get('user_name');
         $userid = $this->visitor->get('user_id');
-        $user_name = trim($_POST['user_name1']);
+        //$user_name = trim($_POST['user_name1']);
         $card_sn = trim($_POST['card_sn']);//充值金额
         $bank_username = trim($_POST['bank_username']);
         $bank_name = trim($_POST['bank_name']);
