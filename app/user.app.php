@@ -327,14 +327,12 @@ money：操作金额
         $db = &db();
 
         $row=$db->getRow("select web_id from " . DB_PREFIX . "member where user_id=$user_id limit 1");
-        print_r($row);
         if(empty($row['web_id'])){
             echo '0[#]0';
         }else{
             $url="http://".WEBSERV_IP1."/money.asp?web_id={$row['web_id']}";
-            echo $url;
             $html=getHTML($url);
-            $arr=explode($html,'[#]');
+            $arr=explode('[#]',$html);
             echo floatval($arr[0]).'[#]'.floatval($arr[1]);
         }
         exit;
