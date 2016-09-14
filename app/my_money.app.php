@@ -507,6 +507,9 @@ class My_moneyApp extends MemberbaseApp
 
         $my_money = $this->my_money_mod->getAll("select * from " . DB_PREFIX . "my_money where user_id=$user_id");
         $canshu = $this->canshu_mod->getRow("select * from " . DB_PREFIX . "canshu limit 1");
+
+        $canshu['tixianfeilv']=($canshu['tixianfeilv']*100).'%';
+
         $this->assign('canshu', $canshu);
         $this->assign('my_money', $my_money);
         $this->display('my_money.txlist.html');
