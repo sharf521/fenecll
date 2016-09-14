@@ -2296,24 +2296,8 @@ else
         if ($czfeiyong > $chongzhifeimax) {
             $czfeiyong = $chongzhifeimax;
         }
-
-
         //$new_zong_money=$zong_money+$card_sn;
         $new_zong_money = $zong_money + $czfeiyong;
-        /*if($card_sn < $cz_min)
-	{
-		$czmin=Lang::get('czbunengxiaoyu');
-		$czmin=str_replace('{1}',$cz_min,$czmin);
-		$this->show_warning($czmin);
-		return;
-	}
-	if($card_sn > $cz_max)
-	{
-		$czmax=Lang::get('czbunengdayu');
-		$czmax=str_replace('{1}',$cz_max,$czmax);
-		$this->show_warning($czmax);
-		return;
-	}*/
         if ($yu_jinbi < $card_sn) {
             //$this->show_warning('zijinbuzu');
             $this->show_message('zijinbuzu',
@@ -2328,13 +2312,6 @@ else
                 $this->show_warning('cuowu_nishurudebushishuzilei');
                 return;
             }
-//    //充值对象不能为空
-//	if(empty($user_name))
-//    {
-//	$this->show_warning('cuowu_mubiaoyonghubucunzai');
-//    return;
-//	}
-
 
             $user_row = $this->my_money_mod->getRow("select * from " . DB_PREFIX . "my_money where user_id='$userid' limit 1");
             $user_money = $user_row['money'];
@@ -2348,93 +2325,65 @@ else
                 $this->show_warning('cuowu_mubiaoyonghubucunzai');
                 return;
             }
-//$card_row=$this->my_card_mod->getrow("select * from ".DB_PREFIX."my_card where card_pass='$card_pass'");
-//$card_id=$card_row['id'];
-//    //读取空 提示卡号、密码错误
-            //if(empty($card_row))
-//    {
-//	$this->show_warning('cuowu_card_pass');
-//    return;
-//	}
-//	//检测过期时间小于现在时间，则提示已经过期
-//	if($card_row['guoqi_time'] < time())
-//    {
-//	$this->show_warning('cuowu_cardyijingguoqi');
-//    return;
-//	}
-            if ($card_row['user_id'] != 0) {
-                $this->show_warning('cuowu_cardyijingshiyongguole');
-                return;
-            } else {
+            //添加my_moneylog日志
+            $log_text = $user_name . Lang::get('chongzhile') . $card_sn . Lang::get('yuan') . Lang::get('kouchuchongzhifeiyong') . $czfeiyong . Lang::get('yuan');
+            $add_mymoneylog = array(
+                'user_id' => $user_id,
+                'user_name' => $user_name,
+                'buyer_id' => $this->visitor->get('user_id'),
+                'buyer_name' => $this->visitor->get('user_name'),
+                'seller_id' => $user_id,
+                'seller_name' => $user_name,
+                'order_sn ' => $cz_book,
+                'add_time' => time(),
+                'leixing' => 30,
+                'log_text' => $log_text,
+                'caozuo' => 50,
+                's_and_z' => 1,
+                'money' => '+' . $card_sn,
+                //'money_zs'=>$card_sn,
+                'bank_username' => $bank_username,
+                'bank_name' => $bank_name,
+                'riqi' => $riqi,
+                'type' => 1,
+                'status' => $status,
+                'danhao' => $danhao,
+                //'feilv'=>$czfeilv,
+                'money_feiyong' => '-' . $czfeiyong,
+                'beizhu' => $beizhu,
+                'city' => $city,
+                'dq_money' => $user_money,//没有加充值的金额
+                'dq_money_dj' => $user_money_dj,
+                'dq_jifen' => $duihuanjifen,
+                'dq_jifen_dj' => $dongjiejifen,
+            );
+            //写入日志
+            $this->my_moneylog_mod->add($add_mymoneylog);
 
-                //添加my_moneylog日志
-                $log_text = $user_name . Lang::get('chongzhile') . $card_sn . Lang::get('yuan') . Lang::get('kouchuchongzhifeiyong') . $czfeiyong . Lang::get('yuan');
-                $add_mymoneylog = array(
-                    'user_id' => $user_id,
-                    'user_name' => $user_name,
-                    'buyer_id' => $this->visitor->get('user_id'),
-                    'buyer_name' => $this->visitor->get('user_name'),
-                    'seller_id' => $user_id,
-                    'seller_name' => $user_name,
-                    'order_sn ' => $cz_book,
-                    'add_time' => time(),
-                    'leixing' => 30,
-                    'log_text' => $log_text,
-                    'caozuo' => 50,
-                    's_and_z' => 1,
-                    'money' => '+' . $card_sn,
-                    //'money_zs'=>$card_sn,
-                    'bank_username' => $bank_username,
-                    'bank_name' => $bank_name,
-                    'riqi' => $riqi,
-                    'type' => 1,
-                    'status' => $status,
-                    'danhao' => $danhao,
-                    //'feilv'=>$czfeilv,
-                    'money_feiyong' => '-' . $czfeiyong,
-                    'beizhu' => $beizhu,
-                    'city' => $city,
-                    'dq_money' => $user_money,//没有加充值的金额
-                    'dq_money_dj' => $user_money_dj,
-                    'dq_jifen' => $duihuanjifen,
-                    'dq_jifen_dj' => $dongjiejifen,
+            //定义新资金
+            $yuanmoney = $zmoney;
+            $new_user_money = $user_money + $yuanmoney;
 
+            /*$new_user_money = $user_money+$card_row['money'];*/
+            //定义资金数组
+            $add_money = array('money' => $new_user_money);
+            if ($czkg == 'no') {
+                $log_id = 1;
+                $edit_canshu = array(
+                    'yu_jinbi' => $new_yu_jinbi,
+                    'zong_money' => $new_zong_money,
                 );
-
-                //写入日志
-                $this->my_moneylog_mod->add($add_mymoneylog);
-
-
-                //定义新资金
-                $yuanmoney = $zmoney;
-                $new_user_money = $user_money + $yuanmoney;
-
-                /*$new_user_money = $user_money+$card_row['money'];*/
-                //定义资金数组
-                $add_money = array('money' => $new_user_money);
-                if ($czkg == 'no') {
-                    $log_id = 1;
-                    $edit_canshu = array(
-                        'yu_jinbi' => $new_yu_jinbi,
-                        'zong_money' => $new_zong_money,
-                    );
-                    $this->canshu_mod->edit('id=' . $log_id, $edit_canshu);
-                    //更新该用户资金
-                    $this->my_money_mod->edit('user_id=' . $user_id, $add_money);//增加my_money表里的资金
-                }
-                //改变充值卡信息 已使用
-                $add_cardlog = array(
-                    'user_id' => $user_id,
-                    'user_name' => $user_name,
-                    'cz_time' => time(),
-                );
-//	$this->my_card_mod->edit('id='.$card_id,$add_cardlog);
-//    //提示语言
-                $this->show_message('chongzhi_chenggong_jineyiruzhang',
-                    'chakancicichongzhi', 'index.php?app=my_money&act=paylog',
-                    'guanbiyemian', 'index.php?app=my_money&act=exits');
-                return;
+                $this->canshu_mod->edit('id=' . $log_id, $edit_canshu);
+                //更新该用户资金
+                $this->my_money_mod->edit('user_id=' . $user_id, $add_money);//增加my_money表里的资金
             }
+
+//    //提示语言
+            $this->show_message('chongzhi_chenggong_jineyiruzhang',
+                'chakancicichongzhi', 'index.php?app=my_money&act=paylog',
+                'guanbiyemian', 'index.php?app=my_money&act=exits');
+            return;
+
         } else//检测提交 否则
         {//检测提交 开始
             header("Location: index.php?app=my_money");
