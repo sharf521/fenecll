@@ -25,7 +25,7 @@ $type_article=array('Ò»°ã','Ê×Ò³');
 define('UC_CONNECT', '');
 define('UC_DBHOST', '127.0.0.1');
 define('UC_DBUSER', 'ucenter');
-define('UC_DBPW', 'ck3699_123qwe))');
+define('UC_DBPW', '');
 define('UC_DBNAME', 'ucenter');
 define('UC_DBCHARSET', 'gbk');
 define('UC_DBTABLEPRE', '`ucenter`.uc_');
