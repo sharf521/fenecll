@@ -509,6 +509,7 @@ class My_moneyApp extends MemberbaseApp
         $canshu = $this->canshu_mod->getRow("select * from " . DB_PREFIX . "canshu limit 1");
 
         $canshu['tixianfeilv']=($canshu['tixianfeilv']*100).'%';
+        $canshu['ks_txfeilv']=($canshu['ks_txfeilv']*100).'%';
 
         $this->assign('canshu', $canshu);
         $this->assign('my_money', $my_money);
