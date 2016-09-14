@@ -23,20 +23,19 @@ $type_article=array('Ò»°ã','Ê×Ò³');
 
 
 define('UC_CONNECT', '');
-define('UC_DBHOST', 'localhost');
-define('UC_DBUSER', 'root');
-define('UC_DBPW', 'root');
+define('UC_DBHOST', '127.0.0.1');
+define('UC_DBUSER', 'ucenter');
+define('UC_DBPW', 'ck3699_123qwe))');
 define('UC_DBNAME', 'ucenter');
 define('UC_DBCHARSET', 'gbk');
 define('UC_DBTABLEPRE', '`ucenter`.uc_');
 define('UC_DBCONNECT', '0');
 define('UC_KEY', '!@#1234567890*()');
-define('UC_API', 'http://uc.zhuzhan.cn');
+define('UC_API', 'http://uc.ck3699.com');
 define('UC_CHARSET', 'gbk');
 define('UC_IP', '');
 define('UC_APPID', '1');
 define('UC_PPP', '20');
-
 
 
 

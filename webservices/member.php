@@ -382,7 +382,7 @@ else
         
      
     <table class="infoTable">
-      <tbody><tr>
+      <tr>
         <th class="paddingT15"> »áÔ±Ãû:</th>
         <td class="paddingT15 wordSpacing5"><input <?=$readonly?>  id="user_name" type="text" name="user_name" value="<?=$row['user_name']?>">
           
