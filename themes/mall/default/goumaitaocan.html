@@ -74,12 +74,12 @@
                         <table cellpadding="10" cellspacing="1" bgcolor="#a8c7ce" >
                             <tr>
                                 <td height="20" align="center" bgcolor="#FFFFFF"><strong>选择套餐</strong></td>
-                                <td width="129" align="center" bgcolor="#FFFFFF"><strong>原价格</strong></td>
-                                <td width="121" align="center" bgcolor="#FFFFFF"><strong>优惠价</strong></td>
+                                <td align="center" bgcolor="#FFFFFF"><strong>原价格</strong></td>
+                                <td align="center" bgcolor="#FFFFFF"><strong>优惠价</strong></td>
                             </tr>
                             {foreach from=$taocan_arr item=val}
                             <tr>
-                                <td align="center" bgcolor="#FFFFFF">
+                                <td align="left" bgcolor="#FFFFFF">
                                     <label>
                                         <input type="radio" name="buytype" value="{$val.buytype}"
                                                {if $val.buytype==0} checked="checked" {/if}/>
@@ -91,11 +91,6 @@
                                 </td>
                             </tr>
                             {/foreach}
-                            <tr>
-                                <td align="center" bgcolor="#ffffff" height="30">推荐人：</td>
-                                <td bgcolor="#ffffff" colspan="4">&nbsp;　&nbsp;<input type="text" name="tuijianren"/>
-                                </td>
-                            </tr>
                             <td height="40" colspan="6" align="center" bgcolor="#FFFFFF">
                                 {if $row}
                                 <input type="submit" value="  购 买 " disabled="disabled"/>请不要重复提交！
