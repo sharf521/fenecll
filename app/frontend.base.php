@@ -946,13 +946,13 @@ class MemberbaseApp extends MallbaseApp
                     'url'   => 'index.php?app=my_money&act=goumaidaxiaozhuo',
                     'name'  => 'daxiaozhuo',
                     'icon'  => 'ico20',
-                ),
+                ),*/
                 'taocan'  => array(
                     'text'  => Lang::get('taocan'),
                     'url'   => 'index.php?app=member&act=goumaitaocan',
                     'name'  => 'taocan',
                     'icon'  => 'ico6',
-                ),*/
+                ),
                 'shourulog' => array(
                     'text' => Lang::get('shourulog'),
                     'url' => 'index.php?app=member&act=chengzhangjifen',
@@ -1131,12 +1131,12 @@ class MemberbaseApp extends MallbaseApp
                 'name' => 'chengnuo',
                 'icon' => 'ico13',
             );
-            /* $menu['im_seller']['submenu']['xiaobao']  = array(
+             $menu['im_seller']['submenu']['xiaobao']  = array(
                     'text'  => Lang::get('xiaobao'),
                     'url'   => 'index.php?app=my_store&act=xiaobao',
                     'name'  => 'xiaobao',
                     'icon'  => 'ico21',
-            );*/
+            );
 
             if ($row['status'] == 1) {
                 $menu['im_qiye'] = array(
