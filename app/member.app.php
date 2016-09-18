@@ -879,7 +879,7 @@ class MemberApp extends MemberbaseApp
         );
         if ($_POST) {
             $buytype = (int)($_POST['buytype']);
-            $dongjie = $taocan_arr[$buytype]['price_dj'];
+            $dongjie = $taocan_arr[$buytype]['price_dj']*10000;
             if ($keyong_money < $dongjie) {
                 $this->show_warning('nindezijinbuzu');
                 //$this->show_message('nindezijinbuzu',
@@ -892,12 +892,13 @@ class MemberApp extends MemberbaseApp
                 'buytype' => $buytype,
                 'ispayprice' => 0,
                 'ispaydingjin' => 0,
+                'paymoney'=>$dongjie,
                 'status' => 0,
                 'createdate' => date('Y-m-d H:i:s'),
                 'city' => $city
             );
             $this->my_webserv_mod->add($data);
-            $beizhu = $user_name . Lang::get('shenqinggoumai');
+            $beizhu = $user_name . iconv('utf-8','gbk',"申请购买套餐，冻结资金{$dongjie}元");
             $arr = array(
                 'money' => '-' . $dongjie,
                 'jifen' => 0,
