@@ -60,7 +60,6 @@ if (isset($_REQUEST['func'])) {
             //更改帐户余额
             $db->query("update {my_money} set money_dj=money_dj-" . $paymoney . "  where user_id='$user_id' limit 1");
             //用户金钱流水
-            $dq_money_dj = $user_money_dj - $paymoney;
             $arr = array(
                 'money' => 0,
                 'jifen' => 0,
@@ -73,7 +72,7 @@ if (isset($_REQUEST['func'])) {
                 'time' => date('Y-m-d H:i:s'),
                 'zcity' => $city,
                 'dq_money' => $user_money,
-                'dq_money_dj' => $dq_money_dj,
+                'dq_money_dj' => $user_money_dj - $paymoney,
                 'dq_jifen' => $user_jifen,
                 'dq_jifen_dj' => $user_jifen_dj,
                 'beizhu' => '购买套餐'
@@ -122,12 +121,12 @@ if (isset($_REQUEST['func'])) {
                 $user_jifen_dj = $row['dongjiejifen'];
                 unset($row);
 
-               $yaoqing_money=$paymoney*0.5;
-                $db->query("update {my_money} set money=money+" . $yaoqing_money . "  where user_id='$yaoqing_user_id' limit 1");
+               $yaoqing_jifen=getjifen($paymoney*0.5);
+                $db->query("update {my_money} set duihuanjifen=duihuanjifen+" . $yaoqing_jifen . "  where user_id='$yaoqing_user_id' limit 1");
                 //用户金钱流水
                 $arr = array(
-                    'money' => $yaoqing_money,
-                    'jifen' => 0,
+                    'money' => 0,
+                    'jifen' => $yaoqing_jifen,
                     'money_dj' =>0,
                     'jifen_dj' => 0,
                     'user_id' => $yaoqing_user_id,
@@ -136,9 +135,9 @@ if (isset($_REQUEST['func'])) {
                     's_and_z' => 1,
                     'time' => date('Y-m-d H:i:s'),
                     'zcity' => $city,
-                    'dq_money' => $user_money + $yaoqing_money,
-                    'dq_money_dj' => $dq_money_dj,
-                    'dq_jifen' => $user_jifen,
+                    'dq_money' => $user_money,
+                    'dq_money_dj' => $user_money_dj,
+                    'dq_jifen' => $user_jifen+$yaoqing_jifen,
                     'dq_jifen_dj' => $user_jifen_dj,
                     'beizhu' => $yaoqing['user_name'].'购买套餐，获得奖励'
                 );
