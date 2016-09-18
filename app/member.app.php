@@ -869,101 +869,31 @@ class MemberApp extends MemberbaseApp
         /* 当前用户中心菜单 */
         //$this->assign('page_title',Lang::get('member_center'). ' - ' .Lang::get('taocan'));
         $this->_curitem('taocan');
-
         $this->assign('userrow', $userrow);
-        $chaoji = Lang::get('chaoji');
-        $huangguan = Lang::get('huangguan');
-        $baijin = Lang::get('baijin');
-        $jinpai = Lang::get('jinpai');
-        $yinpai = Lang::get('yinpai');
-        $jichu = Lang::get('jichu');
-        $tongpai = Lang::get('tongpai');
-        $diguo = Lang::get('diguo');
-        $qiye = Lang::get('qiye');
-        $longtou = Lang::get('longtou');
-        $fuwuzhongxin = Lang::get('fuwuzhongxin');
-        $fuwuzhan = Lang::get('fuwuzhan');
-
 
         $taocan_arr = array(
             array('buytype' => 0, 'name' =>iconv('utf-8','gbk','超级合作商'), 'price' => 12.98,'price_dj'=>6.4),
-            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','钻石合作商'), 'price' => 6.4,'price_dj'=>3.2),
-            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','金牌合作商'), 'price' => 3.2,'price_dj'=>0.72),
-            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','精英版店铺'), 'price' => 1.6,'price_dj'=>0.51),
+            array('buytype' => 1, 'name' =>iconv('utf-8','gbk','钻石合作商'), 'price' => 6.4,'price_dj'=>3.2),
+            array('buytype' => 2, 'name' =>iconv('utf-8','gbk','金牌合作商'), 'price' => 3.2,'price_dj'=>0.72),
+            array('buytype' => 3, 'name' =>iconv('utf-8','gbk','精英版店铺'), 'price' => 1.6,'price_dj'=>0.51),
         );
-
         if ($_POST) {
-            $tuijianren = trim($_POST['tuijianren']);
-            $lishuren = trim($_POST['lishuren']);
             $buytype = (int)($_POST['buytype']);
-            $buytype_dj = array(9300000, 3300000, 3500000, 39000, 14000, 10600, 7800, 2820, 28200, 2820);
-            $dongjie = $buytype_dj[$buytype];
-
-            /*if($buytype=='')
-            {
-                    $this->show_warning('xuanzetaocan');
-                    return;	
-            }
-            else
-            {*/
-            $ispayprice = 0;
-            $ispaydingjin = trim(($_POST['ispay']));
-            /*}*/
-            if (!empty($_POST['tuijianren'])) {
-                $row = $this->my_money_mod->getRow("select user_id from " . DB_PREFIX . "my_webserv where user_name='$tuijianren' limit 1");
-                if (empty($row)) {
-                    $this->show_warning('tuijianbucunzai');
-                    return;
-                } else {
-                    $tj_userid = $row['user_id'];
-                }
-                $row = null;
-            }
-
-            $lishuren = trim($_POST['lishuren']);//用户名
-            if (!empty($lishuren)) {
-                $row = $this->my_money_mod->getRow("select user_id from " . DB_PREFIX . "my_webserv where user_name='$lishuren'");
-                if (empty($row)) {
-                    $this->show_warning('lishubucunzai');
-                    return;
-                } else {
-                    $ls_userid = $row['user_id'];
-                }
-                $row = null;
-                $row = $this->my_money_mod->getRow("select count(*) as count from " . DB_PREFIX . "member where lishuid='$ls_userid'");
-                if ($row['count'] >= 2) {
-                    $lishu = Lang::get('zhinengyouliangge');
-                    $lishu = str_replace('{1}', $lishuren, $lishu);
-                    $this->show_warning($lishu);
-                    return;
-                }
-                $row = null;
-            }
-
-
+            $dongjie = $taocan_arr[$buytype]['price_dj'];
             if ($keyong_money < $dongjie) {
                 $this->show_warning('nindezijinbuzu');
                 //$this->show_message('nindezijinbuzu',
                 //'fanhuiliebiao',    'index.php?app=member&act=goumaitaocan');
                 return;
             }
-
-            $da = array('tuijianid' => $tj_userid, 'lishuid' => $ls_userid);
-            $this->member_mod->edit('user_id=' . $user_id, $da);
-
-            $riqi = date('Y-m-d H:i:s');
-            $name = trim($_POST['name']);
-            $price = trim($_POST['price']);
-            //$ispayprice= trim($_POST['ispayprice']);
-            //$ispaydingjin = trim($_POST['ispaydingjin']);
             $data = array(
                 'user_id' => $user_id,
                 'user_name' => $user_name,
                 'buytype' => $buytype,
-                'ispayprice' => $ispayprice,
-                'ispaydingjin' => $ispaydingjin,
+                'ispayprice' => 0,
+                'ispaydingjin' => 0,
                 'status' => 0,
-                'createdate' => $riqi,
+                'createdate' => date('Y-m-d H:i:s'),
                 'city' => $city
             );
             $this->my_webserv_mod->add($data);
@@ -993,27 +923,12 @@ class MemberApp extends MemberbaseApp
                 'money_dj' => $new_user_moneydj
             );
             $this->my_money_mod->edit('user_id=' . $user_id, $da);
-
             $this->show_message('goumaichenggong',
                 'fanhuiliebiao', 'index.php?app=member');
 
         } else {
-
-            $taocan_name = array(
-                array('buytype' => 0, 'name' => $diguo, 'price' => 1550),
-                array('buytype' => 1, 'name' => $qiye, 'price' => 550),
-                array('buytype' => 2, 'name' => $longtou, 'price' => 350),
-                array('buytype' => 3, 'name' => $baijin, 'price' => 8),
-                array('buytype' => 4, 'name' => $jinpai, 'price' => 2.75),
-                array('buytype' => 5, 'name' => $yinpai, 'price' => 2.2),
-                array('buytype' => 6, 'name' => $jichu, 'price' => 1.58),
-                array('buytype' => 7, 'name' => $tongpai, 'price' => 0.58),
-                array('buytype' => 8, 'name' => $fuwuzhongxin, 'price' => 5.8),
-                array('buytype' => 9, 'name' => $fuwuzhan, 'price' => 0.58),
-            );
             $row = $this->my_webserv_mod->getRow("select id from " . DB_PREFIX . "my_webserv where user_id='$user_id' limit 1");
             $this->assign('row', $row);
-            $this->assign('buytype_dj', $buytype_dj);
             $this->assign('taocan_arr', $taocan_arr);
             $this->display('goumaitaocan.html');
         }
