@@ -384,56 +384,6 @@ foreach ($_S['buytype'] as $row)//套餐类型
 ?>
 <script language="javascript" src="include/js/jquery.js"></script>
 <script language="javascript">
-    function rereg(id, type) {
-        $.post("ajax.php?func=rereg", {id: id, type: type}, function (result) {
-            alert(result);
-        })
-    }
-    var arr_buy = new Array();
-    arr_buy[0] = new Array(<?=$buyprice[0]?>,<?=$_S['buytype_dj'][0] / 10000?>);
-    arr_buy[1] = new Array(<?=$buyprice[1]?>,<?=$_S['buytype_dj'][1] / 10000?>);
-    arr_buy[2] = new Array(<?=$buyprice[2]?>,<?=$_S['buytype_dj'][2] / 10000?>);
-    arr_buy[3] = new Array(<?=$buyprice[3]?>, 7.2, 4.9, 4.4, 4.3,<?=$_S['buytype_dj'][3] / 10000?>);
-    arr_buy[4] = new Array(<?=$buyprice[4]?>, 2.5, 1.7, 1.6, 1.5,<?=$_S['buytype_dj'][4] / 10000?>);
-    arr_buy[5] = new Array(<?=$buyprice[5]?>, 1.97, 1.32, 1.2, 1.16,<?=$_S['buytype_dj'][5] / 10000?>);
-    arr_buy[6] = new Array(<?=$buyprice[6]?>, 1.45, 0.97, 0.88, 0.85,<?=$_S['buytype_dj'][6] / 10000?>);
-    arr_buy[7] = new Array(<?=$buyprice[7]?>, 0.53, 0.352, 0.32, 0.31,<?=$_S['buytype_dj'][7] / 10000?>);
-    arr_buy[8] = new Array(<?=$buyprice[8]?>, 5.3, 3.52, 3.2, 3.1,<?=$_S['buytype_dj'][8] / 10000?>);
-    arr_buy[9] = new Array(<?=$buyprice[9]?>, 0.53, 0.352, 0.32, 0.31,<?=$_S['buytype_dj'][9] / 10000?>);
-    //改变优惠类型
-    function paytype_click(buytype) {
-        if (buytype < 3) {
-            html = '<input type="radio" name="paytype" value="0" checked="checked" onclick="checkYH()"/>1-特殊B';
-            html += '<input type="radio" name="paytype" value="1" onclick="checkYH()"/>6折优惠';
-        }
-        else {
-            html = '<input type="radio" name="paytype" value="0" checked="checked" onclick="checkYH()"/>1-特殊B';
-            html += '<input type="radio" name="paytype" value="1" onclick="checkYH()"/>1-特殊A';
-            html += '<input type="radio" name="paytype" value="2" onclick="checkYH()"/>2-特殊B';
-            html += '<input type="radio" name="paytype" value="3" onclick="checkYH()"/>2-特殊A';
-            html += '<input type="radio" name="paytype" value="4" onclick="checkYH()"/>保障';
-            html += '<input type="radio" name="paytype" value="5" onclick="checkYH()"/>标配';
-        }
-        document.getElementById('div_paytype').innerHTML = html;
-        checkYH();
-    }
-    //改变优惠类型
-    function checkYH() {
-        var temp = document.getElementsByName("buytype");
-        for (i = 0; i < temp.length; i++) {
-            if (temp[i].checked) {
-                buytype = temp[i].value;
-            }
-        }
-        var temp = document.getElementsByName("paytype");
-        for (i = 0; i < temp.length; i++) {
-            if (temp[i].checked) {
-                v = temp[i].value
-            }
-        }
-        document.getElementById('money').value = arr_buy[buytype][v];
-    }
-
     function checkform() {
         if (document.forms[0].tuijianid.value == 0 || (document.forms[0].lishuid.value == 0 && document.forms[0].buytype[6].checked == false)) {
             if (window.confirm('推荐人或隶属人为空！确定要提交吗？')) {
@@ -614,42 +564,19 @@ else
 
           </td>
       </tr>
-      
-      <tr>
-        <th class="paddingT15"> 隶属人ID:</th>
-        <td class="paddingT15 wordSpacing5">
-        <?
-        echo getuserno($lishuid);
-		$row1=$member->getone("user_id=".$lishuid);
-		echo '&nbsp;&nbsp;（'.$row1['user_name']."）";
-		echo "<input type='hidden' name='lishuid' value='$lishuid'>";
-		$row1=null;
-		?>
-
-          </td>
-      </tr>
 
       <tr>
         <th class="paddingT15"> 套餐名称:</th>
-        <td class="paddingT15 wordSpacing5"><?
-        foreach($_S['buytype'] as $i=>$bu)
-		{
-			$chk='';
-			if($bu['buytype']==$row['buytype']) $chk='checked';
-			?>
-            <span id="sp_bt_<?=$i?>"><input type="radio" name="buytype" onclick="paytype_click(this.value)"  value="<?=$bu['buytype']?>" <?=$chk?>/><?=$bu['name']?>(<?=$bu['price']?>万)</span>
-            <?
-		}
-		?></td>
+        <td class="paddingT15 wordSpacing5">
+        <?=$taocan_arr[$row['buytype']]['name']?>（<?=$taocan_arr[$row['buytype']]['price']?>万）
+        </td>
       </tr>
-      <tr><th>优惠：</th><td><div id="div_paytype"></div></td></tr>
-      <tr><th>价格：</th><td><input type="text" id="money" name="money" value="<?=$buyprice[$row['buytype']]?>" onKeyPress="inputMoney(this)" onKeyUp="inputMoney(this)" onBlur="inputMoney(this)"/>万&nbsp; &nbsp;审核为付费商家<input type="checkbox" value="1" name="level[]" checked="checked"/> 
-      审核为代理商<input type="checkbox" value="2" name="level[]"/></td></tr>
-      <tr><th>大小卓月数：</th><td><select name="zmonth">
-      <option value="9">9个月</option>
-      <option value="12">12个月</option>
-      </select>
-      <!--是否排队-->
+      <tr><th>优惠价：</th><td>己冻结：<?=$row['paymoney']/10000?>万</td></tr>
+      <tr><th>商城上操作：</th><td>
+
+      审核为付费商家<input type="checkbox" value="1" name="level[]" checked="checked"/>
+      审核为代理商<input type="checkbox" value="2" name="level[]"/>
+
       </td></tr>
       
         
@@ -667,105 +594,4 @@ paytype_click(<?=$row['buytype']?>);
 		</form>		
 		<?
 }
-exit;
 ?>
-<div style="clear:both"><br/><br/>
-    白金 大F、内增、六保<br/>
-    金牌 小F、内增、六保<br/>
-    银牌 内增、六保<br/>
-    基础 六保<br/>
-    铜牌 内增<br/></div>
-
-
-<table border="1" cellpadding="4" cellspacing="1">
-    <tr>
-        <td></td>
-        <td>1-特殊B</td>
-        <td>1-特殊A</td>
-        <td>2-特殊B</td>
-        <td>2-特殊A</td>
-        <td>保障</td>
-        <td>标配</td>
-    </tr>
-    <?
-    foreach ($_S['buytype'] as $index => $i) {
-        ?>
-        <tr>
-            <td><?= $i['name'] ?></td>
-            <?
-            for ($j = 0; $j < 6; $j++) {
-                ?>
-                <td>
-                    <script>document.write(arr_buy[<?=$index?>][<?=$j?>]);</script>
-                </td>
-                <?
-            }
-            ?>
-        </tr>
-        <?
-    }
-    ?>
-</table><br/><br/>
-
-<?
-exit();
-$arr_txt = array('超级', '皇冠', '白金', '金牌', '银牌', '基础', '铜牌', '六保3900', '大卓', '小卓');
-$arr_i1 = array(40000 + 5500 + 2000, 40000 + 5500 + 2000, 2000 + 20000 + 5500 + 2000, 2000 + 2000 + 5500 + 2000, 5500 + 2000, 5500, 2000, 3900);
-$arr_i = array(2100000, 20000 + 5500 + 2000, 20000 + 5500 + 2000, 2000 + 5500 + 2000, 5500 + 2000, 5500, 2000, 3900, 20000, 2000);
-$arr_j = array(2.16 * 1.1 * 1.1 * 1.1, 2.16 * 1.1 * 1.1, 1.32 * 1.1 * 1.1 * 1.1, 1.32 * 1.1 * 1.1, 1.16 * 1.1 * 1.1 * 1.1, 1.16 * 1.1 * 1.1);
-?>
-<table border="1" cellpadding="4" cellspacing="1">
-    <tr>
-        <td>旧</td>
-        <td>1-特殊B</td>
-        <td>1-特殊A</td>
-        <td>2-特殊B</td>
-        <td>2-特殊A</td>
-        <td>保障</td>
-        <td>标配</td>
-    </tr>
-    <?
-    foreach ($arr_i1 as $index => $i) {
-        ?>
-        <tr>
-            <td><?= $arr_txt[$index] ?></td>
-            <?
-            foreach ($arr_j as $j) {
-                ?>
-                <td><?= $i * $j ?></td>
-                <?
-            }
-            ?>
-        </tr>
-        <?
-    }
-    ?>
-</table><br/><br/>
-
-<table border="1" cellpadding="4" cellspacing="1">
-    <tr>
-        <td>新</td>
-        <td>1-特殊B</td>
-        <td>1-特殊A</td>
-        <td>2-特殊B</td>
-        <td>2-特殊A</td>
-        <td>保障</td>
-        <td>标配</td>
-    </tr>
-    <?
-    foreach ($arr_i as $index => $i) {
-        ?>
-        <tr>
-            <td><?= $arr_txt[$index] ?></td>
-            <?
-            foreach ($arr_j as $j) {
-                ?>
-                <td><?= $i * $j ?></td>
-                <?
-            }
-            ?>
-        </tr>
-        <?
-    }
-    ?>
-</table>
