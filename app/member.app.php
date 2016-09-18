@@ -884,6 +884,14 @@ class MemberApp extends MemberbaseApp
         $fuwuzhongxin = Lang::get('fuwuzhongxin');
         $fuwuzhan = Lang::get('fuwuzhan');
 
+
+        $taocan_arr = array(
+            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','超级合作商'), 'price' => 12.98,'price_dj'=>6.4),
+            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','钻石合作商'), 'price' => 6.4,'price_dj'=>3.2),
+            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','金牌合作商'), 'price' => 3.2,'price_dj'=>0.72),
+            array('buytype' => 0, 'name' =>iconv('utf-8','gbk','精英版店铺'), 'price' => 1.6,'price_dj'=>0.51),
+        );
+
         if ($_POST) {
             $tuijianren = trim($_POST['tuijianren']);
             $lishuren = trim($_POST['lishuren']);
@@ -1006,7 +1014,7 @@ class MemberApp extends MemberbaseApp
             $row = $this->my_webserv_mod->getRow("select id from " . DB_PREFIX . "my_webserv where user_id='$user_id' limit 1");
             $this->assign('row', $row);
             $this->assign('buytype_dj', $buytype_dj);
-            $this->assign('taocan_name', $taocan_name);
+            $this->assign('taocan_arr', $taocan_arr);
             $this->display('goumaitaocan.html');
         }
     }
