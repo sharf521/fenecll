@@ -1131,12 +1131,12 @@ class MemberbaseApp extends MallbaseApp
                 'name' => 'chengnuo',
                 'icon' => 'ico13',
             );
-             $menu['im_seller']['submenu']['xiaobao']  = array(
+            /* $menu['im_seller']['submenu']['xiaobao']  = array(
                     'text'  => Lang::get('xiaobao'),
                     'url'   => 'index.php?app=my_store&act=xiaobao',
                     'name'  => 'xiaobao',
                     'icon'  => 'ico21',
-            );
+            );*/
 
             if ($row['status'] == 1) {
                 $menu['im_qiye'] = array(
