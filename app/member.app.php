@@ -925,7 +925,7 @@ class MemberApp extends MemberbaseApp
             );
             $this->my_money_mod->edit('user_id=' . $user_id, $da);
             $this->show_message('goumaichenggong',
-                'fanhuiliebiao', 'index.php?app=member');
+                'fanhuiliebiao', 'index.php?app=member&act=goumaitaocan');
 
         } else {
             $row = $this->my_webserv_mod->getRow("select id from " . DB_PREFIX . "my_webserv where user_id='$user_id' limit 1");

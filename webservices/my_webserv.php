@@ -530,29 +530,7 @@ if(empty($_GET['ui']))
             <option value="1" <? if($status==1){echo "selected";}?>>己审核</option>
         </select>
         
-        <select name="fbb">
-        	<option value="" selected="selected">FBB请选择</option>
-            <option value="2000" <? if($fbb==2000){echo "selected";}?>>小FBB</option>
-            <option value="20000" <? if($fbb==20000){echo "selected";}?>>大FBB</option>
-        </select>
-        
-        <select name="zhuo">
-        	<option value="" selected="selected">卓100请选择</option>
-            <option value="2000" <? if($zhuo==2000){echo "selected";}?>>小卓</option>
-            <option value="20000" <? if($zhuo==20000){echo "selected";}?>>大卓</option>
-        </select>
-        
-        <select name="liubao">
-        	<option value="" selected="selected">六保请选择</option>
-            <option value="0" <? if($_GET['liubao']==='0'){echo "selected";}?>>未买</option>
-            <option value="5500" <? if($liubao==5500){echo "selected";}?>>己买</option>
-        </select>
-        
-        <select name="zengjin">
-        	<option value="" selected="selected">增进请选择</option>
-            <option value="0" <? if($_GET['zengjin']==='0'){echo "selected";}?>>未买</option>
-            <option value="2000" <? if($zengjin==2000){echo "selected";}?>>己买</option>
-        </select>
+
         
 		<input type="submit" value="筛选条件">
 		<input type="hidden" name="act" value="<?=$act?>">
@@ -579,7 +557,7 @@ if(empty($_GET['ui']))
 		<input type="hidden" name="func">
         <input type="hidden" name="act" value='<?=$act?>'>
 		<?	
-		echoTh(array('会员id','会员名','套餐','现在缴纳订金','申请时间','审核时间','缴费','所属站','FBB','z100','六保','增进','FBB状态','Z100状态','六保','增进','状态','操作'));	
+		echoTh(array('会员id','会员名','套餐','现在缴纳订金','申请时间','审核时间','缴费','所属站','状态','操作'));
 		$is_array=array('不','是');
 		
 		foreach ($result as $row)
@@ -599,120 +577,6 @@ if(empty($_GET['ui']))
                 <td align="center"><?=$row['paymoney']/10000?>万</td>
  
 				<td align="center">&nbsp;&nbsp;<?=$city[$row['city']];?></td>
-                <td><?
-                	if(empty($row['fbb']))
-					{
-		
-						echo " <a href='?act=my_webserv_up&user_id=".$row['user_id']."&type=1&s=0'>购买</a>";	
-					}
-					elseif($row['fbb']==2000)
-					{
-						echo "小FBB";
-						echo " <a href='?act=my_webserv_up&user_id=".$row['user_id']."&type=1&s=1'>升级</a>";	
-					}
-					elseif($row['fbb']==20000)
-					{
-						echo '大FBB';
-					}
-				?></td>
-                <td><?
-                	if(empty($row['zhuo']))
-					{
-						
-						echo " <a href='?act=my_webserv_up&user_id=".$row['user_id']."&type=2&s=0'>购买</a>";
-					}
-					elseif($row['zhuo']==2000)
-					{
-						echo "小卓";
-						echo " <a href='?act=my_webserv_up&user_id=".$row['user_id']."&type=2&s=1'>升级</a>";	
-					}
-					elseif($row['zhuo']==20000)
-					{
-						echo '大卓';
-					}
-				?></td>
-                <td><?
-                	if($row['liubao']!=0)
-					{
-						echo '已购';
-					}
-					else
-					{
-						//if(empty($row['zengjin']))
-						{
-							echo " <a href='?act=my_webserv_up&user_id=".$row['user_id']."&type=3'>购买</a>";
-						}
-					}
-				?></td>
-                <td><?
-                	if(empty($row['zengjin']))
-					{
-						echo " <a href='?act=my_webserv_up&user_id=".$row['user_id']."&type=4'>购买</a>";
-					}
-					else
-					{
-						echo '已购';
-					}
-				?></td>
-                <?
-                if($row['status']==1)
-				{
-				?>
-                    <td align="center">
-                    <? 
-                        if($row['fbb_s']==1)
-                        {
-                            echo '正常';
-                        }
-                        elseif($row['fbb']>0)
-                        {
-                            echo "<a href=\"javascript:rereg($id,'fbb')\">重新注册</a>";
-                        }
-                    ?>
-                    </td>
-                    <td align="center">
-                    <? 
-                        if($row['zhuo_s']==1)
-                        {
-                            echo '正常';
-                        }
-                        elseif($row['zhuo']>0)
-                        {
-                            echo "<a href=\"javascript:rereg($id,'zhuo')\">重新注册</a>";
-                        }
-                    ?>
-                    </td>
-                    <td align="center">
-                    <? 
-                        if($row['liubao_s']==1)
-                        {
-                            echo '正常';
-                        }
-                        elseif($row['liubao']>0)
-                        {
-                            echo "<a href=\"javascript:rereg($id,'liubao')\">重新注册</a>";
-                        }
-                    ?>
-                    </td>
-                    <td align="center">
-                    <? 
-                        if($row['zengjin_s']==1)
-                        {
-                            echo '正常';
-                        }
-                        elseif($row['zengjin']>0)
-                        {
-                            echo "<a href=\"javascript:rereg($id,'zengjin')\">重新注册</a>";
-                        }
-                    ?>
-                    </td>                
-                <?
-				}
-				else
-				{
-					echo '<td colspan="4"> </td>';	
-				}
-				?>
 				<td align="center"><?
                 	if($row['status']==0)
 					{
