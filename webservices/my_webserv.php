@@ -9,12 +9,12 @@ $url = "?act=$act&page=$page";
 $sqlW = '1=1';
 
 
-$taocan_arr = array(
-    array('buytype' => 0, 'name' => iconv('utf-8', 'gbk', '超级合作商'), 'price' => 12.98, 'price_dj' => 6.4),
-    array('buytype' => 1, 'name' => iconv('utf-8', 'gbk', '钻石合作商'), 'price' => 6.4, 'price_dj' => 3.2),
-    array('buytype' => 2, 'name' => iconv('utf-8', 'gbk', '金牌合作商'), 'price' => 3.2, 'price_dj' => 0.72),
-    array('buytype' => 3, 'name' => iconv('utf-8', 'gbk', '精英版店铺'), 'price' => 1.6, 'price_dj' => 0.51),
-);
+        $taocan_arr = array(
+            array('buytype' => 0, 'name' =>'超级合作商', 'price' => 12.98,'price_dj'=>6.4),
+            array('buytype' => 1, 'name' =>'钻石合作商', 'price' => 6.4,'price_dj'=>3.2),
+            array('buytype' => 2, 'name' =>'金牌合作商', 'price' => 3.2,'price_dj'=>0.72),
+            array('buytype' => 3, 'name' =>'精英版店铺', 'price' => 1.6,'price_dj'=>0.51),
+        );
 
 if (isset($_REQUEST['func'])) {
     $func = $_REQUEST['func'];
@@ -583,13 +583,9 @@ else
 <tr>
         <th></th>
         
-        <td class="ptb20"><input type="submit" value="提交" id="btn_sub">
-          <input class="formbtn" type="reset" name="Reset" value="重置" onclick="checkform()">        </td>
+        <td class="ptb20"><input type="submit" value="提交" id="btn_sub"> </td>
       </tr>
    </table>
-<script>
-paytype_click(<?=$row['buytype']?>);
-</script>
         
 		</form>		
 		<?
