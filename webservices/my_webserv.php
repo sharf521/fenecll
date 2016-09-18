@@ -28,10 +28,7 @@ if (isset($_REQUEST['func'])) {
             }
             $id = $_POST['id'];
             $user_id = $_POST['user_id'];
-
-
             $member = $db->get_one("select a.web_id,a.yaoqing_id,a.user_name,a.city,b.buytype,b.paymoney,b.status from {member} a join {my_webserv} b on a.user_id=b.user_id where a.user_id=$user_id limit 1");
-
             if (!$member) {
                 showMsg($user_id . '用户不存在！');
                 exit();
@@ -43,22 +40,79 @@ if (isset($_REQUEST['func'])) {
                 $yaoqing_id=$member['yaoqing_id'];
             }
             unset($member);
-
             if($member['status']!=0){
                 showMsg('不要重复审核！');
                 exit();
             }
-
             $level = $_POST['level'];
             if ($level) {
                 $level = implode(',', $level);
                 $db->query("update {member} set level='$level' where user_id=$user_id limit 1");
             }
 
+            $row = $db->get_one("select money_dj,money,suoding_money,duihuanjifen,dongjiejifen from {my_money} where user_id='$user_id' limit 1");
+            $user_money = $row['money'];
+            $user_money_dj = $row['money_dj'];
+            $user_jifen = $row['duihuanjifen'];
+            $user_jifen_dj = $row['dongjiejifen'];
+            unset($row);
+
+            //更改帐户余额
+            $db->query("update {my_money} set money_dj=money_dj-" . $paymoney . "  where user_id='$user_id' limit 1");
+            //用户金钱流水
+            $dq_money_dj = $user_money_dj - $paymoney;
+            $arr = array(
+                'money' => 0,
+                'jifen' => 0,
+                'money_dj' =>'-' . $paymoney,
+                'jifen_dj' => 0,
+                'user_id' => $user_id,
+                'user_name' => $user_name,
+                'type' => 36,
+                's_and_z' => 2,
+                'time' => date('Y-m-d H:i:s'),
+                'zcity' => $city,
+                'dq_money' => $user_money,
+                'dq_money_dj' => $dq_money_dj,
+                'dq_jifen' => $user_jifen,
+                'dq_jifen_dj' => $user_jifen_dj,
+                'beizhu' => '购买套餐'
+            );
+            $db->insert('{moneylog}', $arr);
+
+            $returnjifen = getjifen($paymoney);
+            $consume_id = webService('C_Consume', array("ID" => $web_id, "Money" => $returnjifen, "MoneyType" => 1, "Count" => 1));//返利全部
+            $arr = array(
+                'cai_id' => 0,
+                'gong_id' => $user_id,
+                'consume_id' => $consume_id,
+                'type' => 1,
+                'time' => date('Y-m-d H:i:s'),
+                'status' => 0,
+                'money' => $returnjifen,
+                'jifen' => 0,
+                'city' => $city,
+                'gh_id' => 0
+            );
+            $db->insert('{webservice_list}', $arr);
+
+
+            $remark = $a_username . '|' . $a_userid . "审核会员" . $user_name . "购买套餐";
+
+                $arr = array(
+                    'checktime' => date('Y-m-d H:i:s'),
+                    'status' => 1,
+                    'remark' => $remark
+                );
+                $db->update('{my_webserv}', $arr, "id=$id");
+
+
+
+            adminlog("审核会员{$user_name}[{$user_id}]购买套餐！");
+
             //邀请人获得奖励
             if (!empty($yaoqing_id)) {
                 $yaoqing = $db->get_one("select user_id,user_name from {member} where user_name='" . $yaoqing_id . "' limit 1 ");
-
                 $yaoqing_user_id=$yaoqing['user_id'];
                 $yaoqing_user_name=$yaoqing['user_name'];
                 $row = $db->get_one("select money_dj,money,suoding_money,duihuanjifen,dongjiejifen from {my_money} where user_id='{$yaoqing_user_id}' limit 1");
@@ -91,66 +145,6 @@ if (isset($_REQUEST['func'])) {
                 $db->insert('{moneylog}', $arr);
                 $yaoqing = null;
             }
-            $row = $db->get_one("select money_dj,money,suoding_money,duihuanjifen,dongjiejifen from {my_money} where user_id='$user_id' limit 1");
-            $user_money = $row['money'];
-            $user_money_dj = $row['money_dj'];
-            $user_jifen = $row['duihuanjifen'];
-            $user_jifen_dj = $row['dongjiejifen'];
-            unset($row);
-
-            //更改帐户余额
-            $db->query("update {my_money} set money_dj=money_dj-" . $paymoney . "  where user_id='$user_id' limit 1");
-            //用户金钱流水
-            $dq_money_dj = $user_money_dj - $paymoney;
-            $arr = array(
-                'money' => 0,
-                'jifen' => 0,
-                'money_dj' =>'-' . $paymoney,
-                'jifen_dj' => 0,
-                'user_id' => $user_id,
-                'user_name' => $user_name,
-                'type' => 36,
-                's_and_z' => 2,
-                'time' => date('Y-m-d H:i:s'),
-                'zcity' => $city,
-                'dq_money' => $user_money,
-                'dq_money_dj' => $dq_money_dj,
-                'dq_jifen' => $user_jifen,
-                'dq_jifen_dj' => $user_jifen_dj,
-                'beizhu' => '购买套餐'
-            );
-            $db->insert('{moneylog}', $arr);
-
-
-            $returnjifen = getjifen($money);
-            $consume_id = webService('C_Consume', array("ID" => $web_id, "Money" => $returnjifen, "MoneyType" => 1, "Count" => 1));//返利全部
-            $arr = array(
-                'cai_id' => 0,
-                'gong_id' => $user_id,
-                'consume_id' => $consume_id,
-                'type' => 1,
-                'time' => date('Y-m-d H:i:s'),
-                'status' => 0,
-                'money' => $returnjifen,
-                'jifen' => 0,
-                'city' => $city,
-                'gh_id' => 0
-            );
-            $db->insert('{webservice_list}', $arr);
-
-
-            $remark = $a_username . '|' . $a_userid . "审核会员" . $user_name . "购买套餐";
-
-                $arr = array(
-                    'checktime' => date('Y-m-d H:i:s'),
-                    'status' => 1,
-                    'remark' => $remark
-                );
-                $db->update('{my_webserv}', $arr, "id=$id");
-
-
-
-            adminlog("审核会员{$user_name}[{$user_id}]购买套餐！");
 
             $add_notice1 = array(
                 'from_id' => 0,
