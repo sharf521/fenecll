@@ -69,6 +69,9 @@
                         .table table td {
                             padding:20px;
                         }
+                        .table table td .btn{
+                             padding: 5px 20px;
+                        }
                     </style>
                     <form method="post">
                         <table cellpadding="10" cellspacing="1" bgcolor="#a8c7ce" >
@@ -93,9 +96,9 @@
                             {/foreach}
                             <td height="40" colspan="6" align="center" bgcolor="#FFFFFF">
                                 {if $row}
-                                <input type="submit" value="  购 买 " disabled="disabled"/>请不要重复提交！
+                                <input type="submit" value="  购 买 " class="btn" disabled="disabled"/>请不要重复提交！
                                 {else}
-                                <input type="submit" value=" 购 买 "/>
+                                <input type="submit" value=" 购 买 " class="btn"/>
                                 {/if}
                             </td>
                             </tr>
