@@ -303,6 +303,7 @@ $("document").ready(function()
                    <!-- <a href='<?=$url?>&func=webservices&user_id=<?=$row['user_id']?>'>注册WebServices</a><a href='?act=user_moneyadd&user_id=<?=$row['user_id']?>'>增加用户资金</a>
                     <a href='?act=my_moneylog&user_name=<?=$row['user_name']?>'>资金流水</a>-->
                     <?
+                    /*
                     	$row1=$db->get_one("select id from {my_webserv} where user_id=".$row['user_id']." limit 1");
 				
 			       
@@ -310,10 +311,9 @@ $("document").ready(function()
 						{
 							echo "<a href='?act=user_buy&user_id=".$row['user_id']."'>购买套餐</a>";
 						}
-						$row1=null;
+						$row1=null;*/
 						
 					?>
-                    
                     
                     
                     <a onclick="return confirm('确定要删除吗？')" href="<?=$url?>&func=del&user_id=<?=$row["user_id"]?>"></a>
