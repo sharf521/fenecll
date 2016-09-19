@@ -66,7 +66,7 @@ if(strstr($host,"jinhoudai"))
 		case 21: $para['PaymentType']="BOCOM";break;
 		case "PSBC": $para['PaymentType']="PSBC";break;
 		case 36: $para['PaymentType']="CEB";break;
-		case 09: $para['PaymentType']="CIB";break;
+		case "09": $para['PaymentType']="CIB";break;
 		case 45: $para['PaymentType']="BOCSH";break;
 		default: $para['PaymentType']="";
 		}
