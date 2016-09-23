@@ -66,7 +66,7 @@
             <? }?>
         </div>
         <div class="xinyong-box">
-            <? $sgrade=array('1'=>'扶持版','2'=>'精英版');?>
+            <? $sgrade=array('1'=>'基础版','2'=>'精英版');?>
             <ul class="xinyong">
                 <li>信用度：<img src="/themes/images/<?=$_G['shop']['credit_value']?>" align="absmiddle"/></li>
                 <li class="xinyong_you">总销量：<?=($_G['shop']['goods_countall'])?$_G['shop']['goods_countall']:'0'?></li><br />

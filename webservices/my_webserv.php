@@ -9,12 +9,13 @@ $url = "?act=$act&page=$page";
 $sqlW = '1=1';
 
 
-        $taocan_arr = array(
-            array('buytype' => 0, 'name' =>'超级合作商', 'price' => 12.98,'price_dj'=>6.4),
-            array('buytype' => 1, 'name' =>'钻石合作商', 'price' => 6.4,'price_dj'=>3.2),
-            array('buytype' => 2, 'name' =>'金牌合作商', 'price' => 3.2,'price_dj'=>0.72),
-            array('buytype' => 3, 'name' =>'精英版店铺', 'price' => 1.6,'price_dj'=>0.51),
-        );
+$taocan_arr = array(
+    array('buytype' => 0, 'name' => '超级合作商', 'price' => 12.98, 'price_dj' => 6.4),
+    array('buytype' => 1, 'name' => '钻石合作商', 'price' => 6.4, 'price_dj' => 3.2),
+    array('buytype' => 2, 'name' => '金牌合作商', 'price' => 3.2, 'price_dj' => 0.72),
+    array('buytype' => 3, 'name' => '精英版店铺', 'price' => 1.6, 'price_dj' => 0.51),
+    array('buytype' => 4, 'name' => '基础版店铺', 'price' => 0.72, 'price_dj' => 0.051),
+);
 
 if (isset($_REQUEST['func'])) {
     $func = $_REQUEST['func'];
@@ -38,6 +39,7 @@ if (isset($_REQUEST['func'])) {
                 $city = $member['city'];
                 $paymoney= $member['paymoney'];
                 $yaoqing_id=$member['yaoqing_id'];
+                $buytype=$member['buytype'];
             }
             unset($member);
             if($member['status']!=0){
@@ -121,7 +123,11 @@ if (isset($_REQUEST['func'])) {
                 $user_jifen_dj = $row['dongjiejifen'];
                 unset($row);
 
-               $yaoqing_jifen=getjifen($paymoney*0.5);
+                if($buytype==4){
+                    $yaoqing_jifen=getjifen($paymoney*0.6);
+                }else{
+                    $yaoqing_jifen=getjifen($paymoney*0.5);
+                }
                 $db->query("update {my_money} set duihuanjifen=duihuanjifen+" . $yaoqing_jifen . "  where user_id='$yaoqing_user_id' limit 1");
                 //用户金钱流水
                 $arr = array(

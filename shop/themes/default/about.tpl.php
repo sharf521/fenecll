@@ -3,7 +3,7 @@
         <div class="store-box">
             <h1>店铺信息</h1>
             <div class="store">
-                <? $sgrade=array('1'=>'扶持版','2'=>'精英版');?>
+                <? $sgrade=array('1'=>'基础版','2'=>'精英版');?>
                 <ul style=" width:300px;">
                     <li>店主： <?=$_G['shop']['owner_name']?></li>
                     <li>店铺等级： <?=$sgrade[$_G['shop']['sgrade']]?></li>

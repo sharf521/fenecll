@@ -878,6 +878,7 @@ class MemberApp extends MemberbaseApp
             array('buytype' => 1, 'name' => iconv('utf-8', 'gbk', '钻石合作商'), 'price' => 6.4, 'price_dj' => 3.2),
             array('buytype' => 2, 'name' => iconv('utf-8', 'gbk', '金牌合作商'), 'price' => 3.2, 'price_dj' => 0.72),
             array('buytype' => 3, 'name' => iconv('utf-8', 'gbk', '精英版店铺'), 'price' => 1.6, 'price_dj' => 0.51),
+            array('buytype' => 4, 'name' => iconv('utf-8', 'gbk', '基础版店铺'), 'price' => 0.72, 'price_dj' => 0.051),
         );
         if ($_POST) {
             $buytype = (int)($_POST['buytype']);

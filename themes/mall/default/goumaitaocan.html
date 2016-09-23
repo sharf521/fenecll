@@ -89,9 +89,13 @@
                                         <strong>{$val.name}</strong>
                                     </label>
                                 </td>
-                                <td align="center" bgcolor="#FFFFFF">{$val.price}万元</td>
-                                <td align="center" bgcolor="#FFFFFF"><p>{$val.price_dj}万元</p></td>
-                                </td>
+                                {if $val.price>1}
+                                    <td align="center" bgcolor="#FFFFFF">{$val.price}万元</td>
+                                    <td align="center" bgcolor="#FFFFFF"><p>{$val.price_dj}万元</p></td>
+                                {else}
+                                    <td align="center" bgcolor="#FFFFFF"><script>document.write({$val.price} * 10000);</script>元</td>
+                                    <td align="center" bgcolor="#FFFFFF"><p><script>document.write({$val.price_dj} * 1000000/100);</script>元</p></td>
+                                {/if}
                             </tr>
                             {/foreach}
                             <td height="40" colspan="6" align="center" bgcolor="#FFFFFF">
