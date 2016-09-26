@@ -194,10 +194,14 @@ $user_zimuz3 = $zimu3.$shuzi3;
 					<input type="radio" value="jifenzhifu" checked="checked" name="zhifufangshi"/><label for="payment_sft" style="margin-left:10px; display:inline"><img src="{$site_url}/themes/mall/default/styles/default/images_sft/logo.jpg" alt="{$lang.shangfutongzhifu}" title="{$lang.payment_shangfutong}" width="125" height="47" style="cursor:pointer" /></label>
 					<!--{/if}-->
 					<!--{/if}-->
-					<br /><br />
-					<input name="is_zhe" type="checkbox" onclick="dazhe(this)" value="1"/>&nbsp;&nbsp;
-					<label><img src="{$site_url}/themes/mall/default/styles/default/images_sft/kj.jpg"  width="125" height="47" style="cursor:pointer" /></label>
-					&nbsp;<font style="color:#FF0000">(如需使用快捷通道，此处请打勾。若选择快捷通道，该笔订单将享受{$canshu.zhe_jifen}折优惠，但不参加积分奖励计划。)</font>
+					<div style="display:none">
+                        <br /><br />
+
+                        <input name="is_zhe" type="checkbox" onclick="dazhe(this)" value="1"/>&nbsp;&nbsp;
+                        <label><img src="{$site_url}/themes/mall/default/styles/default/images_sft/kj.jpg"  width="125" height="47" style="cursor:pointer" /></label>
+                        &nbsp;<font style="color:#FF0000">(如需使用快捷通道，此处请打勾。若选择快捷通道，该笔订单将享受{$canshu.zhe_jifen}折优惠，但不参加积分奖励计划。)</font>
+                    </div>
+
 					  
 
 <br /><br />

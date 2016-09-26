@@ -240,7 +240,7 @@ $this->assign('recom20', $recom20);
             $article_mod =& m('article');
 			if($city_id==1)
 			{
-				$cateid=4;
+				$cateid=2;
 			}
 			else
 			{
