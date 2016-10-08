@@ -115,7 +115,7 @@ class UcPassportUser extends BasePassportUser
 		$local_data['openid']        = $openid;
         $local_data['reg_time']     = time();
         $local_data['user_id']      = $user_id;
-
+        $local_data['vip']      = 1;
         /* 添加到用户系统 */
         $user_id=$this->_local_add($local_data);
 
