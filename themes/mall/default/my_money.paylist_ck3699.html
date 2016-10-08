@@ -22,12 +22,12 @@ function card() {
         return false;
     }
 
-    if (document.card_form.card_sn.value < '{$canshu.cz_min}') {
+    if (document.card_form.card_sn.value < {$canshu.cz_min}) {
         alert("充值金额不能小于{$canshu.cz_min}元");
         document.card_form.card_sn.focus();
         return false;
     }
-    if (document.card_form.card_sn.value > '{$canshu.cz_max}') {
+    if (document.card_form.card_sn.value > {$canshu.cz_max}) {
         alert("充值金额不能大于{$canshu.cz_max}元");
         document.card_form.card_sn.focus();
         return false;
