@@ -2976,15 +2976,15 @@ $_S['canshu']=$this->member_mod->can();
 
 
         $to_user = trim($_POST['to_user']);
-        $to_jifen = trim($_POST['to_jifen']);
+        $to_jifen = (float)trim($_POST['to_jifen']);
         $user_id = $this->visitor->get('user_id');
         $riqi = date('Y-m-d H:i:s');
         if ($_POST)//检测有提交
         {//检测有提交
-            if (preg_match("/[^0.-9]/", $to_jifen)) {
-                $this->show_warning('cuowu_nishurudebushishuzilei');
-                return;
-            }
+//            if (preg_match("/[^0.-9]/", $to_jifen)) {
+//                $this->show_warning('cuowu_nishurudebushishuzilei');
+//                return;
+//            }
 
             $user_row = $this->my_money_mod->getRow("select * from " . DB_PREFIX . "my_money where user_id='$user_id' limit 1");
             $user_city = $user_row['city'];//当前用户的city
