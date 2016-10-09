@@ -23,7 +23,7 @@ if(empty($_GET['ui']))
 	
 	<?
 	{		
-		$sql="SELECT SUM( money ) money, SUM( ABS( money_feiyong ) ) feiyong, LEFT( riqi, 7 ) riqi FROM ecm_my_moneylog WHERE leixing =30 GROUP BY LEFT( riqi, 7 ) ";
+		$sql="SELECT SUM( money ) money, SUM( ABS( money_feiyong ) ) feiyong, LEFT( riqi, 7 ) riqi FROM ecm_my_moneylog WHERE leixing =100 GROUP BY LEFT( riqi, 7 ) ";
 		$result=$db->get_all($sql);	
 		?>	
 		<table cellpadding="4" cellspacing="1" width="100%" bgcolor="#CCCCCC">
@@ -62,7 +62,7 @@ if(empty($_GET['ui']))
         <br /><br />
         <h2>充值小于200</h2>
        <? 
-        $sql="SELECT SUM( money ) money, SUM( ABS( money_feiyong ) ) feiyong, LEFT( riqi, 7 ) riqi FROM ecm_my_moneylog WHERE leixing =30 and (money+abs(money_feiyong))<200 GROUP BY LEFT( riqi, 7 ) ";
+        $sql="SELECT SUM( money ) money, SUM( ABS( money_feiyong ) ) feiyong, LEFT( riqi, 7 ) riqi FROM ecm_my_moneylog WHERE leixing =100 and (money+abs(money_feiyong))<200 GROUP BY LEFT( riqi, 7 ) ";
 		$result=$db->get_all($sql);	
 		?>	
 		<table cellpadding="4" cellspacing="1" width="100%" bgcolor="#CCCCCC">
@@ -100,7 +100,7 @@ $recharge_sum=0;
         </form></table>	
         <br /><br />
          <h2>充值大于等于200</h2>
-       <? $sql="SELECT SUM( money ) money, SUM( ABS( money_feiyong ) ) feiyong, LEFT( riqi, 7 ) riqi FROM ecm_my_moneylog WHERE leixing =30 and (money+abs(money_feiyong))>=200 GROUP BY LEFT( riqi, 7 ) ";
+       <? $sql="SELECT SUM( money ) money, SUM( ABS( money_feiyong ) ) feiyong, LEFT( riqi, 7 ) riqi FROM ecm_my_moneylog WHERE leixing =100 and (money+abs(money_feiyong))>=200 GROUP BY LEFT( riqi, 7 ) ";
 		$result=$db->get_all($sql);	
 		?>	
 		<table cellpadding="4" cellspacing="1" width="100%" bgcolor="#CCCCCC">
