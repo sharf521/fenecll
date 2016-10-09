@@ -923,7 +923,8 @@ class MemberbaseApp extends MallbaseApp
                     'name' => 'zhanghushezhi',
                     'icon' => 'ico11',
                 ),
-                /*'jifenduihuan' => array(
+                /*
+                  'jifenduihuan' => array(
                     'text' => Lang::get('jifenduihuan'),
                     'url' => 'index.php?app=my_money&act=jifen',
                     'name' => 'jifenduihuan',
