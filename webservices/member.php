@@ -52,7 +52,7 @@ if(isset($_REQUEST['func']))
 		$title = "会员资金表"; 			   
 		echo("$title\n");       
 		$sep = "\t";   
-		$fields=array('用户ID','用户名','资金','冻结资金','积分','冻结资金','锁定资金','锁定积分','信用额度','盘数');
+		$fields=array('用户ID','用户名','资金','冻结资金','积分','冻结积分','锁定资金','锁定积分','信用额度','盘数');
 		foreach($fields as $v)
 		{
 		  echo $v."\t";	
