@@ -148,7 +148,7 @@ class My_moneyApp extends MemberbaseApp
         ));
 
         foreach ($my_money as $mon => $mone) {
-            $my_money[$mon]['duihuanjifen'] = abs($mone['duihuanjifen']);
+            $my_money[$mon]['money'] = abs($mone['money']);
         }
         $page['item_count'] = $this->my_moneylog_mod->getCount();
         $this->_format_page($page);
@@ -186,6 +186,10 @@ class My_moneyApp extends MemberbaseApp
             'order' => "id desc",
             'count' => true,
         ));
+
+        foreach ($my_money as $mon => $mone) {
+            $my_money[$mon]['money'] = abs($mone['money']);
+        }
 
         $page['item_count'] = $this->my_moneylog_mod->getCount();
         $this->_format_page($page);
@@ -3022,15 +3026,16 @@ $_S['canshu']=$this->member_mod->can();
             $user_money_dj = $user_row['money_dj'];//当前用户
             $suoding_jifen = $user_row['suoding_jifen'];
             $keyong_jifen = $user_jifen - $suoding_jifen;
+            $keyong_money=$user_money-$user_row['suoding_money'];
             $user_zf_pass = $user_row['zf_pass'];
             $user_mibao_id = $user_row['mibao_id'];
             if ($to_jifen <= 0) {
-                $this->show_warning('zhuanzhangjifenbunengxiaoyuling');
+                $this->show_warning(iconv('utf-8','gbk','错误：转帐资金必须大于0！'));
                 return;
             }
 
-            if ($keyong_jifen < $to_jifen) {
-                $this->show_warning('cuowu_nidejifenbuzu');
+            if ($keyong_money < $to_jifen) {
+                $this->show_warning(iconv('utf-8','gbk','错误：你的资金不足！'));
                 return;
             }
 
@@ -3066,16 +3071,16 @@ $_S['canshu']=$this->member_mod->can();
 
 
             $order_id = date('Ymd-His', time()) . '-' . $to_jifen;
-            if ($user_jifen < $to_jifen) {
+            if ($user_money < $to_jifen) {
                 $this->show_warning('cuowu_zhanghuyuebuzu');
                 return;
             } else {
 
-                $new_user_jifen = $user_jifen - $to_jifen;
-                $new_to_user_jifen = $to_user_jifen + $to_jifen;
+                $new_user_money = $user_money - $to_jifen;
+                $new_to_user_money = $to_user_money + $to_jifen;
                 //添加日志
                 //转出记录
-                $log_text = $this->visitor->get('user_name') . Lang::get('gei') . $to_user . Lang::get('zhuanchujifen') . $to_jifen . Lang::get('jifen');
+                $log_text = $this->visitor->get('user_name') . Lang::get('gei') . $to_user . iconv('utf-8','gbk',' 转出') . $to_jifen ;
                 $add_mymoneylog = array(
                     'user_id' => $user_id,
                     'user_name' => $this->visitor->get('user_name'),
@@ -3084,7 +3089,7 @@ $_S['canshu']=$this->member_mod->can();
                     'order_sn ' => $order_id,
                     'add_time' => time(),
                     'leixing' => 21,
-                    'duihuanjifen' => '-' . $to_jifen,
+                    'money' => '-' . $to_jifen,
                     //'dongjiejifen'=>'-'.$to_jifen,
                     'log_text' => $log_text,
                     'caozuo' => 50,
@@ -3092,9 +3097,9 @@ $_S['canshu']=$this->member_mod->can();
                     'type' => 16,
                     'riqi' => $riqi,
                     'city' => $user_city,
-                    'dq_money' => $user_money,
+                    'dq_money' => $new_user_money,
                     'dq_money_dj' => $user_money_dj,
-                    'dq_jifen' => $new_user_jifen,
+                    'dq_jifen' => $user_jifen,
                     'dq_jifen_dj' => $user_dongjiejifen,
                 );
                 $this->my_moneylog_mod->add($add_mymoneylog);
@@ -3103,7 +3108,7 @@ $_S['canshu']=$this->member_mod->can();
 //$beizhu =$this->visitor->get('user_name').Lang::get('gei').$to_user.Lang::get('zhuanchujifen').$to_jifen.Lang::get('jifen');
                 $beizhu = Lang::get('zhuanruren') . $to_user;
                 $addmlog1 = array(
-                    'jifen' => '-' . $to_jifen,
+                    'money' => '-' . $to_jifen,
                     'time' => $riqi,
                     'user_name' => $this->visitor->get('user_name'),
                     'user_id' => $this->visitor->get('user_id'),
@@ -3111,16 +3116,16 @@ $_S['canshu']=$this->member_mod->can();
                     'type' => 22,
                     's_and_z' => 2,
                     'beizhu' => $beizhu,
-                    'dq_money' => $user_money,
+                    'dq_money' => $new_user_money,
                     'dq_money_dj' => $user_money_dj,
-                    'dq_jifen' => $new_user_jifen,
+                    'dq_jifen' => $user_jifen,
                     'dq_jifen_dj' => $user_dongjiejifen,
                 );
                 $this->moneylog_mod->add($addmlog1);
 
 
                 //转入记录
-                $log_text_to = $this->visitor->get('user_name') . Lang::get('gei') . $to_user_name . Lang::get('zhuanrujifen') . $to_jifen . Lang::get('jifen');
+                $log_text_to = $this->visitor->get('user_name') . Lang::get('gei') . $to_user_name . iconv('utf-8','gbk',' 转入'). $to_jifen ;
                 $add_mymoneylog_to = array(
                     'user_id' => $to_user_id,
                     'user_name' => $to_user_name,
@@ -3129,7 +3134,7 @@ $_S['canshu']=$this->member_mod->can();
                     'seller_name' => $this->visitor->get('user_name'),
                     'add_time' => time(),
                     'leixing' => 11,
-                    'duihuanjifen' => '+' . $to_jifen,
+                    'money' => '+' . $to_jifen,
                     //'dongjiejifen'=>'-'.$to_jifen,
                     'log_text' => $log_text_to,
                     'caozuo' => 50,
@@ -3137,9 +3142,9 @@ $_S['canshu']=$this->member_mod->can();
                     'riqi' => $riqi,
                     'type' => 18,
                     'city' => $to_city_id,
-                    'dq_money' => $to_user_money,
+                    'dq_money' => $new_to_user_money,
                     'dq_money_dj' => $to_user_money_dj,
-                    'dq_jifen' => $new_to_user_jifen,
+                    'dq_jifen' => $to_user_jifen,
                     'dq_jifen_dj' => $to_user_dongjiejifen,
                 );
                 $this->my_moneylog_mod->add($add_mymoneylog_to);
@@ -3147,7 +3152,7 @@ $_S['canshu']=$this->member_mod->can();
                 //$beizhu =$this->visitor->get('user_name').Lang::get('gei').$to_user_name.Lang::get('zhuanrujifen').$to_jifen.Lang::get('jifen');
                 $beizhu = Lang::get('zhuanchuren') . $this->visitor->get('user_name');
                 $addmlog = array(
-                    'jifen' => $to_jifen,
+                    'money' => $to_jifen,
                     'time' => $riqi,
                     'user_name' => $to_user_name,
                     'user_id' => $to_user_id,
@@ -3155,20 +3160,20 @@ $_S['canshu']=$this->member_mod->can();
                     'type' => 23,
                     's_and_z' => 1,
                     'beizhu' => $beizhu,
-                    'dq_money' => $to_user_money,
+                    'dq_money' => $new_to_user_money,
                     'dq_money_dj' => $to_user_money_dj,
-                    'dq_jifen' => $new_to_user_jifen,
+                    'dq_jifen' => $to_user_jifen,
                     'dq_jifen_dj' => $to_user_dongjiejifen,
                 );
                 $this->moneylog_mod->add($addmlog);
 
 
                 $add_jia = array(
-                    'duihuanjifen' => $new_to_user_jifen,
+                    'money' => $new_to_user_money,
                 );
                 $this->my_money_mod->edit('user_id=' . $to_user_id, $add_jia);
                 $add_jian = array(
-                    'duihuanjifen' => $new_user_jifen,
+                    'money' => $new_user_money,
                 );
                 $this->my_money_mod->edit('user_id=' . $user_id, $add_jian);
 

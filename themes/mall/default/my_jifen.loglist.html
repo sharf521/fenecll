@@ -95,14 +95,14 @@ class="G" href="index.php?app=my_money&amp;act=txlist"><span style="color:green;
         <div class="wrap">
           <div class="public table">
           {if $kai_jifen.jifen_zhuan=="yes"}
-            <h3 class="title" style="margin: -10px 0 20px; color:#3E3E3E">积分转账</h3>
+            <h3 class="title" style="margin: -10px 0 20px; color:#3E3E3E">站内转账</h3>
               <div style="color:#646665;float:left;font-size:12px;font-weight:normal;line-height:30px;">
 				<!--{foreach from=$my_money item=val key=key}-->
 				<form name="to_users" onSubmit="return tousers();" action="index.php?app=my_money&act=jifento_user" method="post">
                   <span>{$lang.mubiaoyonghu}：</span>
                   <input name="to_user" type="text" id="to_user" size="10">
-				   {$lang.zhuanchujifen}：<input name="to_jifen" type="text" id="to_jifen" size="6" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8">
-                    &nbsp;{$lang.jifen}
+				   转出：<input name="to_jifen" type="text" id="to_jifen" size="6" onKeyPress="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onKeyUp="if(!this.value.match(/^[\+\-]?\d*?\.?\d*?$/))this.value=this.t_value;else this.t_value=this.value;if(this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/))this.o_value=this.value" onBlur="if(!this.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?|\.\d*?)?$/))this.value=this.o_value;else{if(this.value.match(/^\.\d+$/))this.value=0+this.value;this.o_value=this.value}" maxlength="8">
+                    &nbsp;现金
                     &nbsp; &nbsp;
                    <BR>
 				  
