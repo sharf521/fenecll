@@ -1101,8 +1101,10 @@ $txfeiyong=0;
 }
 else
 {*/
-            $txfeiyong = $tx_money * $txfeilv;//提现费用
-            $txfeiyong = ceil($txfeiyong * 100) / 100;
+            //$txfeiyong = $tx_money * $txfeilv;//提现费用
+            $txfeiyong=bcmul($tx_money,$txfeilv,3);
+            //$txfeiyong = ceil($txfeiyong * 100) / 100;
+            $txfeiyong=format_price($txfeiyong,2,2);
             if ($txfeiyong < $txfeimin) {
                 $txfeiyong = $txfeimin;
             }
@@ -1112,8 +1114,12 @@ else
 
             if ($tixian == 1)//快速提现
             {
-                $txfeiyong = $txfeiyong + $tx_money * $ks_txfeilv + $ks_fei;
-                $txfeiyong = ceil($txfeiyong * 100) / 100;
+                //$txfeiyong = $txfeiyong + $tx_money * $ks_txfeilv + $ks_fei;
+                $txfeiyong=bcadd($txfeiyong,$ks_fei,2);
+                $__t=bcmul($tx_money,$ks_txfeilv,3);
+                $txfeiyong=bcadd($txfeiyong,$__t,3);
+                //$txfeiyong = ceil($txfeiyong * 100) / 100;
+                $txfeiyong=format_price($txfeiyong,2,2);
             } else {
                 $tixian = 0;
             }
