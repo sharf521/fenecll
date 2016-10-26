@@ -1109,10 +1109,10 @@ else
             $txfeiyong=bcmul($tx_money,$txfeilv,3);
             //$txfeiyong = ceil($txfeiyong * 100) / 100;
             $txfeiyong=format_price($txfeiyong,2,2);
-            if($user_id==263){
-                echo $txfeiyong;
-                exit;
-            }
+//            if($user_id==263){
+//                echo $txfeiyong;
+//                exit;
+//            }
             if ($txfeiyong < $txfeimin) {
                 $txfeiyong = $txfeimin;
             }
