@@ -3,7 +3,7 @@
 .information .info table{ width :auto;}
 </style>
 
-<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>
+<SCRIPT src="/includes/ueditor/ueditor.config.js" type=text/javascript></SCRIPT>  
 <SCRIPT src="/includes/ueditor/ueditor.all.js" type=text/javascript></SCRIPT>
 
 <script type="text/javascript">
@@ -192,8 +192,8 @@ function drop_image(file_id)
                             <tr>
                                 <th><font color="#FF0000">{$lang.gettype}:</font></th>
                                 <td>
-                <input type="radio" name="gettype"  checked="checked" value="1"/><font color="#FF0000">{$lang.getjifen}</font>
-                <input type="radio" name="gettype"  {if $store.gettype==2} checked="checked" {/if} value="2"/><font color="#FF0000">{$lang.getxianjin}</font>
+                <input type="radio" name="gettype" id="gettype" {if $store.gettype==1} checked="checked" {/if} value="1"/><font color="#FF0000">{$lang.getjifen}</font>
+                <input type="radio" name="gettype" id="gettype" {if $store.gettype==2} checked="checked" {/if} value="2"/><font color="#FF0000">{$lang.getxianjin}</font>
                                </td>
                             </tr>
                             <tr>
@@ -205,31 +205,35 @@ function drop_image(file_id)
                                   <td><input name="im_ww" type="text" class="text width_normal" id="im_ww" value="{$store.im_ww|escape}" /></td>
                             </tr>
 							 <tr>
-                                  <th>Î¢ï¿½Å¹ï¿½ï¿½ï¿½ï¿½Ëºï¿½:</th>
+                                  <th>Î¢ÐÅ¹«ÖÚÕËºÅ:</th>
                                   <td><input name="public_account" type="text" class="text width_normal" id="public_account" value="{$store.public_account|escape}" /></td>
                             </tr>
+                            <tr style="display:none ">
+                                  <th>{$lang.im_msn}:</th>
+                                  <td>{if $store.im_msn}{$store.im_msn|escape} <a target="_blank" href="{url app=my_store&act=drop_im_msn}">{$lang.disable_msn}</a>{else}<a target="_blank" href="{$msn_active_url}">{$lang.active_msn}</a><span class="padding1">{$lang.msn_info}</span>{/if}</td>
+                             </tr>
                              <tr>
                                 <th class="align3">{$lang.description}:</th>
                                 <td><div class="editor"><div>
-
+                                    
 									<!--<textarea name="description" id="description" style="width:100%; height:350px;">{$store.description|escape}</textarea>-->
-
+									
 									<script type="text/plain" id="myEditor" name="description">
         							<p>{$store.description}</p>
     								</script>
 									<script type="text/javascript">
 										UE.getEditor('myEditor',{
-											initialFrameHeight:350,  //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½à¼­ï¿½ï¿½ï¿½ß¶ï¿½,
-											autoHeightEnabled:false, //ï¿½Ç·ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½,Ä¬ï¿½ï¿½true
-											scaleEnabled:false, //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³¤ï¿½ï¿½,Ä¬ï¿½ï¿½true
-											minFrameHeight:420, //ï¿½à¼­ï¿½ï¿½ï¿½Ï¶ï¿½Ê±ï¿½ï¿½Ð¡ï¿½ß¶ï¿½
-											autoFloatEnabled:false,//ï¿½Ç·ñ±£³ï¿½toolbarï¿½ï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½,Ä¬ï¿½ï¿½true
-											toolbarTopOffset:400, //ï¿½à¼­ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ë¹¤ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½
+											initialFrameHeight:350,  //³õÊ¼»¯±à¼­Æ÷¸ß¶È,
+											autoHeightEnabled:false, //ÊÇ·ñ×Ô¶¯³¤¸ß,Ä¬ÈÏtrue
+											scaleEnabled:false, //ÊÇ·ñ¿ÉÒÔÀ­Éì³¤¸ß,Ä¬ÈÏtrue
+											minFrameHeight:420, //±à¼­Æ÷ÍÏ¶¯Ê±×îÐ¡¸ß¶È
+											autoFloatEnabled:false,//ÊÇ·ñ±£³ÖtoolbarµÄÎ»ÖÃ²»¶¯,Ä¬ÈÏtrue
+											toolbarTopOffset:400, //±à¼­Æ÷µ×²¿¾àÀë¹¤¾ßÀ¸¸ß¶È
 											initialFrameWidth:650
 										})
 									</script>
-
-
+									
+									
 									</div>
                                    <div style=" position: relative; top: 10px; z-index: 5;"><!--<a class="btn3" id="open_editor_uploader"></a>-->
                                    <div class="upload_con" id="editor_uploader" style="display:none">
@@ -265,9 +269,9 @@ function drop_image(file_id)
                                            <!-- <div class="pic">
                                           </div>-->
                                             <div ectype="handler" class="bg">
-
+                                          
                                                 <p class="operation">
-
+                                                   
                                                     <span class="delete" ectype="drop_image" ecm_title="{$lang.drop}"></span>
                                                 </p>
                                                 <p title="{$file.file_name|escape}" class="name"><!--{$file.file_name|escape}--></p>
