@@ -30,4 +30,7 @@ RewriteRule ^store/([0-9]+)/category/([0-9]+)/?$ index.php?app=store&id=$1&act=s
 RewriteRule ^store/([0-9]+)/category/([0-9]+)/page_([^/]+)/?$ index.php?app=store&id=$1&act=search&cate_id=$2&page=$3 [L]
 RewriteRule ^store/([0-9]+)/groupbuy/?$ index.php?app=store&id=$1&act=groupbuy [L]
 RewriteRule ^store/([0-9]+)/groupbuy/page_([^/]+)/?$ index.php?app=store&id=$1&act=groupbuy&page=$2 [L]
+
+#pic
+RewriteRule ^(.*)/data/files/store_([0-9]+)/(.*)$   /data/files/store_$2/$3
 </IfModule>
