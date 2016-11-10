@@ -33,4 +33,8 @@ RewriteRule ^store/([0-9]+)/groupbuy/page_([^/]+)/?$ index.php?app=store&id=$1&a
 
 #pic
 RewriteRule ^(.*)/data/files/store_([0-9]+)/(.*)$   /data/files/store_$2/$3
+
+RewriteCond %{HTTP_HOST} ^(ck3699.cn)$ [NC]
+RewriteRule ^(.*)$  http://www.ck3699.cn/$1 [R=301,L]
+
 </IfModule>
