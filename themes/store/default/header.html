@@ -36,7 +36,7 @@ $().ready(function(){
 });
 </script>
 <style type="text/css">
-    #nav{display: none}
+
 </style>
 </head>
 <body>
@@ -155,7 +155,7 @@ $().ready(function(){
 
 <div class="menubox">
     <div class="menulist">
-        <div id="nav">
+        <div id="nav" style="display: none">
             <a class="{if $index}link{else}hover{/if}" href="index.php"><span>{$lang.index}</span></a>
             <!--{foreach from=$navs.middle item=nav}-->
             <a href="{$nav.link}" class="{if !$index and $nav.link eq $current_url}link{else}hover{/if}" href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}><span>{$nav.title|escape}</span></a>
