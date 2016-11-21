@@ -355,7 +355,8 @@ class My_storeApp extends StoreadminbaseApp
             }
 
             $bb = explode(',', $lev['level']);
-            if (!in_array(1, $bb))//若是免费商家，则交定金
+            //if (!in_array(1, $bb))//若是免费商家，则交定金
+            if($store_row['sgrade']==1)
             {
                 if ($zhifufangshi == "xianjinzhifu") {
                     if ($jiage > $keyong_money) {
