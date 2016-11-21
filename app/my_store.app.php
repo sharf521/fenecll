@@ -304,7 +304,7 @@ class My_storeApp extends StoreadminbaseApp
 
         $this->_curlocal(array(array('text' => Lang::get('woyaocaigou'))));
         $deng = Lang::get('dengdaishenhe');
-        $store_row = $this->store_mod->getrow("select store_id from " . DB_PREFIX . "store where store_id='$user_id'");
+        $store_row = $this->store_mod->getrow("select store_id,sgrade from " . DB_PREFIX . "store where store_id='$user_id'");
 
         $money_row = $this->member_mod->getrow("select * from " . DB_PREFIX . "my_money where user_id='$user_id'");
         $money = $money_row['money'];
